@@ -19,7 +19,7 @@ import './plugins/axios';
 import { i18n } from './plugins/vue-i18n';
 import { router } from './plugins/vue-router';
 import './plugins/vuex-router-sync';
-import './plugins/bootstrap';
+// import './plugins/bootstrap';
 import './plugins/font-awesome';
 import './plugins/register-service-worker';
 
@@ -40,7 +40,22 @@ import './plugins/register-service-worker';
  */
 
 import './assets/stylus/app.styl';
-import './assets/css/app.css';
+import './assets/css/material-dashboard.css';
+
+/* ============
+ * Styling
+ * ============
+ * 
+ */
+
+// window.$ = window.jQuery = require('jquery');
+import jQuery from 'jquery';
+window.$ = jQuery;
+Object.defineProperty(Vue.prototype, '$jQuery', { value: jQuery });
+
+ import './assets/js/core/bootstrap-material-design.min.js';
+ import './assets/js/plugins/perfect-scrollbar.min.js';
+ import './assets/js/material-dashboard.js?v=2.2.2';
 
 /* ============
  * Main App

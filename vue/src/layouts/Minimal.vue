@@ -1,10 +1,8 @@
 <template>
   <div>
     <v-loading></v-loading>
-    <div id="auth">
-      <div class="row h-100">
-        <slot />
-      </div>
+    <div class="off-canvas-sidebar">
+      <slot />
     </div>
   </div>
 </template>

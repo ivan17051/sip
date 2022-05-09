@@ -14,7 +14,7 @@ export default [
 
     // If the user needs to be authenticated to view this page
     meta: {
-      auth: true,
+      guest: true,
     },
   },
 
@@ -39,7 +39,7 @@ export default [
     // If the user needs to be a guest to view this page.
     meta: {
       guest: true,
-      title: 'login simba lite',
+      title: 'login sip sdmk',
     },
   },
 
