@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class STR extends Model
 {
-    protected $table = 'str';
+    protected $table = 'sip';
 
     public $timestamps = false;
 
