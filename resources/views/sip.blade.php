@@ -162,7 +162,14 @@ Detil SIP
             <div class="card-icon">
                 <i class="material-icons">account_balance_wallet</i>
             </div>
-            <h4 class="card-title">Detil SIP</h4>
+            <h4 class="card-title row">
+                <div class="col-md-6">
+                    Detil SIP
+                </div>
+                <div class="col-md-6 text-right">
+                    <button class="btn btn-sm btn-success" id="#buttontambah" data-toggle="modal" data-target="#tambah" >tambah</button>
+                </div>
+            </h4>
         </div>
         <div class="card-body">
         <div class="description">
@@ -171,13 +178,8 @@ Detil SIP
                 Nomor STR: {{$str->nomor}} 
             </p>
         </div>
-        <div class="toolbar row">
-                <div class="col">
-                    
-                </div>
-                <div class="col-2 text-right">
-                    <button class="btn btn-sm btn-success" id="#buttontambah" data-toggle="modal" data-target="#tambah" >tambah</button>
-                </div>
+        <div class="toolbar">
+                
             </div>
             <div class="material-datatables">
                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">

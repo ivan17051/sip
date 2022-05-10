@@ -10,13 +10,13 @@ $role = explode(', ', $role);
         Tip 2: you can also add an image using data-image tag
         -->
     <div class="logo">
-        <a href="{{url('/')}}" class="simple-text logo-mini">K</a>
-        <a href="{{url('/')}}" class="simple-text logo-normal">Koperasi</a>
+        <a href="{{url('/')}}" class="simple-text logo-mini">S</a>
+        <a href="{{url('/')}}" class="simple-text logo-normal">SIP</a>
     </div>
     <div class="sidebar-wrapper">
         <div class="user">
             <div class="photo">
-                <img src="{{asset('public/img/logo.png')}}" />
+                <img src="{{asset('public/img/new_logo.png')}}" />
             </div>
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">

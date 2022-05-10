@@ -19,7 +19,7 @@
   <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
     <div class="container">
       <div class="navbar-wrapper">
-        <a class="navbar-brand" href="javascript:;">Koperasi</a>
+        <a class="navbar-brand" href="javascript:;">SIP</a>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
         <span class="sr-only">Toggle navigation</span>
@@ -59,7 +59,7 @@
   </nav>
   <!-- End Navbar -->
   <div class="wrapper wrapper-full-page">
-    <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('{{asset('public/img/login.jpeg')}}'); background-size: cover; background-position: bottom center;">
+    <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('{{asset('public/img/login.jpg')}}');">
       <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
       <div class="container">
         <div class="row">
@@ -151,7 +151,7 @@
             &copy;
             <script>
               document.write(new Date().getFullYear())
-            </script>, made with <i class="material-icons">favorite</i> by D I A Corp.
+            </script>, made with <i class="material-icons">favorite</i> by IT DKK Surabaya.
             <!-- <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web. -->
           </div>
         </div>

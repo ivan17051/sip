@@ -192,7 +192,7 @@ active
           <h4 class="card-title">
             <div class="row">
               <div class="col">Data Pegawai</div>
-              <div class="col text-right"><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#tambah">Tambah</button></div>
+              <div class="col text-right"><button class="btn btn-sm btn-success" data-toggle="modal" data-target="#tambah">Tambah</button></div>
             </div>
           </h4>
         </div>

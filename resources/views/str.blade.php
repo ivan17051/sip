@@ -229,7 +229,7 @@ $date = Carbon\Carbon::now()->format('Y-m-d');
                         <td hidden>{{$unit->tanggal}}</td>
                         <td><a href="{{url('/sip/'.$unit->id)}}" class="btn btn-info btn-link" style="padding:5px;"><i class="material-icons">launch</i></a>&nbsp
                           <button type="button" class="btn btn-warning btn-link" style="padding:5px;" onclick="edit(this)"><i class="material-icons">edit</i></button>&nbsp
-                          <button type="button" class="btn btn-danger btn-link" style="padding:5px;" onclick="hapus(this)"><i class="material-icons">close</i></button></td>
+                          <button type="button" class="btn btn-danger btn-link" style="padding:5px;" onclick="hapus(this)"><i class="material-icons">delete</i></button></td>
                       </tr>
                       @endforeach
                     </tbody>
