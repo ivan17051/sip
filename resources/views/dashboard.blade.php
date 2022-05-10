@@ -83,7 +83,7 @@ active
                 }},
                 { data:'id', title:'Aksi', class:"text-right", render: function(e,d,row){
                     return '<a href="/" title="Detil STR" class="btn btn-link btn-success  btn-sm pd-04rem" ><i class="material-icons">launch</i> str</button>&nbsp'+
-                        '<a href="/sip" title="Detil SIP" class="btn btn-link btn-info  btn-sm pd-04rem " ><i class="material-icons">launch</i> sip</button>'
+                        '<a href="{{route("sip.show", ["idstr"=>''])}}/'+row['id']+'" title="Detil SIP" class="btn btn-link btn-info  btn-sm pd-04rem " ><i class="material-icons">launch</i> sip</button>'
                 }},
             ],
         });
