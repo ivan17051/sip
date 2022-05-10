@@ -22,7 +22,8 @@ class DataController extends Controller
             ->rawColumns(['id','nik','nama','tempatlahir','tanggallahir', 'jeniskelamin', 'alamat', 'nohp', 'action']);
         
         $datatable->addColumn('action', function ($t) { 
-                return '<button type="button" class="btn btn-warning btn-link" style="padding:5px;" onclick="edit(this)"><i class="material-icons">edit</i></button>&nbsp'.
+                return '<button class="btn btn-info btn-link" style="padding:5px;" onclick="show(this)"><i class="material-icons">launch</i></button>&nbsp'.
+                '<button type="button" class="btn btn-warning btn-link" style="padding:5px;" onclick="edit(this)"><i class="material-icons">edit</i></button>&nbsp'.
                 '<button type="button" class="btn btn-danger btn-link" style="padding:5px;" onclick="hapus(this)"><i class="material-icons">close</i></button>';
             });
         
@@ -53,11 +54,11 @@ class DataController extends Controller
                     'id' => $input['id']
                 ]);
                 $model->fill($input);
-                $model->idc = $userId;
                 $model->idm = $userId;
             }else{
                 $model = new Pegawai();
                 $model->fill($input);
+                $model->idc = $userId;
                 $model->idm = $userId;
             }
         }catch(QueryException $exception){
