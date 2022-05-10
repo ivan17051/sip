@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 use App\STR;
 
 class STRController extends Controller
@@ -16,8 +17,16 @@ class STRController extends Controller
      * Store and update STR
      */
     public function store(Request $request){
+        $input = array_map('trim', $request->all());
+        
+        $validator = Validator::make($input, [
+            'id' => 'nullable|exists:str,id',
+        ]);
+        
+        if ($validator->fails()) return back()->with('error','Gagal memproses');
+
         try{
-            $str = new STR($request->all());
+            $str = new STR($input);
             $str->save();
         }catch(QueryException $exception){
             $this->flashError($exception->getMessage());
