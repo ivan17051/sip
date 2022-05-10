@@ -22,4 +22,12 @@ class STR extends Model
         "idm",
     ];
     
+    /**
+     * Get the Pegawai that owns the STR
+     *
+     */
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class, 'idpegawai');
+    }
 }

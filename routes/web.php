@@ -14,7 +14,7 @@
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', 'DashboardController@dashboard');
+    Route::get('/', 'DashboardController@index');
 
     Route::resource('str', STRController::class)->only(['index','store','destroy']);
 
