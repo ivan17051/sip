@@ -19,4 +19,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('str', STRController::class)->only(['index','store','destroy']);
 
     Route::resource('sip', STRController::class)->only(['index','store','destroy']);
+
+    Route::get('/pegawai', 'DataController@pegawai');
+    Route::post('/pegawai/data', 'DataController@pegawaiData')->name('pegawai.data');
+    Route::put('/pegawai', 'DataController@storeUpdatePegawai')->name('pegawai.update');
+    Route::delete('/pegawai', 'DataController@delete')->name('pegawai.delete');
 });

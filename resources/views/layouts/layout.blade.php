@@ -80,9 +80,7 @@ $role = explode(', ', $role);
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="content">
           @yield('content')
-        </div>
       </div>
       <footer class="footer">
         <div class="container-fluid">
