@@ -10,9 +10,7 @@ use Hash;
 class DashboardController extends Controller
 {
     public function dashboard(){
-        $meta = Meta::all();
-
-        return view('dashboard', ['meta'=>$meta]);
+        return view('dashboard');
     }
 
     public function index(){
