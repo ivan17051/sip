@@ -24,5 +24,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pegawai', 'DataController@pegawai');
     Route::post('/pegawai/data', 'DataController@pegawaiData')->name('pegawai.data');
     Route::put('/pegawai', 'DataController@storeUpdatePegawai')->name('pegawai.update');
-    Route::delete('/pegawai', 'DataController@delete')->name('pegawai.delete');
+    Route::delete('/pegawai/{id}', 'DataController@deletePegawai')->name('pegawai.delete');
 });

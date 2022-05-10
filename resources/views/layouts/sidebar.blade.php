@@ -31,22 +31,10 @@ $role = explode(', ', $role);
                 <p> Dashboard </p>
             </a>
         </li>
-        <li class="nav-item @yield('userStatus')">
-            <a class="nav-link" href="{{url('/user')}}">
-                <i class="material-icons">people</i>
-                <p> User </p>
-            </a>
-        </li>
-        <li class="nav-item @yield('kategoriStatus')">
-            <a class="nav-link" href="{{url('/kategori')}}">
-                <i class="material-icons">category</i>
-                <p> Kategori </p>
-            </a>
-        </li>
-        <li class="nav-item @yield('akunStatus')">
-            <a class="nav-link" href="{{url('/akun')}}">
-                <i class="material-icons">account_tree</i>
-                <p> Akun </p>
+        <li class="nav-item @yield('pegawaiStatus')">
+            <a class="nav-link" href="{{url('/pegawai')}}">
+                <i class="material-icons">group</i>
+                <p> Pegawai </p>
             </a>
         </li>
     </ul>

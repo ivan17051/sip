@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Pegawai;
 use Datatables;
+use Validator;
 
 class DataController extends Controller
 {
@@ -20,41 +22,57 @@ class DataController extends Controller
             ->rawColumns(['id','nik','nama','tempatlahir','tanggallahir', 'jeniskelamin', 'alamat', 'nohp', 'action']);
         
         $datatable->addColumn('action', function ($t) { 
-                return '<a class="btn btn-sm btn-outline-warning" onclick="edit(this)" data-bs-toggle="modal" data-bs-target="#sunting"><i class="bi bi-pencil-square"></i></a>&nbsp'.
-                '<a class="btn btn-sm btn-outline-success" onclick="show(this)"><i class="bi bi-box-arrow-up-right"></i></a>&nbsp'.
-                '<a class="btn btn-sm btn-outline-danger" onclick="hapus(this)"><i class="bi bi-trash-fill"></i></a>&nbsp';
+                return '<button type="button" class="btn btn-warning btn-link" style="padding:5px;" onclick="edit(this)"><i class="material-icons">edit</i></button>&nbsp'.
+                '<button type="button" class="btn btn-danger btn-link" style="padding:5px;" onclick="hapus(this)"><i class="material-icons">close</i></button>';
             });
         
         return $datatable->make(true); 
     }
     /*
-     * Store and update SIP
+     * Store and update Pegawai
      */
-    public function store(Request $request){
+    public function storeUpdatePegawai(Request $request){
+        $userId = Auth::id();
         $input = array_map('trim', $request->all());
         
         $validator = Validator::make($input, [
             'id' => 'nullable|exists:str,id',
+            'nik' => 'string',
+            'nama' => 'required|string',
+            'tempatlahir' => 'required|string',
+            'tanggallahir' => 'required|string',
+            'jeniskelamin' => 'required|string',
+            'alamat' => 'string',
+            'nohp' => 'string',
         ]);
         
-        if ($validator->fails()) return back()->with('error','Gagal memproses');
-
+        if ($validator->fails()) return back()->with('error','Data Gagal Diproses');
         try{
-            $str = new SIP($input);
-            $str->save();
+            if(isset($input['id'])){
+                $model = Pegawai::firstOrNew([
+                    'id' => $input['id']
+                ]);
+                $model->fill($input);
+                $model->idc = $userId;
+                $model->idm = $userId;
+            }else{
+                $model = new Pegawai();
+                $model->fill($input);
+                $model->idm = $userId;
+            }
         }catch(QueryException $exception){
             $this->flashError($exception->getMessage());
             return back();
         }
-
-        $this->flashSuccess('Data Berhasil Ditambahkan');
+        $model->save();
+        $this->flashSuccess('Data Berhasil Disimpan');
         return back();
     }
 
-    public function destroy($id){
+    public function deletePegawai($id){
         try {
-            $akun = SIP::findOrFail($id);
-            $akun->delete();
+            $pegawai = Pegawai::findOrFail($id);
+            $pegawai->delete();
         }catch (QueryException $exception) {
             $this->flashError($exception->getMessage());
             return back();
