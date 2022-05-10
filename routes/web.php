@@ -15,10 +15,11 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', 'DashboardController@index');
+    Route::post('/data', 'DashboardController@data')->name('data');
 
     Route::resource('str', STRController::class)->only(['index','store','destroy']);
 
-    Route::resource('sip', STRController::class)->only(['index','store','destroy']);
+    Route::resource('sip', SIPController::class)->only(['show','store','destroy']);
 
     Route::get('/pegawai', 'DataController@pegawai');
     Route::post('/pegawai/data', 'DataController@pegawaiData')->name('pegawai.data');

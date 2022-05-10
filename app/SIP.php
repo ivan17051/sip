@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class STR extends Model
+class SIP extends Model
 {
     protected $table = 'sip';
 

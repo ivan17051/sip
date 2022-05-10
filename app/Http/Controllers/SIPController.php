@@ -4,12 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SIP;
+use App\STR;
 
 class SIPController extends Controller
 {
-    public function index(){
-        
-        return view('sip');
+    public function show($id_str){
+        try {
+            $str =  STR::select('str.id','str.idpegawai','str.expiry', 'str.nomor')
+                ->with('pegawai:id,nik,nama')
+                ->find($id_str);
+            $sip = SIP::select('id','idpegawai','nomor', 'saranapraktik', 'alamatpraktik', 'since', 'ended')
+                ->where('idstr',$id_str)->get();
+        } catch (\Throwable $th) {
+            return redirect('/');
+        }
+        return view('sip', ['str'=>$str, 'sip'=>$sip]);
     }
 
     /*
