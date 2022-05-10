@@ -220,6 +220,15 @@ active
 @endsection
 @section('script')
 <script>
+  function show(self){
+      var $modal=$('#sunting');
+      var tr = $(self).closest('tr');
+      let idx = oTable.row(tr)[0]
+      var data = oTable.data()[idx];
+      
+      window.location.href = "{{url('/str')}}/"+data['id'];
+  }
+
   function edit(self){
       var $modal=$('#sunting');
       var tr = $(self).closest('tr');
@@ -265,7 +274,7 @@ active
               { data:'tempatlahir', title:'TempatLahir', visible: false},
               { data:'tanggallahir', title:'TanggalLahir', visible: false},
               { data:'alamat', title:'Alamat', visible: false},
-              { data:'action', title:'Aksi', width:'10%'},
+              { data:'action', title:'Aksi', width:'15%'},
           ],
       });
   });

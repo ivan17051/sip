@@ -17,7 +17,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', 'DashboardController@index');
     Route::post('/data', 'DashboardController@data')->name('data');
 
-    Route::resource('str', STRController::class)->only(['index','store','destroy']);
+    Route::resource('str', STRController::class)->only(['show','store','destroy']);
 
     Route::resource('sip', SIPController::class)->only(['show','store','destroy']);
 
