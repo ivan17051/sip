@@ -3,21 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\STR;
+use App\SIP;
 
-class STRController extends Controller
+class SIPController extends Controller
 {
     public function index(){
         
-        return view('str');
+        return view('sip');
     }
 
     /*
-     * Store and update STR
+     * Store and update SIP
      */
     public function store(Request $request){
+        $input = array_map('trim', $request->all());
+        
+        $validator = Validator::make($input, [
+            'id' => 'nullable|exists:str,id',
+        ]);
+        
+        if ($validator->fails()) return back()->with('error','Gagal memproses');
+
         try{
-            $str = new STR($request->all());
+            $str = new SIP($input);
             $str->save();
         }catch(QueryException $exception){
             $this->flashError($exception->getMessage());
@@ -30,7 +38,7 @@ class STRController extends Controller
 
     public function destroy($id){
         try {
-            $akun = STR::findOrFail($id);
+            $akun = SIP::findOrFail($id);
             $akun->delete();
         }catch (QueryException $exception) {
             $this->flashError($exception->getMessage());
