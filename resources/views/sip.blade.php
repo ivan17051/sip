@@ -46,13 +46,13 @@ Detil SIP
                         <div class="col-12 ">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Sarana Praktik</label>
-                                <input type="text" class="form-control" name="saranapraktik" value="" required>
+                                <input type="text" class="form-control" name="idfaskes" value="" required>
                             </div>
                         </div>
                         <div class="col-12 ">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Alamat Praktik</label>
-                                <input type="text" class="form-control" name="alamatpraktik" value="" required>
+                                <input type="text" class="form-control" name="alamatpraktik" value="" required disabled>
                             </div>
                         </div>
                     </div>
@@ -107,13 +107,13 @@ Detil SIP
                         <div class="col-12 ">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Sarana Praktik</label>
-                                <input type="text" class="form-control" name="saranapraktik" value="" required>
+                                <input type="text" class="form-control" name="idfaskes" value="" required>
                             </div>
                         </div>
                         <div class="col-12 ">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Alamat Praktik</label>
-                                <input type="text" class="form-control" name="alamatpraktik" value="" required>
+                                <input type="text" class="form-control" name="alamatpraktik" value="" required disabled>
                             </div>
                         </div>
                     </div>
@@ -155,6 +155,13 @@ Detil SIP
 @endsection
 @section('content')
 <div class="container-fluid">
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:;">Nakes</a></li>
+            <li class="breadcrumb-item"><a href="javascript:;">STR</a></li>
+            <li class="breadcrumb-item active" aria-current="page">SIP</li>
+        </ol>
+    </nav>
     <div class="row">
     <div class="col-md-12">
         <div class="card">
@@ -200,8 +207,8 @@ Detil SIP
                         @foreach($sip as $key => $s)
                         <tr>
                             <td>{{ $s->nomor }}</td>
-                            <td>{{ $s->saranapraktik }}</td>
-                            <td>{{ $s->alamatpraktik }}</td>
+                            <td>{{ $s->namafaskes }}</td>
+                            <td>{{ $s->alamatfaskes }}</td>
                             <td>{{ Carbon\Carbon::parse($s->since)->format('d/m/Y') }}</td>
                             <td>{{ isset($s->expiry) ? $s->expiry : "Mengikuti STR" }}</td>
                             <td class="text-right">
@@ -242,7 +249,7 @@ Detil SIP
         $modal.find('[name=id]').val(data['id']);
         $modal.find('[name=nomor]').val(data['nomor']).change();
         $modal.find('[name=since]').val(data['since']).change();
-        $modal.find('[name=saranapraktik]').val(data['saranapraktik']).change();
+        $modal.find('[name=idfaskes]').val(data['idfaskes']).change();
         $modal.find('[name=alamatpraktik]').val(data['alamatpraktik']).change();
         $modal.modal('show');
     } 

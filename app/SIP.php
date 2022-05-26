@@ -16,13 +16,14 @@ class SIP extends Model
         "nomorstr",
         "expirystr",
         "nomor",
-        "saranapraktik",
-        "alamatpraktik",
         "since",
         "ended",
         "idc",
         "idm",
         "isactive",
+        "idfaskes",
+        "namafaskes",
+        "alamatfaskes",
     ];
     
 }

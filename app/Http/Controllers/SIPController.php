@@ -15,7 +15,7 @@ class SIPController extends Controller
             $str =  STR::select('str.id','str.idpegawai','str.expiry', 'str.nomor')
                 ->with('pegawai:id,nik,nama')
                 ->find($id_str);
-            $sip = SIP::select('id','idpegawai','nomor', 'saranapraktik', 'alamatpraktik', 'since', 'ended')
+            $sip = SIP::select('id','idpegawai','nomor', 'namafaskes', 'alamatfaskes', 'since', 'ended')
                 ->where('idstr',$id_str)->get();
         } catch (\Throwable $th) {
             return redirect('/');
