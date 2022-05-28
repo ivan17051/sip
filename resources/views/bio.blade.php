@@ -106,164 +106,118 @@ PROFIL NAKES
                 <div class="card-body">
                     <div class="tab-content">
                         <div class="tab-pane active show" id="str">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" value="" checked="">
-                                                    <span class="form-check-sign">
-                                                        <span class="check"></span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title=""
-                                                class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
-                                                <i class="material-icons">edit</i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title=""
-                                                class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" value="">
-                                                    <span class="form-check-sign">
-                                                        <span class="check"></span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title=""
-                                                class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
-                                                <i class="material-icons">edit</i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title=""
-                                                class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" value="">
-                                                    <span class="form-check-sign">
-                                                        <span class="check"></span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Flooded: One year later, assessing what was lost and what was found when a
-                                            ravaging rain swept through metro Detroit
-                                        </td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title=""
-                                                class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
-                                                <i class="material-icons">edit</i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title=""
-                                                class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" value="" checked="">
-                                                    <span class="form-check-sign">
-                                                        <span class="check"></span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title=""
-                                                class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
-                                                <i class="material-icons">edit</i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title=""
-                                                class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="row">
+                                <div class="col">
+                                    <table class="table table-sip">
+                                        <tbody>
+                                            <tr>
+                                                <td><label>Nomor STR</label></td>
+                                                <td>1029 0120 3023</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Tanggal Terbit</label></td>
+                                                <td>2 Januari 2022</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Tanggal Expired</label></td>
+                                                <td><strong class="text-danger">2 Januari 2027</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Peruntukan</label></td>
+                                                <td>Dokter Anak</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col" style="flex-grow:0;">
+                                    <div class="float-right absolute">
+                                        <button class="btn btn-primary btn-round btn-fab">
+                                            <i class="material-icons">edit_note</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-selengkapnya-wrapper d-absolute w-100 text-center">
+                                <button type="button" class="btn btn-primary btn-selengkapnya"><i
+                                        class="material-icons">priority_high</i> TINDAKAN PADA STR</button>
+                            </div>
                         </div>
                         <div class="tab-pane" id="sip1">
-                            <table class="table table-sip">
-                                <tbody>
-                                    <tr>
-                                        <td><label>Jenis Permohonan</label></td>
-                                        <td>Permohonan Baru</td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Praktik Ke-</label></td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Tanggal Online</label></td>
-                                        <td>2 Januari 2022</td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Tanggal Masuk Dinas</label></td>
-                                        <td>2 Januari 2022</td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Tanggal Verif & Cetak</label></td>
-                                        <td>23 Januari 2022</td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Jenis Praktik</label></td>
-                                        <td>Dokter</td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Spesialis</label></td>
-                                        <td>Dokter Anak</td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Sarana Praktik</label></td>
-                                        <td>Praktik Mandiri</td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Alamat Praktik</label></td>
-                                        <td>Jl. Jemursari, Surabaya</td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Jadwal Praktik</label></td>
-                                        <td>Senin-Jumat, 13:00-18:00</td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Preview SIP</label></td>
-                                        <td><button class="btn btn-outline-primary btn-round btn-sm">preview <i class="material-icons">open_in_new</i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Histori SIP</label></td>
-                                        <td><button class="btn btn-outline-primary btn-round btn-sm">histori SIP <i class="material-icons">open_in_new</i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><div class="tambah-sip-wrapper text-center">
-                                                <button type="button" class="btn btn-primary btn-selengkapnya"><i
-                                                        class="material-icons">priority_high</i> Tindak Perizinan</button>
-                                            </div></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="row">
+                                <div class="col">
+                                    <table class="table table-sip">
+                                        <tbody>
+                                            <tr>
+                                                <td><label>Jenis Permohonan</label></td>
+                                                <td>Permohonan Baru</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Praktik Ke-</label></td>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Nomor</label></td>
+                                                <td>918/AI8291/2022/JADS</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Nomor Rekom</label></td>
+                                                <td>2948 232 1242 2412</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Tanggal Online</label></td>
+                                                <td>2 Januari 2022</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Tanggal Masuk Dinas</label></td>
+                                                <td>2 Januari 2022</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Tanggal Verif & Cetak</label></td>
+                                                <td>23 Januari 2022</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Jenis Praktik</label></td>
+                                                <td>Dokter</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Spesialis</label></td>
+                                                <td>Dokter Anak</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Sarana Praktik</label></td>
+                                                <td>Praktik Mandiri</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Alamat Praktik</label></td>
+                                                <td>Jl. Jemursari, Surabaya</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Jadwal Praktik</label></td>
+                                                <td>Senin-Jumat, 13:00-18:00</td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Preview SIP</label></td>
+                                                <td><button class="btn btn-outline-primary btn-round btn-sm">preview <i class="material-icons">open_in_new</i></button></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Histori SIP</label></td>
+                                                <td><button class="btn btn-outline-primary btn-round btn-sm">histori SIP <i class="material-icons">open_in_new</i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col" style="flex-grow:0;">
+                                    <div class="float-right absolute">
+                                        <button class="btn btn-primary btn-round btn-fab">
+                                            <i class="material-icons">edit_note</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-selengkapnya-wrapper d-absolute w-100 text-center">
+                                <button type="button" class="btn btn-primary btn-selengkapnya"><i
+                                        class="material-icons">priority_high</i> TINDAKAN PERIZINAN</button>
+                            </div>
                         </div>
                         <div class="tab-pane" id="sip2">
                             <div class="tambah-sip-wrapper text-center">
