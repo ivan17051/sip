@@ -25,4 +25,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/pegawai/data', 'DataController@pegawaiData')->name('pegawai.data');
     Route::put('/pegawai', 'DataController@storeUpdatePegawai')->name('pegawai.update');
     Route::delete('/pegawai/{id}', 'DataController@deletePegawai')->name('pegawai.delete');
+
+    Route::get('/component1',function(){return view('tes');});
+    Route::get('/component2',function(){return view('tes');});
+    Route::get('/component3',function(){return view('tes');});
+
+    Route::get('/t/bio',function(){return view('bio');});
 });
