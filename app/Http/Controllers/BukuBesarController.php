@@ -112,7 +112,7 @@ class BukuBesarController extends Controller
         $drawing->setWorksheet($ex->getActiveSheet());
 
         $ac->mergeCells('C1:F1');
-        $ac->getCell('C1')->setValue("KOPERASI KONSUMEN PEGAWAI REPUBLIK INDONESIA");
+        $ac->getCell('C1')->setValue("SDMK KONSUMEN PEGAWAI REPUBLIK INDONESIA");
         $ac->mergeCells('C2:F2');
         $ac->getCell('C2')->setValue("SEKRETARIAT DAERAH TINGKAT PROVINSI JAWA TIMUR");
         $ac->mergeCells('C3:F3');

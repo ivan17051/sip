@@ -55,7 +55,7 @@ class NeracaController extends Controller
         $drawing->setWorksheet($ex->getActiveSheet());
 
         $ac->mergeCells('C1:J1');
-        $ac->getCell('C1')->setValue("KOPERASI KONSUMEN PEGAWAI REPUBLIK INDONESIA");
+        $ac->getCell('C1')->setValue("SDMK KONSUMEN PEGAWAI REPUBLIK INDONESIA");
         $ac->mergeCells('C2:J2');
         $ac->getCell('C2')->setValue("SEKRETARIAT DAERAH TINGKAT PROVINSI JAWA TIMUR");
         $ac->mergeCells('C3:J3');

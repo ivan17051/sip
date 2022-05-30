@@ -31,4 +31,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/component3',function(){return view('tes');});
 
     Route::get('/t/bio',function(){return view('bio');});
+    Route::get('/raw/bio',function(){ return view('raw.bio'); })->name('raw.bio');
 });

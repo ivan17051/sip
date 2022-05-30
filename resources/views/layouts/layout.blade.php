@@ -12,7 +12,7 @@ $role = explode(', ', $role);
     <link rel="apple-touch-icon" sizes="76x76" href="{{asset('public/img/apple-icon.png')}}">
     <link rel="icon" type="image/png" href="{{asset('public/img/favicon.png')}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Koperasi | @yield('title')</title>
+    <title>SDMK | @yield('title')</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     <meta content="{{ csrf_token() }}"  name="csrf-token">
     <!-- Fonts and icons -->
@@ -25,6 +25,10 @@ $role = explode(', ', $role);
 
 <body class="">
   @yield('modal')
+  <div id="modal-bottom-bound"></div> <!-- batas bawah section modal -->
+  <div class="modal" id="modal-loading" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true" data-backdrop="static">
+    <span><progress class="pure-material-progress-circular"/></span>
+  </div>
   <div class="wrapper ">
     @yield('sidebar')
     <div class="main-panel">
@@ -39,6 +43,8 @@ $role = explode(', ', $role);
               </button>
             </div>
             <a class="navbar-brand" href="javascript:;">@yield('title')</a>
+            <form class="navbar-form" hidden>
+            </form>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -164,7 +170,7 @@ $role = explode(', ', $role);
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/id.min.js" integrity="sha512-he8U4ic6kf3kustvJfiERUpojM8barHoz0WYpAUDWQVn61efpm3aVAD8RWL8OloaDDzMZ1gZiubF9OSdYBqHfQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script src="{{asset('public/js/app.js')}}" ></script>
+  <!-- <script src="{{asset('public/js/app.js')}}" ></script> -->
 
   
   <script>
@@ -191,67 +197,6 @@ $role = explode(', ', $role);
     });
     @endif
   </script>
-  <script>
-  const myRequest = {
-          get: function(url){
-              return $.ajax({
-                  url: url,
-                  type: 'GET',
-              });
-          },
-          post: function(url, data){
-              data["_token"] = "{{ csrf_token() }}"
-              return $.ajax({
-                  url: url,
-                  method: 'POST',
-                  data: data,
-              });
-          },
-          delete: function(url){
-              const data = {"_token" : "{{ csrf_token() }}"}
-              return $.ajax({
-                  url: url,
-                  method: 'DELETE',
-                  data: data,
-              });
-          },
-          put: function(url, data){
-              data["_token"] = "{{ csrf_token() }}"
-              return $.ajax({
-                  url: url,
-                  method: 'PUT',
-                  data: data,
-              });
-          },
-          upload: function(url, formdata){
-              console.log(url)
-              // return
-              return $.ajax({
-                  xhr : function() {
-                      var xhr = new window.XMLHttpRequest();
-                      xhr.upload.addEventListener('progress', function(e){
-                          if(e.lengthComputable){
-                              // console.log('Bytes Loaded : ' + e.loaded);
-                              // console.log('Total Size : ' + e.total);
-                              // console.log('Persen : ' + (e.loaded / e.total));
-                              
-                              // var percent = Math.round((e.loaded / e.total) * 100);
-                              
-                              // $('#progressBar').attr('aria-valuenow', percent).css('width', percent + '%').text(percent + '%');
-                          }
-                      });
-                      return xhr;
-                  },
-                  url: url,
-                  method: 'POST',
-                  data: formdata,
-                  contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
-                  processData: false, // NEEDED, DON'T OMIT THIS
-              });
-          },
-      }
-  </script>
-
   @yield('script')
 </body>
 

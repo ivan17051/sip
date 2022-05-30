@@ -34,6 +34,18 @@
     padding: 6.5px!important;
 }
 
+#modal-loading{
+    text-align: center;
+    background-color: #ffffff7d;
+}
+
+#modal-loading > *:first-child::before{
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
 .profil-image-wrapper{
     width: 124px;
     position: relative;
@@ -53,17 +65,26 @@
     height: 110%;
 }
 
-.table.table-sip tr td:first-child{
+.table.table-2-col tr:first-child td{
+    border-top: 0;
+}
+
+.table.table-2-col tr td:first-child{
     text-align: right;
     width: 20%;
 }
 
-.table.table-sip tr td:first-child > label{
+.table.table-2-col.td-30 tr td:first-child{
+    text-align: right;
+    width: 30%;
+}
+
+.table.table-2-col tr td:first-child > label{
     margin: 0;
     position: relative;
 }
 
-.table.table-sip tr td:first-child > label::after{
+.table.table-2-col tr td:first-child > label::after{
     content: " :";
     position: absolute;
     right: -8px;
@@ -72,26 +93,170 @@
 }
 
 @media (max-width: 768px) {
-    .table.table-sip tr td:first-child{
+    .table.table-2-col tr td:first-child{
         width: 100%!important;
         padding-top: 16px;
         padding-bottom: 0;
         text-align: left;
     }
 
-    .table.table-sip tr td:not(:first-child){
+    .table.table-2-col tr td:not(:first-child){
         border: 0;
         padding-bottom: 8px;
         padding-top: 8px;
     }
     
-    .table.table-sip tr td:first-child > label{
+    .table.table-2-col tr td:first-child > label{
         margin: 0;
     }
 
-    .table.table-sip tr td{
+    .table.table-2-col tr td{
         display: block;
         box-sizing: border-box;
         clear: both;
+    }
+}
+
+.modal.modal-custom-1{
+    padding-left: 0;
+}
+
+.modal.modal-custom-1 .modal-body{
+    max-height: 60vh;
+    overflow-y: scroll;
+}
+
+@media (max-width: 576px) {
+    .modal.modal-custom-1 .modal-dialog{
+        margin: 8px;
+        margin-top: 64px;
+    }
+    
+    .modal.modal-custom-1 .modal-body{
+        max-height: calc(100vh - 192px);
+        height: calc(100vh - 192px);
+        overflow-y: scroll;
+        border-bottom: 1px solid #dfdfdf;
+        border-top: 1px solid #dfdfdf;
+    }
+}
+
+/* CIRCULAR LOADING ANIMATION */
+
+.pure-material-progress-circular {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 50%;
+    padding: 0.25em;
+    width: 3em;
+    height: 3em;
+    color: rgb(156, 39, 176);
+    background-color: transparent;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+.pure-material-progress-circular::-webkit-progress-bar {
+    background-color: transparent;
+}
+
+/* Indeterminate */
+.pure-material-progress-circular:indeterminate {
+    -webkit-mask-image: linear-gradient(transparent 50%, black 50%), linear-gradient(to right, transparent 50%, black 50%);
+    mask-image: linear-gradient(transparent 50%, black 50%), linear-gradient(to right, transparent 50%, black 50%);
+    animation: pure-material-progress-circular 6s infinite cubic-bezier(0.3, 0.6, 1, 1);
+}
+
+:-ms-lang(x), .pure-material-progress-circular:indeterminate {
+    animation: none;
+}
+
+.pure-material-progress-circular:indeterminate::before,
+.pure-material-progress-circular:indeterminate::-webkit-progress-value {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 0.25em;
+    border: solid 0.25em transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    width: 100% !important;
+    height: 100%;
+    background-color: transparent;
+    animation: pure-material-progress-circular-pseudo 0.75s infinite linear alternate;
+}
+
+.pure-material-progress-circular:indeterminate::-moz-progress-bar {
+    box-sizing: border-box;
+    border: solid 0.25em transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    animation: pure-material-progress-circular-pseudo 0.75s infinite linear alternate;
+}
+
+.pure-material-progress-circular:indeterminate::-ms-fill {
+    animation-name: -ms-ring;
+}
+
+@keyframes pure-material-progress-circular {
+    0% {
+        transform: rotate(0deg);
+    }
+    12.5% {
+        transform: rotate(180deg);
+        animation-timing-function: linear;
+    }
+    25% {
+        transform: rotate(630deg);
+    }
+    37.5% {
+        transform: rotate(810deg);
+        animation-timing-function: linear;
+    }
+    50% {
+        transform: rotate(1260deg);
+    }
+    62.5% {
+        transform: rotate(1440deg);
+        animation-timing-function: linear;
+    }
+    75% {
+        transform: rotate(1890deg);
+    }
+    87.5% {
+        transform: rotate(2070deg);
+        animation-timing-function: linear;
+    }
+    100% {
+        transform: rotate(2520deg);
+    }
+}
+
+@keyframes pure-material-progress-circular-pseudo {
+    0% {
+        transform: rotate(-30deg);
+    }
+    29.4% {
+        border-left-color: transparent;
+    }
+    29.41% {
+        border-left-color: currentColor;
+    }
+    64.7% {
+        border-bottom-color: transparent;
+    }
+    64.71% {
+        border-bottom-color: currentColor;
+    }
+    100% {
+        border-left-color: currentColor;
+        border-bottom-color: currentColor;
+        transform: rotate(225deg);
     }
 }

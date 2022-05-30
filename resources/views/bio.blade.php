@@ -10,6 +10,10 @@ PROFIL NAKES
 @endsection
 @section('content')
 <div class="container-fluid">
+    <div class="alert alert-rose alert-with-icon" data-notify="container">
+        <i class="material-icons" data-notify="icon">notifications</i>
+        <span data-notify="message">STR AKAN MEMASUKI MASA EXPIRED PADA TANGGAL <strong>2 JUNI 2022</strong> !!!</span>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -54,7 +58,7 @@ PROFIL NAKES
                                 </div>
                             </div>
                             <div class="btn-selengkapnya-wrapper d-absolute w-100 text-right">
-                                <button type="button" class="btn btn-primary btn-selengkapnya"><i
+                                <button type="button" class="btn btn-primary btn-selengkapnya" onclick="openSelengkapnya()"><i
                                         class="material-icons">more_vert</i> SELENGKAPNYA</button>
                             </div>
                         </div>
@@ -108,7 +112,7 @@ PROFIL NAKES
                         <div class="tab-pane active show" id="str">
                             <div class="row">
                                 <div class="col">
-                                    <table class="table table-sip">
+                                    <table class="table table-2-col">
                                         <tbody>
                                             <tr>
                                                 <td><label>Nomor STR</label></td>
@@ -145,7 +149,7 @@ PROFIL NAKES
                         <div class="tab-pane" id="sip1">
                             <div class="row">
                                 <div class="col">
-                                    <table class="table table-sip">
+                                    <table class="table table-2-col">
                                         <tbody>
                                             <tr>
                                                 <td><label>Jenis Permohonan</label></td>
@@ -237,8 +241,45 @@ PROFIL NAKES
         </div>
         <!-- end row -->
     </div>
+    <template id="modal-template">
+        <div class="modal modal-custom-1 fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal title</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="material-icons">clear</i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-link" data-dismiss="modal">TUTUP</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </template>
     @endsection
 
     @section('script')
-
+    <script type="text/javascript">
+        async function openSelengkapnya(){
+            if(!$('#modal-biodata').length){
+                try {
+                    let res = await my.request.get("{{route('raw.bio')}}")
+                    let $modal = $($('#modal-template').html())
+                    $modal.attr('id','modal-biodata')
+                    $modal.find('.modal-title').text('Biodata Pengguna')
+                    $modal.find('.modal-body').append(res)
+                    $('body').prepend($modal);
+                    $modal.modal('show')
+                } catch (err) {
+                    console.log(err)
+                }
+            }else{
+                $('#modal-biodata').modal('show')
+            }
+        }
+    </script>
     @endsection

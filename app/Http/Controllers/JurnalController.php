@@ -263,7 +263,7 @@ class JurnalController extends Controller
         $drawing->setWorksheet($ex->getActiveSheet());
 
         $ac->mergeCells('C1:I1');
-        $ac->getCell('C1')->setValue("KOPERASI KONSUMEN PEGAWAI REPUBLIK INDONESIA");
+        $ac->getCell('C1')->setValue("SDMK KONSUMEN PEGAWAI REPUBLIK INDONESIA");
         $ac->mergeCells('C2:I2');
         $ac->getCell('C2')->setValue("SEKRETARIAT DAERAH TINGKAT PROVINSI JAWA TIMUR");
         $ac->mergeCells('C3:I3');

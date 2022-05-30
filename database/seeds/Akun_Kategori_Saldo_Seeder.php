@@ -101,7 +101,7 @@ class Akun_Kategori_Saldo_Seeder extends Seeder
         ['3-1100','Modal Donasi'],
         ['3-1150','Modal Umum'],
         ['3-1200','Modal Penyertaan'],
-        ['3-1250','Cadangan Koperasi'],
+        ['3-1250','Cadangan SDMK'],
         ['3-1300','SHU Tahun Lalu'],
         ['3-1350','SHU Periode Berjalan'],],
         [['4-1000','Pendapatan Bunga'],

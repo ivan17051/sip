@@ -3,7 +3,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{{asset('public/img/apple-icon.png')}}">
   <link rel="icon" type="image/png" href="{{asset('public/img/favicon.png')}}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Koperasi</title>
+  <title>SDMK</title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   
   <!-- Fonts and icons -->
@@ -19,7 +19,7 @@
   <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
     <div class="container">
       <div class="navbar-wrapper">
-        <a class="navbar-brand" href="javascript:;">Koperasi</a>
+        <a class="navbar-brand" href="javascript:;">SDMK</a>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
         <span class="sr-only">Toggle navigation</span>
@@ -59,7 +59,7 @@
   </nav>
   <!-- End Navbar -->
   <div class="wrapper wrapper-full-page">
-    <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('{{asset('public/img/login.jpeg')}}'); background-size: cover; background-position: bottom center;">
+    <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('{{asset('public/img/login.jpg')}}'); background-size: cover; background-position: bottom center;">
       <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
       <div class="container">
         <div class="row">
@@ -67,7 +67,7 @@
             <form method="POST" action="{{ route('login') }}">
               @csrf
               <div class="card card-login card-hidden">
-                <div class="card-header card-header-rose text-center">
+                <div class="card-header card-header-primary text-center">
                   <h4 class="card-title">Login</h4>
                   <div class="social-line">
                     <!-- <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
@@ -114,7 +114,7 @@
                   </span>
                 </div>
                 <div class="card-footer justify-content-center">
-                  <button type="submit" class="btn btn-rose btn-link btn-lg">LOGIN</button>
+                  <button type="submit" class="btn btn-primary btn-link btn-lg">LOGIN</button>
                 </div>
               </div>
             </form>

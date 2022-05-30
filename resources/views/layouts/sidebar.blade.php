@@ -3,7 +3,7 @@
 $role = Auth::user()->role;
 $role = explode(', ', $role);
 @endphp
-<div class="sidebar" data-color="green" data-background-color="black" data-image="{{asset('public/img/sidebar-1.jpg')}}">
+<div class="sidebar" data-color="purple" data-background-color="black" data-image="{{asset('public/img/sidebar-1.jpg')}}">
         <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -11,7 +11,7 @@ $role = explode(', ', $role);
         -->
     <div class="logo">
         <a href="{{url('/')}}" class="simple-text logo-mini">K</a>
-        <a href="{{url('/')}}" class="simple-text logo-normal">Koperasi</a>
+        <a href="{{url('/')}}" class="simple-text logo-normal">SDMK</a>
     </div>
     <div class="sidebar-wrapper">
         <div class="user">

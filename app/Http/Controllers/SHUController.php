@@ -54,7 +54,7 @@ class SHUController extends Controller
         $drawing->setWorksheet($ex->getActiveSheet());
 
         $ac->mergeCells('B1:G1');
-        $ac->getCell('B1')->setValue("KOPERASI KONSUMEN PEGAWAI REPUBLIK INDONESIA");
+        $ac->getCell('B1')->setValue("SDMK KONSUMEN PEGAWAI REPUBLIK INDONESIA");
         $ac->mergeCells('B2:G2');
         $ac->getCell('B2')->setValue("SEKRETARIAT DAERAH TINGKAT PROVINSI JAWA TIMUR");
         $ac->mergeCells('B3:G3');
