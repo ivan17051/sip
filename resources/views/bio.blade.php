@@ -260,26 +260,27 @@ PROFIL NAKES
             </div>
         </div>
     </template>
-    @endsection
+</div>
+@endsection
 
-    @section('script')
-    <script type="text/javascript">
-        async function openSelengkapnya(){
-            if(!$('#modal-biodata').length){
-                try {
-                    let res = await my.request.get("{{route('raw.bio')}}")
-                    let $modal = $($('#modal-template').html())
-                    $modal.attr('id','modal-biodata')
-                    $modal.find('.modal-title').text('Biodata Pengguna')
-                    $modal.find('.modal-body').append(res)
-                    $('body').prepend($modal);
-                    $modal.modal('show')
-                } catch (err) {
-                    console.log(err)
-                }
-            }else{
-                $('#modal-biodata').modal('show')
+@section('script')
+<script type="text/javascript">
+    async function openSelengkapnya(){
+        if(!$('#modal-biodata').length){
+            try {
+                let res = await my.request.get("{{route('raw.bio')}}")
+                let $modal = $($('#modal-template').html())
+                $modal.attr('id','modal-biodata')
+                $modal.find('.modal-title').text('Biodata Pengguna')
+                $modal.find('.modal-body').append(res)
+                $('body').prepend($modal);
+                $modal.modal('show')
+            } catch (err) {
+                console.log(err)
             }
+        }else{
+            $('#modal-biodata').modal('show')
         }
-    </script>
-    @endsection
+    }
+</script>
+@endsection
