@@ -45,15 +45,15 @@ $role = explode(', ', $role);
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="sidebar-master">
+                <div class="collapse @yield('masterShow')" id="sidebar-master">
                     <ul class="nav">
-                        <li class="nav-item ">
+                        <li class="nav-item @yield('faskesStatus')">
                             <a class="nav-link" href="{{route('faskes.index')}}">
                                 <span class="sidebar-mini"> F </span>
                                 <span class="sidebar-normal"> Faskes </span>
                             </a>
                         </li>
-                        <li class="nav-item ">
+                        <li class="nav-item @yield('profesiStatus')">
                             <a class="nav-link" href="{{route('profesi.index')}}">
                                 <span class="sidebar-mini"> P </span>
                                 <span class="sidebar-normal"> Profesi </span>
