@@ -5,6 +5,10 @@
 PROFIL NAKES
 @endsection
 
+@section('bioStatus')
+active
+@endsection
+
 @section('modal')
 
 @endsection

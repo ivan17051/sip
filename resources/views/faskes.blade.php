@@ -1,10 +1,6 @@
 @extends('layouts.layout')
 @extends('layouts.sidebar')
 
-@section('bioStatus')
-active
-@endsection
-
 @section('title')
 MASTER FASKES
 @endsection
