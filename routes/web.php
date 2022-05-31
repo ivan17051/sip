@@ -26,7 +26,9 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/pegawai', 'DataController@storeUpdatePegawai')->name('pegawai.update');
     Route::delete('/pegawai/{id}', 'DataController@deletePegawai')->name('pegawai.delete');
 
-    Route::resource('faskes', FaskesController::class)->only(['index','store','update','destroy']);
+    Route::post('/faskes/data', 'FaskesController@data')->name('faskes.data');
+    Route::apiResource('faskes', FaskesController::class)->except('show');
+    
     Route::resource('profesi', ProfesiController::class)->only(['index','store','update','destroy']);
 
     Route::get('/t/bio',function(){return view('bio');});

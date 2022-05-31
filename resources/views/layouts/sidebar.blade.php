@@ -35,7 +35,13 @@ $role = explode(', ', $role);
             <li class="nav-item @yield('pegawaiStatus')">
                 <a class="nav-link" href="{{url('/pegawai')}}">
                     <i class="material-icons">group</i>
-                    <p> Pegawai </p>
+                    <p> Nakes </p>
+                </a>
+            </li>
+            <li class="nav-item @yield('bioStatus')">
+                <a class="nav-link" href="{{url('/t/bio')}}">
+                    <i class="material-icons">person</i>
+                    <p> Bio Nakes </p>
                 </a>
             </li>
             <li class="nav-item ">

@@ -33,7 +33,7 @@ PROFIL NAKES
                         </div>
                         <div class="col">
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">With help</label>
+                                <label class="col-sm-2 col-form-label">Nama</label>
                                 <div class="col-sm-10">
                                     <div class="form-group bmd-form-group">
                                         <input type="text" class="form-control">
@@ -42,7 +42,7 @@ PROFIL NAKES
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Password</label>
+                                <label class="col-sm-2 col-form-label">Profesi</label>
                                 <div class="col-sm-10">
                                     <div class="form-group bmd-form-group">
                                         <input type="password" class="form-control">
@@ -50,7 +50,7 @@ PROFIL NAKES
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Placeholder</label>
+                                <label class="col-sm-2 col-form-label">Spesialisasi</label>
                                 <div class="col-sm-10">
                                     <div class="form-group bmd-form-group">
                                         <input type="text" class="form-control" placeholder="placeholder">
@@ -271,7 +271,7 @@ PROFIL NAKES
                 let res = await my.request.get("{{route('raw.bio')}}")
                 let $modal = $($('#modal-template').html())
                 $modal.attr('id','modal-biodata')
-                $modal.find('.modal-title').text('Biodata Pengguna')
+                $modal.find('.modal-title').text('Biodata Nakes')
                 $modal.find('.modal-body').append(res)
                 $('body').prepend($modal);
                 $modal.modal('show')

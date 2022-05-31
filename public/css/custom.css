@@ -260,3 +260,17 @@
         transform: rotate(225deg);
     }
 }
+
+div.anim:not(.hidden.slide){
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.33s linear, transform 0.33s linear;
+}
+
+div.anim.hidden.slide{
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    transform: translateX(-20px);
+    transition: visibility 0s linear 0.33s, opacity 0.33s linear, transform 0.33s linear, height 0s linear 0.33s,;
+}
