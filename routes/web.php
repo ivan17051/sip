@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/pegawai/{id}', 'DataController@deletePegawai')->name('pegawai.delete');
 
     Route::resource('faskes', FaskesController::class)->only(['index','store','update','destroy']);
+    Route::resource('profesi', ProfesiController::class)->only(['index','store','update','destroy']);
 
     Route::get('/t/bio',function(){return view('bio');});
     Route::get('/raw/bio',function(){ return view('raw.bio'); })->name('raw.bio');
