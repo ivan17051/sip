@@ -164,6 +164,8 @@ $role = explode(', ', $role);
   <script src="{{asset('public/js/plugins/bootstrap-notify.js')}}"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{asset('public/js/material-dashboard.js?v=2.2.2')}}" type="text/javascript"></script>
+  <!-- myFormAndToggle -->
+  <script src="{{asset('public/js/myformandtoggle.js')}}" type="text/javascript"></script>
   <!-- custom script -->
   <script src="{{asset('public/js/custom.js')}}" type="text/javascript"></script>
   <!-- Moment JS -->

@@ -151,13 +151,22 @@ active
                             </div>
                         </div>
                         <div class="tab-pane" id="sip1">
-                            <div class="row">
+                            <div class="row myform">
                                 <div class="col">
                                     <table class="table table-2-col">
                                         <tbody>
                                             <tr>
                                                 <td><label>Jenis Permohonan</label></td>
-                                                <td>Permohonan Baru</td>
+                                                <td data-editable="true" >Permohonan Baru
+                                                    <select class="selectpicker" data-style="btn btn-default btn-link input-editable" title="Single Select">
+                                                        <option disabled selected>Single Option</option>
+                                                        <option value="1">PERMOHONAN BARU</option>
+                                                        <option value="2">CABUT DAN PINDAH</option>
+                                                    </select>
+                                                    <!-- <select class="" name="">
+                                                        
+                                                    </select> -->
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td><label>Praktik Ke-</label></td>
@@ -165,7 +174,11 @@ active
                                             </tr>
                                             <tr>
                                                 <td><label>Nomor</label></td>
-                                                <td>918/AI8291/2022/JADS</td>
+                                                <td data-editable="true">ADAS2
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="" maxlength="5" value="ADAS2" required="true" />
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td><label>Nomor Rekom</label></td>
@@ -173,7 +186,11 @@ active
                                             </tr>
                                             <tr>
                                                 <td><label>Tanggal Online</label></td>
-                                                <td>2 Januari 2022</td>
+                                                <td data-editable="true">2 Januari 2022
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control datepicker" value="02/01/2022" required="true" />
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td><label>Tanggal Masuk Dinas</label></td>
@@ -215,10 +232,23 @@ active
                                     </table>
                                 </div>
                                 <div class="col" style="flex-grow:0;">
-                                    <div class="float-right absolute">
-                                        <button class="btn btn-primary btn-round btn-fab">
-                                            <i class="material-icons">edit_note</i>
-                                        </button>
+                                    <div class="float-right absolute myform-actions">
+                                        <div data-state="0">
+                                            <button class="btn btn-primary btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(1)">
+                                                <i class="material-icons">edit_note</i>
+                                            </button>
+                                            <button class="btn btn-primary btn-round btn-fab" id="anjay">
+                                                <i class="material-icons">pending_actions</i>
+                                            </button>
+                                        </div>
+                                        <div data-state="1">
+                                            <button class="btn btn-danger btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(0)">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                            <button class="btn btn-success btn-round btn-fab">
+                                                <i class="material-icons">save</i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -286,5 +316,9 @@ active
             $('#modal-biodata').modal('show')
         }
     }
+    
+    $(function(){
+        $('.myform').myFormAndToggle()
+    })
 </script>
 @endsection

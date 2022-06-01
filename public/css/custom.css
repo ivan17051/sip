@@ -274,3 +274,23 @@ div.anim.hidden.slide{
     transform: translateX(-20px);
     transition: visibility 0s linear 0.33s, opacity 0.33s linear, transform 0.33s linear, height 0s linear 0.33s,;
 }
+
+/* CUSTOM INPUT COLOR AND BACKGROUND */
+
+.myform .input-editable{
+    border: 1px solid #00000052;
+    background-color: #0000000a!important;
+    color: #495057!important;
+}
+
+.myform select:not([hidden]){
+    border: 1px solid #00000052;
+    background-color: #0000000a!important;
+    color: #495057!important;
+}
+
+.myform input:not([hidden]){
+    border: 1px solid #00000052;
+    background-color: #0000000a!important;
+    color: #495057!important;
+}
