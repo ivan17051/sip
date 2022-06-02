@@ -157,15 +157,12 @@ active
                                         <tbody>
                                             <tr>
                                                 <td><label>Jenis Permohonan</label></td>
-                                                <td data-editable="true" >Permohonan Baru
-                                                    <select class="selectpicker" data-style="btn btn-default btn-link input-editable" title="Single Select">
-                                                        <option disabled selected>Single Option</option>
-                                                        <option value="1">PERMOHONAN BARU</option>
+                                                <td>
+                                                    <span data-text="true"></span>
+                                                    <select data-editable=true class="selectpicker" data-style="btn btn-default btn-link input-editable" title="Single Select">
+                                                        <option value="1" selected>PERMOHONAN BARU</option>
                                                         <option value="2">CABUT DAN PINDAH</option>
                                                     </select>
-                                                    <!-- <select class="" name="">
-                                                        
-                                                    </select> -->
                                                 </td>
                                             </tr>
                                             <tr>
@@ -174,22 +171,29 @@ active
                                             </tr>
                                             <tr>
                                                 <td><label>Nomor</label></td>
-                                                <td data-editable="true">ADAS2
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" name="" maxlength="5" value="ADAS2" required="true" />
-                                                    </div>
+                                                <td>
+                                                    <span data-text="true"></span>
+                                                    <span>
+                                                        <input data-editable=true type="text" class="form-control" name="" maxlength="5" value="ADAS2" required="true" />
+                                                    </span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td><label>Nomor Rekom</label></td>
-                                                <td>2948 232 1242 2412</td>
+                                                <td>
+                                                    <span data-text="true"></span>
+                                                    <span>
+                                                        <input data-editable=true type="text" class="form-control datepicker" value="81292" required="true" />
+                                                    </span>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td><label>Tanggal Online</label></td>
-                                                <td data-editable="true">2 Januari 2022
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control datepicker" value="02/01/2022" required="true" />
-                                                    </div>
+                                                <td>
+                                                    <span data-text="true"></span>
+                                                    <span>
+                                                        <input data-editable=true type="text" class="form-control datepicker" value="02/01/2022" required="true" />
+                                                    </span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -233,15 +237,15 @@ active
                                 </div>
                                 <div class="col" style="flex-grow:0;">
                                     <div class="float-right absolute myform-actions">
-                                        <div data-state="0">
+                                        <div data-state="0" class="anim slide">
                                             <button class="btn btn-primary btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(1)">
                                                 <i class="material-icons">edit_note</i>
                                             </button>
-                                            <button class="btn btn-primary btn-round btn-fab" id="anjay">
+                                            <button class="btn btn-primary btn-round btn-fab">
                                                 <i class="material-icons">pending_actions</i>
                                             </button>
                                         </div>
-                                        <div data-state="1">
+                                        <div data-state="1" class="anim slide">
                                             <button class="btn btn-danger btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(0)">
                                                 <i class="material-icons">close</i>
                                             </button>

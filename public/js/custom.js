@@ -187,12 +187,12 @@ const my = {
 }
 
 
-$(function(){
-  $( document ).ajaxStart(function() {
-    $('#modal-loading').modal('show');
-  });
+// $(function(){
+//   $( document ).ajaxStart(function() {
+//     $('#modal-loading').modal('show');
+//   });
   
-  $( document ).ajaxComplete(function( event, request, settings ) {
-    $('#modal-loading').modal('hide');
-  });
-})
+//   $( document ).ajaxComplete(function( event, request, settings ) {
+//     $('#modal-loading').modal('hide');
+//   });
+// })
