@@ -97,7 +97,7 @@
         width: 100%!important;
         padding-top: 16px;
         padding-bottom: 0;
-        text-align: left;
+        text-align: left!important;
     }
 
     .table.table-2-col tr td:not(:first-child){
