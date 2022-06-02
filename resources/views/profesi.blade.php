@@ -37,7 +37,7 @@ active
             <div class="col-md-12">
               <div class="form-check">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" value="1" id="isparent" name="isparent"> Profesi
+                  <input class="form-check-input" type="checkbox" value=1 id="isparent" name="isparent"> Profesi
                   Memiliki Spesialisasi
                   <span class="form-check-sign">
                     <span class="check"></span>
@@ -68,7 +68,7 @@ active
           <i class="material-icons">clear</i>
         </button>
       </div>
-      <form class="form-horizontal input-margin-additional" method="POST" action="">
+      <form class="form-horizontal input-margin-additional" id="formedit" method="POST" action="">
         @csrf
         @method('PUT')
         <div class="modal-body">
@@ -83,7 +83,7 @@ active
             <div class="col-md-12">
               <div class="form-check">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" value="1" id="isparent" name="isparent"> Profesi
+                  <input class="form-check-input" type="checkbox" id="isparent" name="isparent"> Profesi
                   Memiliki Spesialisasi
                   <span class="form-check-sign">
                     <span class="check"></span>
@@ -142,7 +142,8 @@ active
           <h4 class="card-title">
             <div class="row">
               <div class="col">Data Profesi</div>
-              <div class="col text-right"><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#tambah">Tambah</button></div>
+              <div class="col text-right"><button class="btn btn-sm btn-primary" data-toggle="modal"
+                  data-target="#tambah">Tambah</button></div>
             </div>
           </h4>
         </div>
@@ -150,33 +151,60 @@ active
           <div class="toolbar">
             <!--        Here you can write extra buttons/actions for the toolbar              -->
           </div>
-          <div class="material-datatables">
-            <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-              <thead>
-                <tr>
+          <div class="anim slide" id="table-container">
+            <div class="material-datatables">
+              <table id="datatables1" class="table table-striped table-no-bordered table-hover" cellspacing="0"
+                width="100%" style="width:100%">
+                <thead>
+                  <tr>
                     <th data-priority="3" style="width:30px;" class="disabled-sorting">No</th>
                     <th data-priority="1">Nama Profesi</th>
                     <th data-priority="2">Punya Spesialisasi</th>
                     <th data-priority="3" class="disabled-sorting text-right">Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach($profesi as $key=>$unit)
-                <tr>
-                  <td>{{$key}}</td>
-                  <td>{{$unit->nama}}</td>
-                  <td>{{$unit->isparent}}</td>
-                  <td class="text-right">
-                    @if($unit->isparent == 1)
-                    <button class="btn btn-info btn-link" style="padding:5px;" onclick="show(this)"><i class="material-icons">launch</i></button>&nbsp
-                    @endif
-                    <button type="button" class="btn btn-warning btn-link" style="padding:5px;" onclick="edit(this)"><i class="material-icons">edit</i></button>&nbsp
-                    <button type="button" class="btn btn-danger btn-link" style="padding:5px;" onclick="hapus(this)"><i class="material-icons">close</i></button>
-                  </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($profesi as $key=>$unit)
+                  <tr>
+                    <td>{{$key+1}}</td>
+                    <td>{{$unit->nama}}</td>
+                    <td>
+                      @if($unit->isparent == 1)
+                      <span class="badge badge-pill badge-success">Spesialisasi</span>
+                      @endif
+                    </td>
+                    <td class="text-right">
+                      @if($unit->isparent == 1)
+                      <button class="btn btn-info btn-link" style="padding:5px;" onclick="show({{$unit->id}})"><i
+                          class="material-icons">launch</i></button>&nbsp
+                      @endif
+                      <button type="button" class="btn btn-warning btn-link" style="padding:5px;"
+                        onclick="edit({{$unit}})"><i class="material-icons">edit</i></button>&nbsp
+                      <button type="button" class="btn btn-danger btn-link" style="padding:5px;"
+                        onclick="hapus({{$unit->id}})"><i class="material-icons">close</i></button>
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="anim slide hidden" id="nakes-container">
+            <a href="" class="btn btn-sm btn-warning" onclick="back()">Kembali</a>
+
+            <div class="material-datatable">
+              <table id="datatables2" class="table table-striped table-no-bordered table-hover">
+                <thead>
+                  <!-- <tr>
+                    <th data-priority="2" style="width:30px;" class="disabled-sorting">No</th>
+                    <th data-priority="1">Nama Spesialisasi</th>
+                    <th data-priority="2" class="disabled-sorting text-right">Aksi</th>
+                  </tr> -->
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         <!-- end content-->
@@ -192,56 +220,68 @@ active
 <script>
   $('#isparent').click(function(){
     if($(this).prop("checked") == true){
-      $('#isSpesialisasi').show();
+      
     } else{
-      $('#isSpesialisasi').hide();
+      
     }
     
   });
-  $('#addSpesialisasi').click(function(e){
-    $('#spesialisasi').append("<div class='form-group'><label for='nama' class='bmd-label-floating'>Nama Spesialisasi</label><input type='text' class='form-control' id='nama' name='nama'></div>");
-  });
-  $('.validasi').on('click', function(e) {
-        console.log()
-        allVals = [];
-        $(".sub_chk:checked").each(function() {
-            allVals.push($(this).attr('data-id'));
-        });
-        var sum_jurnal = allVals.length;
-        
-        var mainContainer = document.getElementById("peringatanValidasi");
-        var submit = document.getElementById("btnValidasi");
-
-        if(allVals.length <=0){
-            mainContainer.innerHTML = 'Pilih Jurnal Terlebih Dahulu';
-            submit.style.visibility = "hidden";
-        }
-        else{
-            $('#jumlah').attr("value", sum_jurnal);
-            mainContainer.innerHTML = 'Ingin Validasi '+ sum_jurnal + ' Jurnal Ini? <br><br><small><i>*Jurnal yang sudah tervalidasi tidak dapat diubah</i></small>';
-            submit.style.visibility = "visible";
-        }
-    });
-
-  function show(self){
-      var $modal=$('#spesialisasi');
-      var tr = $(self).closest('tr');
-      let idx = oTable.row(tr)[0]
-      var data = oTable.data()[idx];
-      
-      window.location.href = "{{url('/str')}}/"+data['id'];
+  function back() {
+    $('#nakes-container').addClass('hidden')
+    $('#table-container').removeClass('hidden')
+    if ($.fn.dataTable.isDataTable('#datatables2')) {
+      $('#datatables2').DataTable().clear();
+      $('#datatables2').DataTable().destroy();
+      $('#datatables2').empty();
+    }
   }
 
-  function edit(self){
-      var $modal=$('#sunting');
-      var tr = $(self).closest('tr');
-      let idx = oTable.row(tr)[0]
-      var data = oTable.data()[idx];
-      
-      $modal.find('input[name=id]').val(data['id']);
-      $modal.find('input[name=nama]').val(data['nama']).change();;
-      $modal.find('input[name=tempatlahir]').val(data['tempatlahir']).change();;
+  function daftarNakes(self) {
+    var tr = $(self).closest('tr');
+    var data = oTable.row(tr).data();
 
+    $('#table-container').addClass('hidden')
+    $('#nakes-container').removeClass('hidden')
+  }
+  function show(x){
+    $('#table-container').addClass('hidden');
+    $('#nakes-container').removeClass('hidden');
+    table2 = $('#datatables2').DataTable({
+      ajax: {
+        url: '{{route("spesialisasi.get", ["id"=>""])}}/'+x,
+        dataSrc: ''
+      },
+      columns: [
+        {data: 'id', title: 'No', width: '10%'},
+        {data: 'nama', title: 'Nama Spesialisasi'},
+        {data: 'id', title: 'Aksi', render: function(e,d,row){
+          return '<button type="button" class="btn btn-warning btn-link" style="padding:5px;" onclick="editspesial('+e+')"><i class="material-icons">edit</i></button>&nbsp'+
+                  '<button type="button" class="btn btn-danger btn-link" style="padding:5px;" onclick="hapusspesial('+e+')"><i class="material-icons">close</i></button>'
+        }}
+      ],
+      columnDefs: [
+        {   
+            class: "details-control",
+            orderable: false,
+            targets: 0
+        }
+      ]
+    });
+    
+  }
+
+  function edit(data){
+      var $modal=$('#sunting');
+      
+      $('#formedit').attr('action', '{{route("profesi.update", ["id"=>""])}}/'+data['id']);
+      $modal.find('input[name=id]').val(data['id']);
+      $modal.find('input[name=nama]').val(data['nama']).change();
+      if(data['isparent']==1){
+        $modal.find('input[name=isparent]').prop('checked', true);
+      } else{
+        $modal.find('input[name=isparent]').prop('checked', false);
+      }
+      
       $modal.modal('show');
   }
 
@@ -254,28 +294,16 @@ active
     $modal.find('form').attr('action', "{{route('pegawai.delete', ['id'=>''])}}/"+data['id']);
     $modal.modal('show');
   }
+
+  function editspesial(data){
+      var $modal=$('#sunting');
+      console.log(data['id']);
+      
+  }
+
   $(document).ready(function(){
-      // oTable = $("#datatables").DataTable({
-      //     select:{
-      //         className: 'dataTable-selector form-select'
-      //     },
-          
-      //     processing: true,
-      //     serverSide: true,
-      //     ajax: {type: "POST", url: '{{route("pegawai.data")}}', data:{'_token':@json(csrf_token())}},
-      //     columns: [
-      //         { data:'id', title:'ID', visible: false},
-      //         { data:'nik', title:'NIK'},
-      //         { data:'nama', title:'Nama'},
-      //         { data:'jeniskelamin', title:'JenisKelamin', visible: false},
-      //         { data:'nohp', title:'No. HP'},
-      //         { data:'tempatlahir', title:'TempatLahir', visible: false},
-      //         { data:'tanggallahir', title:'TanggalLahir', visible: false},
-      //         { data:'alamat', title:'Alamat', visible: false},
-      //         { data:'action', title:'Aksi', width:'15%'},
-      //     ],
-      // });
-      table = $('#datatables').DataTable({
+      
+      table = $('#datatables1').DataTable({
         responsive:{
             details: false
         },
@@ -287,6 +315,7 @@ active
             }
         ]
     });
+    
   });
 </script>
 @endsection

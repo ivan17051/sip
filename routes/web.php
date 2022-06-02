@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
     Route::apiResource('faskes', FaskesController::class)->except('show');
     
     Route::resource('profesi', ProfesiController::class)->only(['index','store','update','destroy']);
+    Route::get('getspesialisasi/{id}', 'ProfesiController@getspesialisasi')->name('spesialisasi.get');
 
     Route::get('/t/bio',function(){return view('bio');});
     Route::get('/raw/bio',function(){ return view('raw.bio'); })->name('raw.bio');
