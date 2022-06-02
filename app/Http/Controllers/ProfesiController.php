@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Profesi;
+use App\Spesialisasi;
 
 class ProfesiController extends Controller
 {
@@ -15,6 +16,7 @@ class ProfesiController extends Controller
     public function store(Request $request){
         try{
             $profesi_baru = new Profesi($request->all());
+            dd($profesi_baru);
             $profesi_baru->save();
         }catch(QueryException $exception){
             $this->flashError($exception->getMessage());
@@ -29,7 +31,8 @@ class ProfesiController extends Controller
         try{
             $profesi = Profesi::findOrFail($id);
             $profesi->fill($request->all());
-            // $profesi->save();
+            dd($profesi);
+            $profesi->save();
         }catch(QueryException $exception){
             $this->flashError($exception->getMessage());
             return back();
@@ -37,5 +40,16 @@ class ProfesiController extends Controller
         
         $this->flashSuccess('Data Profesi Berhasil Diubah');
         return back();
+    }
+
+    public function getspesialisasi($id){
+        try{
+            $data = Spesialisasi::where('idjenispraktik', $id)->get();
+        }catch(QueryException $exception){
+            $this->flashError($exception->getMessage());
+            return back();
+        }
+        
+        return $data;
     }
 }
