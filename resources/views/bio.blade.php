@@ -159,6 +159,7 @@ active
 <script type="text/javascript">
     async function openSelengkapnya(){
         if(!$('#modal-biodata').length){
+            LOADING.show();
             try {
                 let res = await my.request.get("{{route('raw.bio')}}")
                 let $modal = $($('#modal-template').html())
@@ -175,8 +176,49 @@ active
             } catch (err) {
                 console.log(err)
             }
+            LOADING.hide();
         }else{
             $('#modal-biodata').modal('show')
+        }
+    }
+
+    async function openHistoriSTR(){
+        if(!$('#modal-historistr').length){
+            LOADING.show();
+            try {
+                let res = await my.request.get("{{route('raw.historistr')}}")
+                let $modal = $($('#modal-template').html())
+                $modal.attr('id','modal-historistr')
+                $modal.find('.modal-title').text('Histori STR')
+                $modal.find('.modal-body').append(res)
+                $('body').prepend($modal);
+                $modal.modal('show')
+            } catch (err) {
+                console.log(err)
+            }
+            LOADING.hide();
+        }else{
+            $('#modal-historistr').modal('show')
+        }
+    }
+
+    async function openHistoriSIP(index){
+        if(!$('#modal-historisip').length){
+            LOADING.show();
+            try {
+                let res = await my.request.get("{{route('raw.historisip')}}")
+                let $modal = $($('#modal-template').html())
+                $modal.attr('id','modal-historisip')
+                $modal.find('.modal-title').text('Histori SIP')
+                $modal.find('.modal-body').append(res)
+                $('body').prepend($modal);
+                $modal.modal('show')
+            } catch (err) {
+                console.log(err)
+            }
+            LOADING.hide();
+        }else{
+            $('#modal-historisip').modal('show')
         }
     }
     

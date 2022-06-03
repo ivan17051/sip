@@ -100,7 +100,7 @@
                 </tr>
                 <tr>
                     <td><label>Histori SIP</label></td>
-                    <td><button class="btn btn-outline-primary btn-round btn-sm">histori SIP <i class="material-icons">open_in_new</i></button></td>
+                    <td><button class="btn btn-outline-primary btn-round btn-sm" onclick="openHistoriSIP(1)">histori SIP <i class="material-icons">open_in_new</i></button></td>
                 </tr>
             </tbody>
         </table>

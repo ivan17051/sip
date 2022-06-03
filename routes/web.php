@@ -36,4 +36,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/bio',function(){return view('bio');});
     Route::get('/raw/bio',function(){ return view('raw.bio'); })->name('raw.bio');
+    Route::get('/raw/historistr',function(){ return view('raw.historistr'); })->name('raw.historistr');
+    Route::get('/raw/historisip',function(){ return view('raw.historisip'); })->name('raw.historisip');
+    
 });

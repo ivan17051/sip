@@ -26,7 +26,7 @@ $role = explode(', ', $role);
 <body class="">
   @yield('modal')
   <div id="modal-bottom-bound"></div> <!-- batas bawah section modal -->
-  <div class="modal" id="modal-loading" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true" data-backdrop="static">
+  <div id="loading">
     <span><progress class="pure-material-progress-circular"/></span>
   </div>
   <div class="wrapper ">
@@ -200,6 +200,15 @@ $role = explode(', ', $role);
     @endif
   </script>
   @yield('script')
+  <script>
+    var LOADING;
+    $(function() {
+      LOADING = $('#loading');
+      setTimeout(() => {
+        LOADING.hide();
+      }, 300);
+    })
+  </script>
 </body>
 
 </html>

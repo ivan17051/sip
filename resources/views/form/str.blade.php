@@ -48,7 +48,7 @@
                 <button class="btn btn-primary btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(1)">
                     <i class="material-icons">edit_note</i>
                 </button>
-                <button class="btn btn-primary btn-round btn-fab">
+                <button class="btn btn-primary btn-round btn-fab" onclick="openHistoriSTR()">
                     <i class="material-icons">pending_actions</i>
                 </button>
             </div>
