@@ -2,10 +2,10 @@
 @extends('layouts.sidebar')
 
 @section('title')
-Pegawai
+Data Nakes
 @endsection
 
-@section('pegawaiStatus')
+@section('nakesStatus')
 active
 @endsection
 
@@ -15,12 +15,12 @@ active
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
     <div class="modal-header">
-        <h4 class="modal-title">Tambah Pegawai </h4>
+        <h4 class="modal-title">Tambah Nakes </h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
         <i class="material-icons">clear</i>
         </button>
     </div>
-    <form class="form-horizontal input-margin-additional" method="POST" action="{{route('pegawai.update')}}">
+    <form class="form-horizontal input-margin-additional" method="POST" action="{{route('nakes.update')}}">
     @csrf
     @method('PUT')
     <div class="modal-body">
@@ -87,12 +87,12 @@ active
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Edit Pegawai </h4>
+            <h4 class="modal-title">Edit Nakes </h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
             <i class="material-icons">clear</i>
             </button>
         </div>
-        <form class="form-horizontal input-margin-additional" method="POST" action="{{route('pegawai.update')}}">
+        <form class="form-horizontal input-margin-additional" method="POST" action="{{route('nakes.update')}}">
         @csrf
         @method('PUT')
         <div class="modal-body">
@@ -191,7 +191,7 @@ active
           </div>
           <h4 class="card-title">
             <div class="row">
-              <div class="col">Data Pegawai</div>
+              <div class="col">Data Nakes</div>
               <div class="col text-right"><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#tambah">Tambah</button></div>
             </div>
           </h4>
@@ -253,7 +253,7 @@ active
     let idx = oTable.row(tr)[0]
     var data = oTable.data()[idx];
     
-    $modal.find('form').attr('action', "{{route('pegawai.delete', ['id'=>''])}}/"+data['id']);
+    $modal.find('form').attr('action', "{{route('nakes.delete', ['id'=>''])}}/"+data['id']);
     $modal.modal('show');
   }
   $(document).ready(function(){
@@ -264,7 +264,7 @@ active
           
           processing: true,
           serverSide: true,
-          ajax: {type: "POST", url: '{{route("pegawai.data")}}', data:{'_token':@json(csrf_token())}},
+          ajax: {type: "POST", url: '{{route("nakes.data")}}', data:{'_token':@json(csrf_token())}},
           columns: [
               { data:'id', title:'ID', visible: false},
               { data:'nik', title:'NIK'},

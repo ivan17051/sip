@@ -54,15 +54,15 @@ $role = explode(', ', $role);
           </button>
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="{{url('/')}}">
-                  <i class="material-icons">dashboard</i>
-                  <p class="d-lg-none d-md-block">
-                    Dashboard
-                  </p>
-                </a>
-              </li>
-              
+              <form class="navbar-form">
+                <div class="input-group no-border">
+                  <input type="text" value="" class="form-control" placeholder="Search...">
+                  <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                    <i class="material-icons">search</i>
+                    <div class="ripple-container"></div>
+                  </button>
+                </div>
+              </form>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>

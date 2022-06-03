@@ -15,16 +15,18 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', 'DashboardController@index');
-    Route::post('/data', 'DashboardController@data')->name('data');
 
-    Route::resource('str', STRController::class)->only(['show','store','destroy']);
+    Route::get('/str', 'STRController@index');
+    Route::post('/str/data', 'STRController@data')->name('data');
 
-    Route::resource('sip', SIPController::class)->only(['show','store','destroy']);
+    // Route::resource('str', STRController::class)->only(['show','store','destroy']);
 
-    Route::get('/pegawai', 'DataController@pegawai');
-    Route::post('/pegawai/data', 'DataController@pegawaiData')->name('pegawai.data');
-    Route::put('/pegawai', 'DataController@storeUpdatePegawai')->name('pegawai.update');
-    Route::delete('/pegawai/{id}', 'DataController@deletePegawai')->name('pegawai.delete');
+    // Route::resource('sip', SIPController::class)->only(['show','store','destroy']);
+
+    Route::get('/nakes', 'DataController@pegawai');
+    Route::post('/nakes/data', 'DataController@pegawaiData')->name('nakes.data');
+    Route::put('/nakes', 'DataController@storeUpdatePegawai')->name('nakes.update');
+    Route::delete('/nakes/{id}', 'DataController@deletePegawai')->name('nakes.delete');
 
     Route::post('/faskes/data', 'FaskesController@data')->name('faskes.data');
     Route::apiResource('faskes', FaskesController::class)->except('show');
@@ -32,6 +34,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('profesi', ProfesiController::class)->only(['index','store','update','destroy']);
     Route::get('getspesialisasi/{id}', 'ProfesiController@getspesialisasi')->name('spesialisasi.get');
 
-    Route::get('/t/bio',function(){return view('bio');});
+    Route::get('/bio',function(){return view('bio');});
     Route::get('/raw/bio',function(){ return view('raw.bio'); })->name('raw.bio');
 });

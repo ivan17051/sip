@@ -291,7 +291,6 @@ active
     let idx = oTable.row(tr)[0]
     var data = oTable.data()[idx];
     
-    $modal.find('form').attr('action', "{{route('pegawai.delete', ['id'=>''])}}/"+data['id']);
     $modal.modal('show');
   }
 

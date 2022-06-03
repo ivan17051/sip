@@ -32,21 +32,27 @@ $role = explode(', ', $role);
                     <p> Dashboard </p>
                 </a>
             </li>
-            <li class="nav-item @yield('pegawaiStatus')">
-                <a class="nav-link" href="{{url('/pegawai')}}">
-                    <i class="material-icons">group</i>
-                    <p> Nakes </p>
+            <li class="nav-item @yield('strStatus') ">
+                <a class="nav-link" href="{{url('/str')}}">
+                    <i class="material-icons">list_alt</i>
+                    <p> Data STR </p>
+                </a>
+            </li>
+            <li class="nav-item @yield('nakesStatus')">
+                <a class="nav-link" href="{{url('/nakes')}}">
+                    <i class="material-icons">people</i>
+                    <p> Data Nakes </p>
                 </a>
             </li>
             <li class="nav-item @yield('bioStatus')">
-                <a class="nav-link" href="{{url('/t/bio')}}">
-                    <i class="material-icons">person</i>
+                <a class="nav-link" href="{{url('/bio')}}">
+                    <i class="material-icons">account_box</i>
                     <p> Bio Nakes </p>
                 </a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#sidebar-master">
-                    <i class="material-icons">description</i>
+                    <i class="material-icons">assignment</i>
                     <p> Master
                         <b class="caret"></b>
                     </p>
