@@ -10,6 +10,10 @@ class Pegawai extends Model
 
     public $timestamps = false;
 
+    protected $casts = [
+        'tanggallahir' => 'date',
+    ];
+
     protected $fillable = [
         "nik",
         "nama",
@@ -26,11 +30,18 @@ class Pegawai extends Model
         "kelurahan",
         "perguruantinggi",
         "tahunlulus",
-        "idjenispraktik",
+        "idprofesi",
         "idspesialisasi",
-        "jenispraktik",
+        "profesi",
         "spesialisasi",
         "foto",
     ];
     
+    public function profesiTable(){
+        return $this->belongsTo(Profesi::class, 'idprofesi');
+    }
+
+    public function spesialisasiTable(){
+        return $this->belongsTo(Spesialisasi::class, 'idspesialisasi');
+    }
 }

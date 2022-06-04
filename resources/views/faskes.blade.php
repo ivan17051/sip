@@ -2,7 +2,7 @@
 @extends('layouts.sidebar')
 
 @section('title')
-MASTER FASKES
+Master Faskes
 @endsection
 <div class="modal modal-custom-1 fade" id="modal-pratinjau" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;"
     aria-hidden="true">

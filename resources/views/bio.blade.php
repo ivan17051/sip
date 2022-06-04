@@ -2,7 +2,7 @@
 @extends('layouts.sidebar')
 
 @section('title')
-PROFIL NAKES
+Profil Nakes
 @endsection
 
 @section('bioStatus')
@@ -14,10 +14,15 @@ active
 @endsection
 @section('content')
 <div class="container-fluid">
-    <div class="alert alert-rose alert-with-icon" data-notify="container">
+    @if(!isset($nakes))
+        <div class="text-center">
+            <h5>Cari Nakes terlebih dahulu atau cari melalui <a href="{{url('/nakes')}}">link berikut</a></h5>
+        </div>
+    @else
+    <!-- <div class="alert alert-rose alert-with-icon" data-notify="container">
         <i class="material-icons" data-notify="icon">notifications</i>
         <span data-notify="message">STR AKAN MEMASUKI MASA EXPIRED PADA TANGGAL <strong>2 JUNI 2022</strong> !!!</span>
-    </div>
+    </div> -->
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -40,7 +45,7 @@ active
                                 <label class="col-sm-2 col-form-label">Nama</label>
                                 <div class="col-sm-10">
                                     <div class="form-group bmd-form-group">
-                                        <input type="text" class="form-control" value="RM IVAN INDRAKUSUMA" readonly>
+                                        <input type="text" class="form-control" value="{{$nakes->nama}}" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +53,7 @@ active
                                 <label class="col-sm-2 col-form-label">Profesi</label>
                                 <div class="col-sm-10">
                                     <div class="form-group bmd-form-group">
-                                        <input type="text" class="form-control" value="DOKTER UMUM" readonly>
+                                        <input type="text" class="form-control" value="{{isset($nakes->profesi)? $nakes->profesi : '-'}}" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +61,7 @@ active
                                 <label class="col-sm-2 col-form-label">Spesialisasi</label>
                                 <div class="col-sm-10">
                                     <div class="form-group bmd-form-group">
-                                        <input type="text" class="form-control" value="-" readonly>
+                                        <input type="text" class="form-control" value="{{isset($nakes->spesialisasi)? $nakes->spesialisasi : '-'}}" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -133,6 +138,7 @@ active
         </div>
         <!-- end row -->
     </div>
+    @endif
     <template id="modal-template">
         <div class="modal modal-custom-1 fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -161,7 +167,7 @@ active
         if(!$('#modal-biodata').length){
             LOADING.show();
             try {
-                let res = await my.request.get("{{route('raw.bio')}}")
+                let res = await my.request.get("{{route('raw.bio').$urlparam}}")
                 let $modal = $($('#modal-template').html())
                 $modal.attr('id','modal-biodata')
                 $modal.find('.modal-title').text('Biodata Nakes')
@@ -186,7 +192,7 @@ active
         if(!$('#modal-historistr').length){
             LOADING.show();
             try {
-                let res = await my.request.get("{{route('raw.historistr')}}")
+                let res = await my.request.get("{{route('raw.historistr').$urlparam}}")
                 let $modal = $($('#modal-template').html())
                 $modal.attr('id','modal-historistr')
                 $modal.find('.modal-title').text('Histori STR')
@@ -206,7 +212,7 @@ active
         if(!$('#modal-historisip').length){
             LOADING.show();
             try {
-                let res = await my.request.get("{{route('raw.historisip')}}")
+                let res = await my.request.get("{{route('raw.historisip').$urlparam}}")
                 let $modal = $($('#modal-template').html())
                 $modal.attr('id','modal-historisip')
                 $modal.find('.modal-title').text('Histori SIP')

@@ -108,7 +108,7 @@ const my = {
             });
         },
         post: function (url, data) {
-            data["_token"] = "{{ csrf_token() }}"
+            data["_token"] = window['_token']
             return $.ajax({
                 url: url,
                 method: 'POST',
@@ -117,7 +117,7 @@ const my = {
         },
         delete: function (url) {
             const data = {
-                "_token": "{{ csrf_token() }}"
+                "_token": window['_token']
             }
             return $.ajax({
                 url: url,
@@ -126,7 +126,7 @@ const my = {
             });
         },
         put: function (url, data) {
-            data["_token"] = "{{ csrf_token() }}"
+            data["_token"] = window['_token']
             return $.ajax({
                 url: url,
                 method: 'PUT',

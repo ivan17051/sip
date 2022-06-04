@@ -169,14 +169,18 @@ $role = explode(', ', $role);
   <script src="{{asset('public/vendor/jqueryvalidation/localization/messages_id.min.js')}}" type="text/javascript"></script>
   <!-- myFormAndToggle -->
   <script src="{{asset('public/js/myformandtoggle.js')}}" type="text/javascript"></script>
-  <!-- custom script -->
-  <script src="{{asset('public/js/custom.js')}}" type="text/javascript"></script>
   <!-- Moment JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/id.min.js" integrity="sha512-he8U4ic6kf3kustvJfiERUpojM8barHoz0WYpAUDWQVn61efpm3aVAD8RWL8OloaDDzMZ1gZiubF9OSdYBqHfQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- <script src="{{asset('public/js/app.js')}}" ></script> -->
 
+  <script>
+    window['_token']="{{ csrf_token() }}"
+  </script>
+  
+  <!-- custom script -->
+  <script src="{{asset('public/js/custom.js')}}" type="text/javascript"></script>
   
   <script>
     $(document).ready(function() {

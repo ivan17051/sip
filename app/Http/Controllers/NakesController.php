@@ -23,7 +23,7 @@ class NakesController extends Controller
             ->rawColumns(['id','nik','nama','tempatlahir','tanggallahir', 'jeniskelamin', 'alamat', 'nohp', 'action']);
         
         $datatable->addColumn('action', function ($t) { 
-                return '<button class="btn btn-info btn-link" style="padding:5px;" onclick="show(this)"><i class="material-icons">launch</i></button>&nbsp'.
+                return '<a href="'.route('bio').'?nakes='.$t->id.'" class="btn btn-info btn-link" style="padding:5px;"><i class="material-icons">launch</i></a>&nbsp'.
                 '<button type="button" class="btn btn-warning btn-link" style="padding:5px;" onclick="edit(this)"><i class="material-icons">edit</i></button>&nbsp'.
                 '<button type="button" class="btn btn-danger btn-link" style="padding:5px;" onclick="hapus(this)"><i class="material-icons">close</i></button>';
             });
@@ -55,6 +55,7 @@ class NakesController extends Controller
             $this->flashError($exception->getMessage());
             return back();
         }
+
         $model->save();
         $this->flashSuccess('Data Berhasil Disimpan');
         return back();

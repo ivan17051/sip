@@ -52,15 +52,13 @@ class NakesProfileRequest extends FormRequest
             'alamat' => 'nullable|string',
             'nohp' => 'nullable|string',
             "provinsi" => 'nullable|string',
-            "kabkota" => 'required|string',
+            "kabkota" => 'nullable|string',
             "kecamatan" => 'nullable|string',
             "kelurahan" => 'nullable|string',
             "perguruantinggi" => 'nullable|string',
             "tahunlulus" => 'nullable|integer',
-            "idjenispraktik" => 'nullable|integer',
+            "idprofesi" => 'nullable|integer',
             "idspesialisasi" => 'nullable|integer',
-            "jenispraktik" => 'nullable|string',
-            "spesialisasi" => 'nullable|string',
             "foto" => 'file|mimetypes:image/jpeg,image/png|max:512',
         ];
     }

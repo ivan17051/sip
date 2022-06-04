@@ -34,9 +34,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('profesi', ProfesiController::class)->only(['index','store','update','destroy']);
     Route::get('getspesialisasi/{id}', 'ProfesiController@getspesialisasi')->name('spesialisasi.get');
 
-    Route::get('/bio',function(){return view('bio');});
-    Route::get('/raw/bio',function(){ return view('raw.bio'); })->name('raw.bio');
-    Route::get('/raw/historistr',function(){ return view('raw.historistr'); })->name('raw.historistr');
-    Route::get('/raw/historisip',function(){ return view('raw.historisip'); })->name('raw.historisip');
+    Route::get('/bio', 'BioNakesController@index')->name('bio');
+
+    Route::get('/raw/bio', 'BioNakesController@rawBio')->name('raw.bio');
+    Route::get('/raw/historistr', 'BioNakesController@rawHistoristr')->name('raw.historistr');
+    Route::get('/raw/historisip', 'BioNakesController@rawHistorisip')->name('raw.historisip');
     
 });
