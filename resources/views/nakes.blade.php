@@ -24,53 +24,52 @@ active
     @csrf
     @method('PUT')
     <div class="modal-body">
-        <input type="hidden" name="id">
         <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="nama" class="bmd-label-floating">Nama</label>
-                    <input type="text" class="form-control" id="nama" name="nama" required>
-                </div>
-            </div>
-            <div class="col-md-4">
+          <div class="col-md-6">
               <div class="form-group">
-                <label for="nip" class="bmd-label-floating">NIK</label>
-                <input type="text" class="form-control" id="nik" name="nik" required>
+                  <label for="nama" class="bmd-label-floating">Nama <small class="text-danger align-text-top">*wajib</small></label>
+                  <input type="text" class="form-control" id="nama" name="nama" maxlength="30" required>
               </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="nik" class="bmd-label-floating">NIK <small class="text-danger align-text-top">*wajib</small></label>
+              <input type="text" class="form-control" id="nik" name="nik" maxlength="16" required>
             </div>
-            <div class="col-md-2">
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+                <select class="selectpicker" data-style="btn btn-primary btn-round" id="jeniskelamin" title="Jenis Kelamin" name="jeniskelamin" required>
+                  <option value="L">L</option>
+                  <option value="P">P</option>
+                </select>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-4">
               <div class="form-group">
-                  <select class="selectpicker" data-style="btn btn-primary btn-round" id="jeniskelamin" title="Jenis Kelamin" name="jeniskelamin" required>
-                    <option value="L">L</option>
-                    <option value="P">P</option>
-                  </select>
+                  <label for="nama" class="bmd-label-floating" >Tempat Lahir</label>
+                  <input type="text" class="form-control" id="tempatlahir" name="tempatlahir" maxlength="20" >
               </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="nama" class="bmd-label-floating">Tempat Lahir</label>
-                    <input type="text" class="form-control" id="tempatlahir" name="tempatlahir" required>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="tanggallahir" class="bmd-label-floating">Tanggal Lahir</label>
-                    <input type="date" class="form-control" id="tanggallahir" name="tanggallahir" required>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="nohp" class="bmd-label-floating">No. HP</label>
-                    <input type="text" class="form-control" id="nohp" name="nohp" required>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-          <label for="alamat" class="bmd-label-floating">Alamat</label>
-          <input type="text" class="form-control" id="alamat" name="alamat" required>
-        </div>
+          </div>
+          <div class="col-md-4">
+              <div class="form-group">
+                  <label for="tanggallahir" class="bmd-label-floating">Tanggal Lahir</label>
+                  <input name="tanggallahir" type="text" id="tanggallahir"  class="form-control datepicker" value="{{date('d/m/Y')}}" />
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="form-group">
+                  <label for="nohp" class="bmd-label-floating">No. HP</label>
+                  <input type="text" class="form-control" id="nohp" name="nohp" maxlength="14" >
+              </div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="alamat" class="bmd-label-floating">Alamat</label>
+        <input type="text" class="form-control" id="alamat" name="alamat" maxlength="30" >
+      </div>
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-link text-primary">Simpan</button>
@@ -100,19 +99,19 @@ active
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="nama" class="bmd-label-floating">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" required>
+                        <label for="nama" class="bmd-label-floating">Nama <small class="text-danger align-text-top">*wajib</small></label>
+                        <input type="text" class="form-control" name="nama" maxlength="30" required>
                     </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="nip" class="bmd-label-floating">NIK</label>
-                    <input type="text" class="form-control" id="nik" name="nik" required>
+                    <label for="nik" class="bmd-label-floating">NIK <small class="text-danger align-text-top">*wajib</small></label>
+                    <input type="text" class="form-control" name="nik" maxlength="16" required>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="form-group">
-                      <select class="selectpicker" data-style="btn btn-primary btn-round" id="jeniskelamin" title="Jenis Kelamin" name="jeniskelamin" required>
+                      <select class="selectpicker" data-style="btn btn-primary btn-round" title="Jenis Kelamin" name="jeniskelamin" required>
                         <option value="L">L</option>
                         <option value="P">P</option>
                       </select>
@@ -122,26 +121,26 @@ active
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="nama" class="bmd-label-floating">Tempat Lahir</label>
-                        <input type="text" class="form-control" id="tempatlahir" name="tempatlahir" required>
+                        <label for="nama" class="bmd-label-floating" >Tempat Lahir</label>
+                        <input type="text" class="form-control" name="tempatlahir" maxlength="20" >
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="tanggallahir" class="bmd-label-floating">Tanggal Lahir</label>
-                        <input type="date" class="form-control" id="tanggallahir" name="tanggallahir" required>
+                        <input type="text" class="form-control datepicker" value="{{date('d/m/Y')}}"  name="tanggallahir" >
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="nohp" class="bmd-label-floating">No. HP</label>
-                        <input type="text" class="form-control" id="nohp" name="nohp" required>
+                        <input type="text" class="form-control" name="nohp" maxlength="14" >
                     </div>
                 </div>
             </div>
             <div class="form-group">
               <label for="alamat" class="bmd-label-floating">Alamat</label>
-              <input type="text" class="form-control" id="alamat" name="alamat" required>
+              <input type="text" class="form-control" name="alamat" maxlength="30" >
             </div>
         </div>
         <div class="modal-footer">
@@ -237,11 +236,11 @@ active
       
       $modal.find('input[name=id]').val(data['id']);
       $modal.find('input[name=nik]').val(data['nik']).change();
-      $modal.find('input[name=nama]').val(data['nama']).change();;
-      $modal.find('input[name=tempatlahir]').val(data['tempatlahir']).change();;
-      $modal.find('input[name=tanggallahir]').val(data['tanggallahir']).change();;
+      $modal.find('input[name=nama]').val(data['nama']).change();
+      $modal.find('input[name=tempatlahir]').val(data['tempatlahir']).change();
+      $modal.find('input[name=tanggallahir]').val( moment(data['tanggallahir']).format('L') ).change();
       $modal.find('select[name=jeniskelamin]').val(data['jeniskelamin']).change();
-      $modal.find('input[name=alamat]').val(data['alamat']).change();;
+      $modal.find('input[name=alamat]').val(data['alamat']).change();
       $modal.find('input[name=nohp]').val(data['nohp']).change();
 
       $modal.modal('show');
@@ -257,6 +256,8 @@ active
     $modal.modal('show');
   }
   $(document).ready(function(){
+      my.initFormExtendedDatetimepickers()
+
       oTable = $("#datatables").DataTable({
           select:{
               className: 'dataTable-selector form-select'

@@ -56,7 +56,7 @@ $role = explode(', ', $role);
             <ul class="navbar-nav">
               <form class="navbar-form">
                 <div class="input-group no-border">
-                  <input type="text" value="" class="form-control" placeholder="Search...">
+                  <input type="text" value="" class="form-control" placeholder="Cari Nakes">
                   <button type="submit" class="btn btn-white btn-round btn-just-icon">
                     <i class="material-icons">search</i>
                     <div class="ripple-container"></div>
@@ -164,6 +164,9 @@ $role = explode(', ', $role);
   <script src="{{asset('public/js/plugins/bootstrap-notify.js')}}"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{asset('public/js/material-dashboard.js?v=2.2.2')}}" type="text/javascript"></script>
+  <!-- Jquery Validation -->
+  <script src="{{asset('public/vendor/jqueryvalidation/jquery.validate.min.js')}}" type="text/javascript"></script>
+  <script src="{{asset('public/vendor/jqueryvalidation/localization/messages_id.min.js')}}" type="text/javascript"></script>
   <!-- myFormAndToggle -->
   <script src="{{asset('public/js/myformandtoggle.js')}}" type="text/javascript"></script>
   <!-- custom script -->

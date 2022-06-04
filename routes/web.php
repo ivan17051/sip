@@ -23,10 +23,10 @@ Route::middleware(['auth'])->group(function () {
 
     // Route::resource('sip', SIPController::class)->only(['show','store','destroy']);
 
-    Route::get('/nakes', 'DataController@pegawai');
-    Route::post('/nakes/data', 'DataController@pegawaiData')->name('nakes.data');
-    Route::put('/nakes', 'DataController@storeUpdatePegawai')->name('nakes.update');
-    Route::delete('/nakes/{id}', 'DataController@deletePegawai')->name('nakes.delete');
+    Route::get('/nakes', 'NakesController@pegawai');
+    Route::post('/nakes/data', 'NakesController@pegawaiData')->name('nakes.data');
+    Route::put('/nakes', 'NakesController@storeUpdatePegawai')->name('nakes.update');
+    Route::delete('/nakes/{id}', 'NakesController@deletePegawai')->name('nakes.delete');
 
     Route::post('/faskes/data', 'FaskesController@data')->name('faskes.data');
     Route::apiResource('faskes', FaskesController::class)->except('show');

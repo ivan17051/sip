@@ -20,6 +20,17 @@ class Pegawai extends Model
         "nohp",
         "idc",
         "idm",
+        "provinsi",
+        "kabkota",
+        "kecamatan",
+        "kelurahan",
+        "perguruantinggi",
+        "tahunlulus",
+        "idjenispraktik",
+        "idspesialisasi",
+        "jenispraktik",
+        "spesialisasi",
+        "foto",
     ];
     
 }
