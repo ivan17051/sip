@@ -56,7 +56,7 @@ active
           <div class="col-md-4">
               <div class="form-group">
                   <label for="tanggallahir" class="bmd-label-floating">Tanggal Lahir</label>
-                  <input name="tanggallahir" type="text" id="tanggallahir"  class="form-control datepicker" value="{{date('d/m/Y')}}" />
+                  <input name="tanggallahir" type="date" id="tanggallahir"  class="form-control" value="{{date('Y-m-d')}}" />
               </div>
           </div>
           <div class="col-md-4">
@@ -128,7 +128,7 @@ active
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="tanggallahir" class="bmd-label-floating">Tanggal Lahir</label>
-                        <input type="text" class="form-control datepicker" value="{{date('d/m/Y')}}"  name="tanggallahir" >
+                        <input type="date" class="form-control" value="{{date('Y-m-d')}}"  name="tanggallahir" >
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -238,7 +238,7 @@ active
       $modal.find('input[name=nik]').val(data['nik']).change();
       $modal.find('input[name=nama]').val(data['nama']).change();
       $modal.find('input[name=tempatlahir]').val(data['tempatlahir']).change();
-      $modal.find('input[name=tanggallahir]').val( moment(data['tanggallahir']).format('L') ).change();
+      $modal.find('input[name=tanggallahir]').val( data['tanggallahir'] ).change();
       $modal.find('select[name=jeniskelamin]').val(data['jeniskelamin']).change();
       $modal.find('input[name=alamat]').val(data['alamat']).change();
       $modal.find('input[name=nohp]').val(data['nohp']).change();

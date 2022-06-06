@@ -39,7 +39,7 @@
                         <td>
                             <span data-text="true"></span>
                             <span>
-                                <input data-editable=true type="text" class="form-control datepicker" name="tanggallahir" value="{{date_format($nakes->tanggallahir,'d/m/Y')}}" />
+                                <input data-editable=true type="text" class="form-control datepicker2" name="tanggallahir" value="{{$nakes->tanggallahir->format('Y-m-d')}}" />
                             </span>
                         </td>
                     </tr>

@@ -20,6 +20,9 @@ $role = explode(', ', $role);
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
     <link href="{{asset('public/css/material-dashboard.css?v=2.2.2')}}" rel="stylesheet" />
+    <!-- DateTimePicker Tempus Dominus -->
+    <!-- <link rel="stylesheet" href="{{asset('public/vendor/datetimepicker-tempus-dominus/css/tempus-dominus.min.css')}}"> -->    
+
     <link href="{{asset('public/css/custom.css')}}" rel="stylesheet" />
 </head>
 
@@ -126,6 +129,25 @@ $role = explode(', ', $role);
       </footer>
     </div>
   </div>
+  <template id="modal-template">
+    <div class="modal modal-custom-1 fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal title</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <i class="material-icons">clear</i>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-link" data-dismiss="modal">TUTUP</button>
+            </div>
+            </div>
+        </div>
+    </div>
+  </template>
   
   <!--   Core JS Files   -->
   <script src="{{asset('public/js/core/jquery.min.js')}}"></script>
@@ -172,10 +194,15 @@ $role = explode(', ', $role);
   <!-- Moment JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/id.min.js" integrity="sha512-he8U4ic6kf3kustvJfiERUpojM8barHoz0WYpAUDWQVn61efpm3aVAD8RWL8OloaDDzMZ1gZiubF9OSdYBqHfQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Popper Js -->
+  <!-- <script src="{{asset('public/vendor/popperjs/popper.min.js')}}"></script> -->
+  <!-- DateTimePicker Tempus Dominus -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA==" crossorigin="anonymous"></script> -->
 
   <!-- <script src="{{asset('public/js/app.js')}}" ></script> -->
 
   <script>
+    // tempusDominus.extend(moment, 'DD/MM/yyyy hh:mm a');
     window['_token']="{{ csrf_token() }}"
   </script>
   
@@ -207,6 +234,7 @@ $role = explode(', ', $role);
     @endif
   </script>
   @yield('script')
+  @stack('script2')
   <script>
     var LOADING;
     $(function() {

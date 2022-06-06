@@ -132,10 +132,10 @@
     padding-left: 0;
 }
 
-.modal.modal-custom-1 .modal-body{
+/* .modal.modal-custom-1 .modal-body{
     max-height: 60vh;
     overflow-y: scroll;
-}
+} */
 
 @media (max-width: 576px) {
     .modal.modal-custom-1 .modal-dialog{
@@ -323,4 +323,10 @@ div.anim.hidden.slide{
 
 .timeline-inverted.active .tampilkan-wrapper{
     display: none!important;
+}
+
+label.force-top{
+    position: relative!important;
+    display: block!important;
+    font-size: 0.6875rem!important;
 }

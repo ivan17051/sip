@@ -13,13 +13,12 @@ class STR extends Model
     protected $fillable = [
         "idpegawai",
         "nomor",
-        "nomorrekom",
         "since",
         "expiry",
-        "peruntukan",
         "tanggal",
         "idc",
         "idm",
+        "isactive",
     ];
     
     /**

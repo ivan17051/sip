@@ -139,25 +139,6 @@ active
         <!-- end row -->
     </div>
     @endif
-    <template id="modal-template">
-        <div class="modal modal-custom-1 fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Modal title</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <i class="material-icons">clear</i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default btn-link" data-dismiss="modal">TUTUP</button>
-                </div>
-                </div>
-            </div>
-        </div>
-    </template>
 </div>
 @endsection
 
@@ -175,9 +156,8 @@ active
                 $('body').prepend($modal);
                 $modal.modal('show')
                 setTimeout(() => {
-                    $modal.find('.selectpicker').selectpicker({liveSearch:true});
-                    $modal.find('.myform').myFormAndToggle()  
-                    my.initFormExtendedDatetimepickers()  
+                    $modal.find('.selectpicker').selectpicker({liveSearch:true}); 
+                    $modal.find('.myform').myFormAndToggle() 
                 }, 200);
             } catch (err) {
                 console.log(err)

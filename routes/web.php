@@ -19,7 +19,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/str', 'STRController@index');
     Route::post('/str/data', 'STRController@data')->name('data');
 
-    // Route::resource('str', STRController::class)->only(['show','store','destroy']);
+    Route::resource('str', STRController::class)->only(['show','store','update','destroy']);
 
     // Route::resource('sip', SIPController::class)->only(['show','store','destroy']);
 
@@ -39,5 +39,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/raw/bio', 'BioNakesController@rawBio')->name('raw.bio');
     Route::get('/raw/historistr', 'BioNakesController@rawHistoristr')->name('raw.historistr');
     Route::get('/raw/historisip', 'BioNakesController@rawHistorisip')->name('raw.historisip');
+
+    Route::get('/data/getspesialisasi/{idprofesi}', 'DataController@getSpesialisasi')->name('data.getspesialisasi');
     
 });

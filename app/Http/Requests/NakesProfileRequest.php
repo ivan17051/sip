@@ -19,9 +19,9 @@ class NakesProfileRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $this->merge([
-            'tanggallahir' => Carbon::createFromFormat('d/m/Y', $this->tanggallahir)->format('Y-m-d'),
-        ]);
+        // $this->merge([
+        //     'tanggallahir' => Carbon::createFromFormat('d/m/Y', $this->tanggallahir)->format('Y-m-d'),
+        // ]);
     }
 
     public function withValidator($validator)

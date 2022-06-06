@@ -187,7 +187,7 @@ const my = {
 }
 
 
-// $(function(){
+$(function(){
 //   $( document ).ajaxStart(function() {
 //     $('#modal-loading').modal('show');
 //   });
@@ -195,4 +195,4 @@ const my = {
 //   $( document ).ajaxComplete(function( event, request, settings ) {
 //     $('#modal-loading').modal('hide');
 //   });
-// })
+})

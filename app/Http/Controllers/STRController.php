@@ -9,6 +9,7 @@ use App\STR;
 use App\Pegawai;
 use Illuminate\Support\Facades\DB;
 use Datatables;
+use App\Http\Requests\STRRequest;
 
 class STRController extends Controller
 {
@@ -39,37 +40,30 @@ class STRController extends Controller
     /*
      * Store and update STR
      */
-    public function store(Request $request){
+    public function store(STRRequest $request){
         $userId = Auth::id();
-        $input = array_map('trim', $request->all());
-        
-        $validator = Validator::make($input, [
-            'id' => 'nullable|exists:str,id',
-        ]);
-        
-        if ($validator->fails()) return back()->with('error','Gagal memproses');
+        $input = $request->validated();
         
         try{
-            if(isset($input['id'])){
-                $model = STR::firstOrNew([
-                    'id' => $input['id']
-                ]);
-                $model->fill($input);
-                $model->idm = $userId;
-            }else{
-                $model = new STR();
-                $model->fill($input);
-                $model->idc = $userId;
-                $model->idm = $userId;
-            }
+            DB::beginTransaction();
+            $inputProfesiSpesialisasi = collect($input)->only("idprofesi", "idspesialisasi")->toArray();
+            $pegawai = Pegawai::where('id',$input['idpegawai'])->select('id')->first();
+            $pegawai->fill($inputProfesiSpesialisasi);
+            $pegawai->save();
+
+            $model = new STR();
+            $model->fill($input);
+            $model->idc = $userId;
+            $model->idm = $userId;
+            $model->save();
+            DB::commit();
+            $this->flashSuccess('Data Berhasil Disimpan');
+            return back();
         }catch(QueryException $exception){
+            DB::rollBack();
             $this->flashError($exception->getMessage());
             return back();
         }
-
-        $model->save();
-        $this->flashSuccess('Data Berhasil Disimpan');
-        return back();
     }
 
     public function destroy($id){
