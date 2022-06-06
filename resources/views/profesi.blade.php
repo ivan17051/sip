@@ -14,7 +14,7 @@ active
 @endsection
 
 @section('modal')
-<!-- Modal Tambah -->
+<!-- Modal Tambah Profesi -->
 <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -56,9 +56,9 @@ active
     </div>
   </div>
 </div>
-<!--  End Modal Tambah -->
+<!--  End Modal Tambah Profesi -->
 
-<!-- Modal Edit -->
+<!-- Modal Edit Profesi -->
 <div class="modal fade" id="sunting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -102,9 +102,9 @@ active
     </div>
   </div>
 </div>
-<!-- End Modal Edit -->
+<!-- End Modal Edit Profesi -->
 
-<!-- Modal Hapus -->
+<!-- Modal Hapus Profesi -->
 <div class="modal fade modal-mini modal-primary" id="hapus" tabindex="-1" role="dialog" aria-labelledby="myDeleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-small">
         <div class="modal-content">
@@ -127,7 +127,114 @@ active
         </div>
     </div>
 </div>
-<!--  end modal Hapus -->
+<!--  end modal Hapus Profesi -->
+
+<!-- Modal Tambah Spesialisasi -->
+<div class="modal fade" id="tambahsp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Tambah Spesialisasi </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="material-icons">clear</i>
+        </button>
+      </div>
+      <form class="form-horizontal input-margin-additional" method="POST" action="{{route('spesialisasi.store')}}">
+        @csrf
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="nama" class="bmd-label-floating">Nama Spesialisasi</label>
+                <input type="text" class="form-control" id="nama" name="nama" required>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <input type="hidden" name="idprofesi" value="">
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-link text-primary">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--  End Modal Tambah Spesialisasi -->
+
+<!-- Modal Edit Spesialisasi -->
+<div class="modal fade" id="suntingsp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Sunting Spesialisasi </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="material-icons">clear</i>
+        </button>
+      </div>
+      <form class="form-horizontal input-margin-additional" id="formeditsp" method="POST" action="">
+        @csrf
+        @method('PUT')
+        <div class="modal-body">
+          <input type="hidden" name="id">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="nama" class="bmd-label-floating">Nama Spesialisasi</label>
+                <input type="text" class="form-control" id="nama" name="nama" required>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <select name="idprofesi" class="selectpicker" data-size="7" data-style="btn btn-primary btn-round" title="Pilih Profesi">
+                <option disabled selected>Piih Profesi</option>
+                @foreach($profesi as $unit)
+                @if($unit->isparent==1)
+                <option value="{{$unit->id}}">{{$unit->nama}}</option>
+                @endif
+                @endforeach
+              </select>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-link text-primary">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End Modal Edit Spesialisasi -->
+
+<!-- Modal Hapus Spesialisasi -->
+<div class="modal fade modal-mini modal-primary" id="hapussp" tabindex="-1" role="dialog" aria-labelledby="myDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-small">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+        </div>
+        <form class="" method="POST" action="">
+            @method('DELETE')
+            @csrf
+        <div class="modal-body text-center">
+            <p>Yakin ingin menghapus?</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-link" data-dismiss="modal">Tidak</button>
+            <button type="submit" class="btn btn-danger btn-link">Ya, Hapus
+                <div class="ripple-container"></div>
+            </button>
+        </div>
+        </form>
+        </div>
+    </div>
+</div>
+<!--  end modal Hapus Spesialisasi -->
+
 @endsection
 
 @section('content')
@@ -142,7 +249,7 @@ active
           <h4 class="card-title">
             <div class="row">
               <div class="col">Data Profesi</div>
-              <div class="col text-right"><button class="btn btn-sm btn-primary" data-toggle="modal"
+              <div class="col text-right"><button id="btntambah" class="btn btn-sm btn-primary" data-toggle="modal"
                   data-target="#tambah">Tambah</button></div>
             </div>
           </h4>
@@ -181,7 +288,7 @@ active
                       <button type="button" class="btn btn-warning btn-link" style="padding:5px;"
                         onclick="edit({{$unit}})"><i class="material-icons">edit</i></button>&nbsp
                       <button type="button" class="btn btn-danger btn-link" style="padding:5px;"
-                        onclick="hapus({{$unit->id}})"><i class="material-icons">close</i></button>
+                        onclick="hapus({{$unit->id}})"><i class="material-icons">delete</i></button>
                     </td>
                   </tr>
                   @endforeach
@@ -190,7 +297,7 @@ active
             </div>
           </div>
           <div class="anim slide hidden" id="nakes-container">
-            <a href="" class="btn btn-sm btn-warning" onclick="back()">Kembali</a>
+            <button type="button" class="btn btn-sm btn-warning" onclick="back()">Kembali</button>
 
             <div class="material-datatable">
               <table id="datatables2" class="table table-striped table-no-bordered table-hover">
@@ -227,8 +334,9 @@ active
     
   });
   function back() {
-    $('#nakes-container').addClass('hidden')
-    $('#table-container').removeClass('hidden')
+    $('#nakes-container').addClass('hidden');
+    $('#table-container').removeClass('hidden');
+    $('#btntambah').attr('data-target', '#tambah');
     if ($.fn.dataTable.isDataTable('#datatables2')) {
       $('#datatables2').DataTable().clear();
       $('#datatables2').DataTable().destroy();
@@ -243,27 +351,36 @@ active
     $('#table-container').addClass('hidden')
     $('#nakes-container').removeClass('hidden')
   }
+
   function show(x){
     $('#table-container').addClass('hidden');
     $('#nakes-container').removeClass('hidden');
+    $('#btntambah').attr('data-target', '#tambahsp');
+    $('#tambahsp').find('input[name=idprofesi]').val(x).change();
+
     table2 = $('#datatables2').DataTable({
       ajax: {
         url: '{{route("spesialisasi.get", ["id"=>""])}}/'+x,
         dataSrc: ''
       },
       columns: [
-        {data: 'id', title: 'No', width: '10%'},
+        {data: 'id', title: 'ID', width: '10%'},
         {data: 'nama', title: 'Nama Spesialisasi'},
-        {data: 'id', title: 'Aksi', render: function(e,d,row){
-          return '<button type="button" class="btn btn-warning btn-link" style="padding:5px;" onclick="editspesial('+e+')"><i class="material-icons">edit</i></button>&nbsp'+
-                  '<button type="button" class="btn btn-danger btn-link" style="padding:5px;" onclick="hapusspesial('+e+')"><i class="material-icons">close</i></button>'
+        {data: 'id', title: 'Aksi', style: 'text-right', render: function(e,d,row){
+          return '<button type="button" class="btn btn-warning btn-link" style="padding:5px;" onclick="editspesial('+e+',\''+row['nama']+'\','+row['idprofesi']+')"><i class="material-icons">edit</i></button>&nbsp'+
+                  '<button type="button" class="btn btn-danger btn-link" style="padding:5px;" onclick="hapusspesial('+e+')"><i class="material-icons">delete</i></button>'
         }}
       ],
       columnDefs: [
         {   
-            class: "details-control",
-            orderable: false,
-            targets: 0
+          class: "details-control",
+          orderable: false,
+          targets: 0
+        },
+        {
+          class: "text-right",
+          orderable: false,
+          targets: 2
         }
       ]
     });
@@ -285,19 +402,29 @@ active
       $modal.modal('show');
   }
 
-  function hapus(self){
+  function hapus(id){
     $modal=$('#hapus');
-    var tr = $(self).closest('tr');
-    let idx = oTable.row(tr)[0]
-    var data = oTable.data()[idx];
-    
+    $modal.find('form').attr('action', "{{route('profesi.destroy', ['id'=>''])}}/"+id);
+  
     $modal.modal('show');
   }
 
-  function editspesial(data){
-      var $modal=$('#sunting');
-      console.log(data['id']);
+  function editspesial(id, nama, idprofesi){
+      var $modal=$('#suntingsp');
       
+      $('#formeditsp').attr('action', '{{route("spesialisasi.update", ["id"=>""])}}/'+id);
+      $modal.find('input[name=id]').val(id).change();
+      $modal.find('input[name=nama]').val(nama).change();
+      $modal.find('select[name=idprofesi]').val(idprofesi).change().blur();
+      
+      $modal.modal('show');
+  }
+
+  function hapusspesial(id){
+    $modal=$('#hapussp');
+    $modal.find('form').attr('action', "{{route('spesialisasi.destroy', ['id'=>''])}}/"+id);
+  
+    $modal.modal('show');
   }
 
   $(document).ready(function(){
@@ -308,9 +435,8 @@ active
         },
         columnDefs: [
             {   
-                class: "details-control",
                 orderable: false,
-                targets: 0
+                targets: 3
             }
         ]
     });

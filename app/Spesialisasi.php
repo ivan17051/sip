@@ -11,7 +11,7 @@ class Spesialisasi extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        "idjenispraktik",
+        "idprofesi",
         "nama",
     ];
 }
