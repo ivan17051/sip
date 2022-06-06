@@ -33,6 +33,9 @@ Route::middleware(['auth'])->group(function () {
     
     Route::resource('profesi', ProfesiController::class)->only(['index','store','update','destroy']);
     Route::get('getspesialisasi/{id}', 'ProfesiController@getspesialisasi')->name('spesialisasi.get');
+    Route::put('putspesialisasi/{id}', 'ProfesiController@updateSpesialisasi')->name('spesialisasi.update');
+    Route::post('storespesialisasi', 'ProfesiController@storeSpesialisasi')->name('spesialisasi.store');
+    Route::delete('destroypesialisasi/{id}', 'ProfesiController@destroySpesialisasi')->name('spesialisasi.destroy');
 
     Route::get('/bio', 'BioNakesController@index')->name('bio');
 
