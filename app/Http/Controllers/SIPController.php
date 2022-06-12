@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Validator;
 use App\SIP;
 use App\STR;
+use App\Http\Requests\SIPRequest;
 
 class SIPController extends Controller
 {
@@ -24,9 +26,41 @@ class SIPController extends Controller
     }
 
     /*
-     * Store and update SIP
+     * Store SIP
      */
-    public function store(Request $request){
+    public function store(SIPRequest $request){
+        $userId = Auth::id();
+        $input = $request->validated();
+        
+        try{
+            DB::beginTransaction();
+            
+            $str = STR::select('id','nomor','expiry','idpegawai')->find($input['idstr']);
+            $latestsip = SIP::where('idstr', $input['idstr'])->where('instance', $input['instance'])->max('iterator');
+            $sip = new SIP($input);
+            $sip->fill([
+                'iterator' => isset($latestsip) ? $latestsip+1 : 1,
+                'idpegawai' => $str['idpegawai'],
+                'nomorstr' => $str['nomor'],
+                'expirystr' => $str['expiry'],
+                'idc'=> $userId,
+                'idm'=> $userId,
+            ]);
+            $sip->save();
+            DB::commit();
+            $this->flashSuccess('Data Berhasil Ditambahkan');
+            return back();
+        }catch(QueryException $exception){
+            DB::rollBack();
+            $this->flashError($exception->getMessage());
+            return back();
+        }
+    }
+
+    /*
+     * update SIP
+     */
+    public function update(SIPRequest $request){
         $user = Auth::user();
         $input = array_map('trim', $request->all());
         

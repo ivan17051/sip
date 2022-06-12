@@ -330,3 +330,38 @@ label.force-top{
     display: block!important;
     font-size: 0.6875rem!important;
 }
+
+/* INPUT NOMOR SIP */
+
+.nomorsip-wrapper input{
+    font-family: consolas;
+    text-align: center;
+}
+
+.nomorsip-wrapper input[readonly]{
+    background: unset!important;
+}
+
+.nomorsip-wrapper>span:nth-child(1) input{
+    width: 63px;
+}
+
+.nomorsip-wrapper>span:nth-child(2) input{
+    width: 36px;
+}
+
+.nomorsip-wrapper>span:nth-child(3) input{
+    width: 9px;
+}
+
+.nomorsip-wrapper>span:nth-child(4) input{
+    width: 45px;
+}
+
+.nomorsip-wrapper>span:nth-child(5) input{
+    width: 63px;
+}
+
+.nomorsip-wrapper>span:nth-child(6) input{
+    width: 36px;
+}

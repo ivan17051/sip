@@ -21,7 +21,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('str', STRController::class)->only(['show','store','update','destroy']);
 
-    // Route::resource('sip', SIPController::class)->only(['show','store','destroy']);
+    Route::resource('sip', SIPController::class)->only(['show','store','update','destroy']);
 
     Route::get('/nakes', 'NakesController@pegawai');
     Route::post('/nakes/data', 'NakesController@pegawaiData')->name('nakes.data');

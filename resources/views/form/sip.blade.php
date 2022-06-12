@@ -1,3 +1,80 @@
+<div class="modal modal-custom-1 fade" id="modal-sip{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <form action="{{route('sip.store')}}" method="POST">
+        @csrf
+        <input type="hidden" name="idstr" value="{{$str->id}}">
+        <div class="modal-header">
+            <h4 class="modal-title">Tambah SIP</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="material-icons">clear</i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="bmd-label force-top">Jenis Permohonan <small class="text-danger align-text-top">*wajib</small></label>
+                <select class="selectpicker form-control" data-style="btn btn-primary btn-round" title="jenispermohonan" name="jenispermohonan" required>
+                    @if(isset($sips[$index]))
+                    <option>Perpanjangan</option>
+                    <option>Cabut</option>
+                    <option>Cabut Pindah</option>
+                    @else
+                    <option selected>Permohonan Baru</option>
+                    @endif
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="bmd-label force-top">Praktik ke- <small class="text-danger align-text-top">*wajib</small></label>
+                <input type="number" class="form-control" name="instance" value="{{$index+1}}" readonly required>
+            </div>
+            <div class="form-group">
+                <label class="bmd-label force-top">Nomor SIP <small class="text-danger align-text-top">*wajib</small></label>
+                <div class="nomorsip-wrapper">
+                    <span class="form-group d-inline-block"><input type="text" class="form-control" name="nomor[]" maxlength="7" value="503.446" readonly required></span> / 
+                    <span class="form-group d-inline-block"><input type="text" class="form-control" name="nomor[]" maxlength="4" required></span> / 
+                    <span class="form-group d-inline-block"><input type="text" class="form-control" name="nomor[]" maxlength="1" value="I" readonly required></span> / 
+                    <span class="form-group d-inline-block"><input type="text" class="form-control" name="nomor[]" maxlength="5" value="IP.DU" readonly required></span> / 
+                    <span class="form-group d-inline-block"><input type="text" class="form-control" name="nomor[]" maxlength="7" value="436.7.2" readonly required></span> / 
+                    <span class="form-group d-inline-block"><input type="text" class="form-control" name="nomor[]" maxlength="4" value="{{date('Y')}}" readonly required></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="bmd-label force-top">Nomor Rekom <small class="text-danger align-text-top">*wajib</small></label>
+                <div>
+                    <input type="text" class="form-control" name="nomorrekom" maxlength="22" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="bmd-label force-top">Tanggal Online <small class="text-danger align-text-top">*wajib</small></label>
+                <input type="date" class="form-control" name="tglonline" required>
+            </div>
+            <div class="form-group">
+                <label class="bmd-label force-top">Tanggal Masuk Dinas <small class="text-danger align-text-top">*wajib</small></label>
+                <input type="date" class="form-control" name="tglmasukdinas" required>
+            </div>
+            <div class="form-group">
+                <label class="bmd-label force-top">Tanggal Verif & Cetak <small class="text-danger align-text-top">*wajib</small></label>
+                <input type="date" class="form-control" name="tglverif" required>
+            </div>
+            <div class="form-group">
+                <label class="bmd-label force-top">Faskes <small class="text-danger align-text-top">*wajib</small></label>
+                <input type="text" class="form-control" name="idfaskes" maxlength="100" required>
+            </div>
+            <div class="form-group">
+                <label class="bmd-label force-top">Jadwal Praktik </label>
+                <textarea type="text" class="form-control" name="jadwalpraktik" maxlength="100" required></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-link text-primary">Simpan</button>
+            <button type="button" class="btn btn-default btn-link" data-dismiss="modal">TUTUP</button>
+        </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+@if(isset($sips[$index]))
 <div class="row myform">
     <div class="col">
         <table class="table table-2-col">
@@ -17,7 +94,7 @@
                     <td>1</td>
                 </tr>
                 <tr>
-                    <td><label>Nomor</label></td>
+                    <td><label>Nomor SIP</label></td>
                     <td>
                         <span data-text="true"></span>
                         <span>
@@ -45,11 +122,21 @@
                 </tr>
                 <tr>
                     <td><label>Tanggal Masuk Dinas</label></td>
-                    <td>2 Januari 2022</td>
+                    <td>
+                        <span data-text="true"></span>
+                        <span>
+                            <input data-editable=true type="text" class="form-control datepicker" value="02/01/2022" required="true" />
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td><label>Tanggal Verif & Cetak</label></td>
-                    <td>23 Januari 2022</td>
+                    <td>
+                        <span data-text="true"></span>
+                        <span>
+                            <input data-editable=true type="text" class="form-control datepicker" value="02/01/2022" required="true" />
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td><label>Jenis Praktik</label></td>
@@ -127,3 +214,22 @@
     <button type="button" class="btn btn-primary btn-selengkapnya"><i
             class="material-icons">priority_high</i> TINDAKAN PERIZINAN</button>
 </div>
+@else
+<div class="w-100 text-center">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-sip{{$index}}"><i
+            class="material-icons">add</i> TAMBAH SIP</button>
+</div>
+@endif
+
+@push('script2')
+<script>
+// function formatNomor(nomor) {
+//   var cleaned = ('' + nomor).replace(/[^ \/\.]/gm, '');
+//   var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+//   if (match) {
+//     return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+//   }
+//   return null;
+// }
+</script>
+@endpush

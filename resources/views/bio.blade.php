@@ -90,27 +90,17 @@ active
                                         <div class="ripple-container"></div>
                                     </a>
                                 </li>
+                                @if(isset($str))
+                                @for($i=0;$i<=count($sips);$i++)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#sip1" data-toggle="tab">
-                                        <i class="material-icons">code</i> SIP 1
+                                    <a class="nav-link" href="#sip{{$i+1}}" data-toggle="tab">
+                                        <i class="material-icons">code</i> SIP {{$i+1}}
                                         <div class="ripple-container"></div>
                                         <div class="ripple-container"></div>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#sip2" data-toggle="tab">
-                                        <i class="material-icons">code</i> SIP 2
-                                        <div class="ripple-container"></div>
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#sip3" data-toggle="tab">
-                                        <i class="material-icons">code</i> SIP 3
-                                        <div class="ripple-container"></div>
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                </li>
+                                @endfor
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -120,18 +110,13 @@ active
                         <div class="tab-pane active show" id="str">
                             @include('form.str')
                         </div>
-                        <div class="tab-pane" id="sip1">
-                            @include('form.sip')
+                        @if(isset($str))
+                        @for($i=0;$i<=count($sips);$i++)
+                        <div class="tab-pane" id="sip{{$i+1}}">
+                            @include('form.sip', ['index'=> $i ])
                         </div>
-                        <div class="tab-pane" id="sip2">
-                            @include('form.sip')
-                        </div>
-                        <div class="tab-pane" id="sip3">
-                            <div class="tambah-sip-wrapper text-center">
-                                <button type="button" class="btn btn-primary btn-selengkapnya"><i
-                                        class="material-icons">add</i> Tambah SIP Ke-3</button>
-                            </div>
-                        </div>
+                        @endfor
+                        @endif
                     </div>
                 </div>
             </div>

@@ -11,19 +11,28 @@ class SIP extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        "instance",
+        "iterator",
         "idstr",
         "idpegawai",
         "nomorstr",
         "expirystr",
+        "nomorrekom",
         "nomor",
-        "since",
-        "ended",
         "idc",
         "idm",
-        "isactive",
         "idfaskes",
+        "saranapraktik",
         "namafaskes",
         "alamatfaskes",
+        "jadwalpraktik",
+        "jenispermohonan",
+        "jabatan",
+        "tglonline",
+        "tglmasukdinas",
+        "tglverif",
+        "tgldeactive",
+        "isactive",
     ];
     
 }

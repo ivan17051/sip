@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Pegawai;
 use App\Profesi;
 use App\STR;
+use App\SIP;
 
 class BioNakesController extends Controller
 {
@@ -16,9 +17,14 @@ class BioNakesController extends Controller
 
         if(isset($d['nakes'])){
             $d['str']=STR::where('idpegawai', $idnakes)->orderBy('expiry','DESC')->first();
-            // $d['sip']=
             $d['urlparam'] ="?nakes={$idnakes}";
             $d['profesi'] = Profesi::all();
+        }
+        
+        if (isset($d['str'])) {
+            $d['sips']=SIP::where('idstr', $d['str']->id)->where('isactive',1)->get()->toArray();
+        }else{
+            $d['sips'] = [];
         }
 
         return view('bio', $d);
