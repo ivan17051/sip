@@ -44,6 +44,7 @@ class NakesProfileRequest extends FormRequest
     {
         return [
             'id' => 'nullable|exists:mpegawai,id',
+            'kodeprofesi' => 'nullable',
             'nik' => 'string',
             'nama' => 'required|string',
             'tempatlahir' => 'nullable|string',
@@ -57,7 +58,7 @@ class NakesProfileRequest extends FormRequest
             "kelurahan" => 'nullable|string',
             "perguruantinggi" => 'nullable|string',
             "tahunlulus" => 'nullable|integer',
-            "idprofesi" => 'nullable|integer',
+            "idprofesi" => 'required_without:id|integer',
             "idspesialisasi" => 'nullable|integer',
             "foto" => 'file|mimetypes:image/jpeg,image/png|max:512',
         ];

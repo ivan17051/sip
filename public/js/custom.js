@@ -184,6 +184,39 @@ const my = {
 
         return indexed_array;
     },
+    'toggleSpesialisasi': async function(e, $wrapper, idspesialisasi=null){
+        let $s = $(e.target).find('option:selected')
+        let idprofesi = $s.val()
+        let isparent = $s[0].dataset.isparent
+        let $select = $wrapper.find('select')
+        if(parseInt(isparent)){
+            try {
+                let url = BASEURL+"/data/getspesialisasi/"+idprofesi;
+                let res = await my.request.get(url)
+                let options = res.reduce(function(e,a){
+                    if(idspesialisasi && a.id == idspesialisasi){
+                        e += '<option value="'+a.id+'" selected>'+a.nama+'</option>'
+                    }else{
+                        e += '<option value="'+a.id+'" >'+a.nama+'</option>'
+                    }
+                    return e;
+                },'<option value="" >Pilih Spesialisasi</option>');
+                $select.html(options)
+                $select.prop("disabled", false)
+                $select.attr("required",true)  
+                $select.selectpicker('refresh')
+                $wrapper.attr('hidden', false)
+            } catch (error) {
+                $wrapper.attr('hidden', true) 
+                $select.removeAttr("required")  
+                $select.prop("disabled", true)  
+            }
+        }else{
+            $wrapper.attr('hidden', true) 
+            $select.removeAttr("required")  
+            $select.prop("disabled", true)
+        }
+    }
 }
 
 

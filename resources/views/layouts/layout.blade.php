@@ -204,6 +204,7 @@ $role = explode(', ', $role);
   <script>
     // tempusDominus.extend(moment, 'DD/MM/yyyy hh:mm a');
     window['_token']="{{ csrf_token() }}"
+    window['BASEURL']="{{url('/')}}"
   </script>
   
   <!-- custom script -->

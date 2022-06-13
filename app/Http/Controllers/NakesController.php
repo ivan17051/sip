@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Pegawai;
+use App\Profesi;
 use Datatables;
 use Validator;
 use App\Http\Requests\NakesProfileRequest;
@@ -12,7 +13,8 @@ use App\Http\Requests\NakesProfileRequest;
 class NakesController extends Controller
 {
     public function pegawai(){
-        return view('nakes');
+        $d['profesi'] = Profesi::all();
+        return view('nakes', $d);
     }
 
     public function pegawaiData(Request $request){
@@ -39,26 +41,45 @@ class NakesController extends Controller
         $userId = Auth::id();
 
         try{
-            if(isset($input['id'])){
-                $model = Pegawai::firstOrNew([
-                    'id' => $input['id']
-                ]);
+            $profesi = Profesi::find($input['idprofesi']);
+            if(!$profesi->isparent){
+                $profesiinfo = [
+                    'kodeprofesi' => $profesi->kode,
+                    'profesi' => $profesi->nama,
+                    'idspesialisasi' => NULL,
+                    'spesialisasi' => NULL,
+                ];
+            }else{
+                $spesialisasi = Profesi::find($input['idspesialisasi']);
+                $profesiinfo = [
+                    'kodeprofesi' => $profesi->kode,
+                    'profesi' => $profesi->nama,
+                    'idspesialisasi' => $spesialisasi->id,
+                    'spesialisasi' => $spesialisasi->nama,
+                ];
+            }            
+            
+            if(isset($input['id']) ){
+                $model = Pegawai::find([$input['id'],$input['kodeprofesi']]);
+                if(!isset($model)) throw new Exception("Nakes tidak ditemukan");
                 $model->fill($input);
+                $model->fill($profesiinfo);
                 $model->idm = $userId;
             }else{
                 $model = new Pegawai();
                 $model->fill($input);
+                $model->fill($profesiinfo);
                 $model->idc = $userId;
                 $model->idm = $userId;
             }
-        }catch(QueryException $exception){
-            $this->flashError($exception->getMessage());
+            $model->save();
+            $this->flashSuccess('Data Berhasil Disimpan');
             return back();
+            
+        }catch (Exception $e) {
+            DB::rollback();
+            return response()->json($e->getMessage(), 400);
         }
-
-        $model->save();
-        $this->flashSuccess('Data Berhasil Disimpan');
-        return back();
     }
 
     public function deletePegawai($id){

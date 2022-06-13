@@ -53,11 +53,20 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label>Alamat</label></td>
+                        <td><label>Alamat KTP</label></td>
                         <td>
                             <span data-text="true"></span>
                             <span>
-                                <input data-editable=true type="text" class="form-control" name="alamat" maxlength="30" value="{{$nakes->alamat}}"/>
+                                <input data-editable=true type="text" class="form-control" name="alamatktp" maxlength="250" value="{{$nakes->alamat}}"/>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Alamat Domisili</label></td>
+                        <td>
+                            <span data-text="true"></span>
+                            <span>
+                                <input data-editable=true type="text" class="form-control" name="alamat" maxlength="250" value="{{$nakes->alamat}}"/>
                             </span>
                         </td>
                     </tr>

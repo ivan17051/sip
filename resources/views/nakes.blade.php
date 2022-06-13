@@ -12,7 +12,7 @@ active
 @section('modal')
 <!-- Modal Tambah -->
 <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog">
     <div class="modal-content">
     <div class="modal-header">
         <h4 class="modal-title">Tambah Nakes </h4>
@@ -25,41 +25,42 @@ active
     @method('PUT')
     <div class="modal-body">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
               <div class="form-group">
                   <label for="nama" class="bmd-label-floating">Nama <small class="text-danger align-text-top">*wajib</small></label>
                   <input type="text" class="form-control" id="nama" name="nama" maxlength="30" required>
               </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-12">
             <div class="form-group">
               <label for="nik" class="bmd-label-floating">NIK <small class="text-danger align-text-top">*wajib</small></label>
               <input type="text" class="form-control" id="nik" name="nik" maxlength="16" required>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-12">
             <div class="form-group">
-                <select class="selectpicker" data-style="btn btn-primary btn-round" id="jeniskelamin" title="Jenis Kelamin" name="jeniskelamin" required>
-                  <option value="L">L</option>
-                  <option value="P">P</option>
-                </select>
+              <label class="bmd-label force-top">Jenis Kelamin <small class="text-danger align-text-top">*wajib</small></label>
+              <select class="selectpicker" data-style="btn btn-primary btn-round" id="jeniskelamin" title="Jenis Kelamin" name="jeniskelamin" required>
+                <option value="L">L</option>
+                <option value="P">P</option>
+              </select>
             </div>
           </div>
       </div>
       <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-12">
               <div class="form-group">
                   <label for="nama" class="bmd-label-floating" >Tempat Lahir</label>
                   <input type="text" class="form-control" id="tempatlahir" name="tempatlahir" maxlength="20" >
               </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-12">
               <div class="form-group">
                   <label for="tanggallahir" class="bmd-label-floating">Tanggal Lahir</label>
                   <input name="tanggallahir" type="date" id="tanggallahir"  class="form-control" value="{{date('Y-m-d')}}" />
               </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-12">
               <div class="form-group">
                   <label for="nohp" class="bmd-label-floating">No. HP</label>
                   <input type="text" class="form-control" id="nohp" name="nohp" maxlength="14" >
@@ -67,8 +68,26 @@ active
           </div>
       </div>
       <div class="form-group">
-        <label for="alamat" class="bmd-label-floating">Alamat</label>
-        <input type="text" class="form-control" id="alamat" name="alamat" maxlength="30" >
+        <label for="alamatktp" class="bmd-label-floating">Alamat KTP</label>
+        <input type="text" class="form-control" id="alamatktp" name="alamatktp" maxlength="250" >
+      </div>
+      <div class="form-group">
+        <label for="alamat" class="bmd-label-floating">Alamat Domisili</label>
+        <input type="text" class="form-control" id="alamat" name="alamat" maxlength="250" >
+      </div>
+      <div class="form-group">
+        <label class="bmd-label force-top">Peruntukan <small class="text-danger align-text-top">*wajib</small></label>
+        <select class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Single Select" name="idprofesi" required>
+          <option value="" >Peruntukan</option>
+          @foreach($profesi as $p)
+          <option value="{{$p->id}}" data-isparent="{{$p->isparent}}" >{{$p->nama}}</option>
+          @endforeach
+        </select>
+      </div>
+      <div class="form-group spesialisasi-wrapper" hidden >
+        <label class="bmd-label force-top">Spesialisasi <small class="text-danger align-text-top">*wajib</small></label>
+        <select class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Spesialisasi" name="idspesialisasi" required>
+        </select>
       </div>
     </div>
     <div class="modal-footer">
@@ -83,7 +102,7 @@ active
 
 <!-- Modal Edit -->
 <div class="modal fade" id="sunting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
             <h4 class="modal-title">Edit Nakes </h4>
@@ -96,21 +115,23 @@ active
         @method('PUT')
         <div class="modal-body">
             <input type="hidden" name="id">
+            <input type="hidden" name="kodeprofesi">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="nama" class="bmd-label-floating">Nama <small class="text-danger align-text-top">*wajib</small></label>
                         <input type="text" class="form-control" name="nama" maxlength="30" required>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-12">
                   <div class="form-group">
                     <label for="nik" class="bmd-label-floating">NIK <small class="text-danger align-text-top">*wajib</small></label>
                     <input type="text" class="form-control" name="nik" maxlength="16" required>
                   </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-12">
                   <div class="form-group">
+                      <label class="bmd-label force-top">Jenis Kelamin <small class="text-danger align-text-top">*wajib</small></label>
                       <select class="selectpicker" data-style="btn btn-primary btn-round" title="Jenis Kelamin" name="jeniskelamin" required>
                         <option value="L">L</option>
                         <option value="P">P</option>
@@ -119,19 +140,19 @@ active
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="nama" class="bmd-label-floating" >Tempat Lahir</label>
                         <input type="text" class="form-control" name="tempatlahir" maxlength="20" >
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="tanggallahir" class="bmd-label-floating">Tanggal Lahir</label>
                         <input type="date" class="form-control" value="{{date('Y-m-d')}}"  name="tanggallahir" >
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="nohp" class="bmd-label-floating">No. HP</label>
                         <input type="text" class="form-control" name="nohp" maxlength="14" >
@@ -139,8 +160,26 @@ active
                 </div>
             </div>
             <div class="form-group">
-              <label for="alamat" class="bmd-label-floating">Alamat</label>
-              <input type="text" class="form-control" name="alamat" maxlength="30" >
+              <label for="alamatktp" class="bmd-label-floating">Alamat KTP</label>
+              <input type="text" class="form-control" name="alamatktp" maxlength="250" >
+            </div>
+            <div class="form-group">
+              <label for="alamat" class="bmd-label-floating">Alamat Domisili</label>
+              <input type="text" class="form-control" name="alamat" maxlength="250" >
+            </div>
+            <div class="form-group">
+              <label class="bmd-label force-top">Peruntukan <small class="text-danger align-text-top">*wajib</small></label>
+              <select class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Single Select" name="idprofesi" required>
+                <option value="" >Peruntukan</option>
+                @foreach($profesi as $p)
+                <option value="{{$p->id}}" data-isparent="{{$p->isparent}}" >{{$p->nama}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group spesialisasi-wrapper" hidden >
+              <label class="bmd-label force-top">Spesialisasi <small class="text-danger align-text-top">*wajib</small></label>
+              <select class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Spesialisasi" name="idspesialisasi" required>
+              </select>
             </div>
         </div>
         <div class="modal-footer">
@@ -240,6 +279,7 @@ active
       $modal.find('input[name=tempatlahir]').val(data['tempatlahir']).change();
       $modal.find('input[name=tanggallahir]').val( data['tanggallahir'] ).change();
       $modal.find('select[name=jeniskelamin]').val(data['jeniskelamin']).change();
+      $modal.find('input[name=alamatktp]').val(data['alamatktp']).change();
       $modal.find('input[name=alamat]').val(data['alamat']).change();
       $modal.find('input[name=nohp]').val(data['nohp']).change();
 
@@ -257,6 +297,11 @@ active
   }
   $(document).ready(function(){
       my.initFormExtendedDatetimepickers()
+
+      $('[name=idprofesi]').change(function(e){
+        let $wrapper = $(e.target).closest('.form-group').siblings('.spesialisasi-wrapper')
+        my.toggleSpesialisasi(e, $wrapper)
+      })
 
       oTable = $("#datatables").DataTable({
           select:{
@@ -277,7 +322,7 @@ active
               { data:'alamat', title:'Alamat', visible: false},
               { data:'action', title:'Aksi', width:'15%'},
           ],
-      });
+      });      
   });
 </script>
 @endsection
