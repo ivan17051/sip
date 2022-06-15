@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="{{asset('/public/css/report.css')}}" rel="stylesheet" type="text/css" media="all">
     <link href="{{asset('/public/css/report-screen.css')}}" rel="stylesheet" type="text/css" media="screen">
-    <title>SURAT PERINTAH PENCAIRAN DANA BLUD (BKU BLUD)</title>
+    <title>CETAK PERSTEK</title>
     <style media="all" type="text/css">
         body{
             font-family:Verdana, Geneva, sans-serif;
@@ -26,15 +26,15 @@
     @php
     $bulan = ['','I','II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
     @endphp
-    <table class="screen panjang">
+    <table class="screen panjang lebarKertasTegak">
         <tbody>
             <tr>
                 <td class="jarak">
                     <!-- KOP SURAT -->
-                    <table class="lebarKertasTegak" cellspacing="0" cellpadding="0" >
+                    <table cellspacing="0" cellpadding="0" >
                         <tbody>
                             <tr>
-                              <td class="fontKanan" style="width: 25%;vertical-align: middle;padding-right: 24px;"><img src="{{asset('/public/img/logo_sby.png')}}" width="82" height="105"></td>
+                              <td class="fontKanan w-20" style="vertical-align: middle;padding-right: 24px;"><img src="{{asset('/public/img/logo_sby.png')}}" width="82" height="105"></td>
                               <td>
                                 <table style="margin: 0;">
                                   <tbody>

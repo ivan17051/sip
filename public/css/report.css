@@ -35,6 +35,7 @@ table{border-collapse:collapse;margin-left: auto;margin-right: auto; background-
     line-height: 18px;
 }
 
+.w-20{width:20%;}
 .w-25{width:25%;}
 .w-85{width:85%;}
 .w-89{width:89%;}
@@ -130,4 +131,8 @@ table{border-collapse:collapse;margin-left: auto;margin-right: auto; background-
     font-weight: bold;
     padding: 2px 5px 2px 5px;
     vertical-align: middle;
+}
+
+.font-13{
+    font-size:13px!important;
 }
