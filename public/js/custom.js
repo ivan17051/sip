@@ -205,6 +205,11 @@ const my = {
                 $select.prop("disabled", false)
                 $select.attr("required",true)  
                 $select.selectpicker('refresh')
+                let val = $select.data( "value" )
+                console.log('val',val)
+                if(val){
+                    $select.val(val).change();
+                }
                 $wrapper.attr('hidden', false)
             } catch (error) {
                 $wrapper.attr('hidden', true) 

@@ -44,7 +44,7 @@ class NakesProfileRequest extends FormRequest
     {
         return [
             'id' => 'nullable|exists:mpegawai,id',
-            'kodeprofesi' => 'nullable',
+            'nomorregis' => 'nullable|integer',
             'nik' => 'string',
             'nama' => 'required|string',
             'tempatlahir' => 'nullable|string',

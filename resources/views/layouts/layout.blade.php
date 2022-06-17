@@ -156,6 +156,8 @@ $role = explode(', ', $role);
   <script src="{{asset('public/js/plugins/perfect-scrollbar.min.js')}}"></script>
   <!-- Plugin for the momentJs  -->
   <script src="{{asset('public/js/plugins/moment.min.js')}}"></script>
+  <!--  Plugin for Sweet Alert -->
+  <script src="{{asset('public/js/plugins/sweetalert2.js')}}"></script>
   <!-- Forms Validations Plugin -->
   <script src="{{asset('public/js/plugins/jquery.validate.min.js')}}"></script>
   <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->

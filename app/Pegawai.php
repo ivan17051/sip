@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pegawai extends Model
 {
-    use Traits\HasCompositePrimaryKey;
+    // use Traits\HasCompositePrimaryKey;
+
+    // protected $primaryKey = ['id', 'idprofesi'];
+    
+    // public $incrementing = false;
     
     protected $table = 'mpegawai';
 
@@ -16,11 +20,11 @@ class Pegawai extends Model
         'tanggallahir' => 'date',
     ];
 
-    protected $primaryKey = ['id', 'kodeprofesi'];
-    public $incrementing = false;
+    protected $guarded = [];
 
     protected $fillable = [
         "id",
+        "nomorregis",
         "kodeprofesi",
         "nik",
         "nama",

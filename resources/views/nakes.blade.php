@@ -20,11 +20,24 @@ active
         <i class="material-icons">clear</i>
         </button>
     </div>
-    <form class="form-horizontal input-margin-additional" method="POST" action="{{route('nakes.update')}}">
+    <form class="form-horizontal input-margin-additional" method="POST" action="{{route('nakes.store')}}">
     @csrf
-    @method('PUT')
     <div class="modal-body">
         <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <div class="form-check float-right" style="transform: scale(0.8);">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" name="isauto" checked> auto
+                  <span class="form-check-sign">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+              <label class="bmd-label force-top">NOMOR REGIS <small class="text-danger align-text-top">*wajib</small></label>
+              <input type="text" class="form-control" id="nomorregis" name="nomorregis" maxlength="4" value="DIISI OLEH SISTEM" pattern="[0-9]{1,4}" required disabled>
+            </div>
+          </div>
           <div class="col-md-12">
               <div class="form-group">
                   <label for="nama" class="bmd-label-floating">Nama <small class="text-danger align-text-top">*wajib</small></label>
@@ -77,7 +90,7 @@ active
       </div>
       <div class="form-group">
         <label class="bmd-label force-top">Peruntukan <small class="text-danger align-text-top">*wajib</small></label>
-        <select class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Single Select" name="idprofesi" required>
+        <select class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Single Select" name="idprofesi" data-size="7" required>
           <option value="" >Peruntukan</option>
           @foreach($profesi as $p)
           <option value="{{$p->id}}" data-isparent="{{$p->isparent}}" >{{$p->nama}}</option>
@@ -86,7 +99,7 @@ active
       </div>
       <div class="form-group spesialisasi-wrapper" hidden >
         <label class="bmd-label force-top">Spesialisasi <small class="text-danger align-text-top">*wajib</small></label>
-        <select class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Spesialisasi" name="idspesialisasi" required>
+        <select class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Spesialisasi" name="idspesialisasi" data-size="7" required>
         </select>
       </div>
     </div>
@@ -110,13 +123,26 @@ active
             <i class="material-icons">clear</i>
             </button>
         </div>
-        <form class="form-horizontal input-margin-additional" method="POST" action="{{route('nakes.update')}}">
+        <form class="form-horizontal input-margin-additional" method="POST" action="{{route('nakes.update')}}" onsubmit="onSubmitUpdateForm(event)">
         @csrf
         @method('PUT')
         <div class="modal-body">
             <input type="hidden" name="id">
-            <input type="hidden" name="kodeprofesi">
             <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="form-check float-right" style="transform: scale(0.8);">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="isauto"> auto
+                        <span class="form-check-sign">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+                    <label class="bmd-label force-top">NOMOR REGIS <small class="text-danger align-text-top">*wajib</small></label>
+                    <input type="text" class="form-control" id="nomorregis" name="nomorregis" maxlength="4" pattern="[0-9]{1,4}" required>
+                  </div>
+                </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="nama" class="bmd-label-floating">Nama <small class="text-danger align-text-top">*wajib</small></label>
@@ -169,7 +195,7 @@ active
             </div>
             <div class="form-group">
               <label class="bmd-label force-top">Peruntukan <small class="text-danger align-text-top">*wajib</small></label>
-              <select class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Single Select" name="idprofesi" required>
+              <select class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Single Select" name="idprofesi" data-size="7" required>
                 <option value="" >Peruntukan</option>
                 @foreach($profesi as $p)
                 <option value="{{$p->id}}" data-isparent="{{$p->isparent}}" >{{$p->nama}}</option>
@@ -178,7 +204,7 @@ active
             </div>
             <div class="form-group spesialisasi-wrapper" hidden >
               <label class="bmd-label force-top">Spesialisasi <small class="text-danger align-text-top">*wajib</small></label>
-              <select class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Spesialisasi" name="idspesialisasi" required>
+              <select class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Spesialisasi" name="idspesialisasi" data-size="7" required>
               </select>
             </div>
         </div>
@@ -272,16 +298,24 @@ active
       var tr = $(self).closest('tr');
       let idx = oTable.row(tr)[0]
       var data = oTable.data()[idx];
-      
+    
+      $modal.find('input[name=nomorregis]').data('value', data['nomorregis']);
+      $modal.find('[name=isauto]').prop('checked', true).change();
+
       $modal.find('input[name=id]').val(data['id']);
       $modal.find('input[name=nik]').val(data['nik']).change();
       $modal.find('input[name=nama]').val(data['nama']).change();
       $modal.find('input[name=tempatlahir]').val(data['tempatlahir']).change();
-      $modal.find('input[name=tanggallahir]').val( data['tanggallahir'] ).change();
+      $modal.find('input[name=tanggallahir]').val( data['tanggallahir'].substr(0,10) ).change();
       $modal.find('select[name=jeniskelamin]').val(data['jeniskelamin']).change();
       $modal.find('input[name=alamatktp]').val(data['alamatktp']).change();
       $modal.find('input[name=alamat]').val(data['alamat']).change();
       $modal.find('input[name=nohp]').val(data['nohp']).change();
+
+      $modal.find('select[name=idspesialisasi]').data( "value" , data['idspesialisasi']);
+      let $inputprofesi = $modal.find('select[name=idprofesi]')
+      $inputprofesi.data('value',data['idprofesi'])
+      $inputprofesi.val(data['idprofesi']).change();
 
       $modal.modal('show');
   }
@@ -295,13 +329,58 @@ active
     $modal.find('form').attr('action', "{{route('nakes.delete', ['id'=>''])}}/"+data['id']);
     $modal.modal('show');
   }
+
+  function onSubmitUpdateForm(e){
+    e.preventDefault()
+    let $self = $(e.target)
+    let selfDOM = $self[0]
+    let $inputprofesi = $self.find('select[name=idprofesi]')
+
+    console.log($self);
+  
+    if($inputprofesi.data('value') != $inputprofesi.val()){
+      swal({
+        title: 'Yakin mengubah profesi?',
+        text: "nomor regis akan berubah secara otomatis",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonClass: 'btn btn-success',
+        cancelButtonClass: 'btn btn-danger',
+        confirmButtonText: 'Ya',
+        cancelButtonText: 'Tidak',
+        buttonsStyling: false
+      }).then( function(isConfirm){
+        if(isConfirm) selfDOM.submit();
+      }).catch(swal.noop)
+    }else{
+      selfDOM.submit();
+    }
+  }
+
   $(document).ready(function(){
       my.initFormExtendedDatetimepickers()
 
+      // toggle onchange profesi
       $('[name=idprofesi]').change(function(e){
         let $wrapper = $(e.target).closest('.form-group').siblings('.spesialisasi-wrapper')
         my.toggleSpesialisasi(e, $wrapper)
       })
+      // end toggle onchange profesi
+
+      // toggle onchange isauto nomor regis
+      $('[name=isauto]').change(function(e){
+        let $wrapper = $(e.target).closest('.form-group')
+        let $input = $wrapper.find('[name=nomorregis]')
+        if(e.target.checked){
+          $input.prop("disabled", true) 
+          $input.val($input.data('value') || 'DIISI OLEH SISTEM');
+        }else{
+          $input.prop("disabled", false) 
+          $input.val($input.data('value') || '');
+        }
+        
+      })
+      // end toggle onchange isauto nomor regis
 
       oTable = $("#datatables").DataTable({
           select:{

@@ -25,7 +25,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/nakes', 'NakesController@pegawai');
     Route::post('/nakes/data', 'NakesController@pegawaiData')->name('nakes.data');
-    Route::put('/nakes', 'NakesController@storeUpdatePegawai')->name('nakes.update');
+    Route::post('/nakes', 'NakesController@storePegawai')->name('nakes.store');
+    Route::put('/nakes', 'NakesController@updatePegawai')->name('nakes.update');
     Route::delete('/nakes/{id}', 'NakesController@deletePegawai')->name('nakes.delete');
 
     Route::post('/faskes/data', 'FaskesController@data')->name('faskes.data');
@@ -44,5 +45,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/raw/historisip', 'BioNakesController@rawHistorisip')->name('raw.historisip');
 
     Route::get('/data/getspesialisasi/{idprofesi}', 'DataController@getSpesialisasi')->name('data.getspesialisasi');
+
+    Route::get('/cetak/perstek/{idpegawai}/{idprofesi}', 'CetakController@perstek')->name('cetak.perstek');
+    Route::get('/cetak/kitir/{idsip}', 'CetakController@kitir')->name('cetak.kitir');
+    Route::get('/cetak/sip/{idsip}', 'CetakController@sip')->name('cetak.sip');
     
 });

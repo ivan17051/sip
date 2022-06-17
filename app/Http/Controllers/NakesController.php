@@ -6,9 +6,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Pegawai;
 use App\Profesi;
+use App\Spesialisasi;
 use Datatables;
 use Validator;
 use App\Http\Requests\NakesProfileRequest;
+use Illuminate\Support\Facades\DB;
+use \Illuminate\Database\QueryException;
+use Exception;
 
 class NakesController extends Controller
 {
@@ -33,13 +37,14 @@ class NakesController extends Controller
         return $datatable->make(true); 
     }
     /*
-     * Store and update Pegawai
+     * Store Pegawai
      */
-    public function storeUpdatePegawai(NakesProfileRequest $request){
+    public function storePegawai(NakesProfileRequest $request){
         $input = $request->validated();
         removeNull($input);
         $userId = Auth::id();
 
+        DB::beginTransaction();
         try{
             $profesi = Profesi::find($input['idprofesi']);
             if(!$profesi->isparent){
@@ -50,7 +55,7 @@ class NakesController extends Controller
                     'spesialisasi' => NULL,
                 ];
             }else{
-                $spesialisasi = Profesi::find($input['idspesialisasi']);
+                $spesialisasi = Spesialisasi::find($input['idspesialisasi']);
                 $profesiinfo = [
                     'kodeprofesi' => $profesi->kode,
                     'profesi' => $profesi->nama,
@@ -58,27 +63,79 @@ class NakesController extends Controller
                     'spesialisasi' => $spesialisasi->nama,
                 ];
             }            
-            
-            if(isset($input['id']) ){
-                $model = Pegawai::find([$input['id'],$input['kodeprofesi']]);
-                if(!isset($model)) throw new Exception("Nakes tidak ditemukan");
-                $model->fill($input);
-                $model->fill($profesiinfo);
-                $model->idm = $userId;
-            }else{
-                $model = new Pegawai();
-                $model->fill($input);
-                $model->fill($profesiinfo);
-                $model->idc = $userId;
-                $model->idm = $userId;
+
+            if(!isset($input['nomorregis'])){
+                $input['nomorregis'] = NULL;        //will automatically set by trigger
             }
+        
+            $model = new Pegawai();
+            $model->fill($input);
+            $model->fill($profesiinfo);
+            $model->idc = $userId;
+            $model->idm = $userId;
             $model->save();
+            DB::commit();
             $this->flashSuccess('Data Berhasil Disimpan');
             return back();
-            
         }catch (Exception $e) {
             DB::rollback();
             return response()->json($e->getMessage(), 400);
+        }
+    }
+
+    /*
+     * Update Pegawai
+     */
+    public function updatePegawai(NakesProfileRequest $request){
+        $input = $request->validated();
+        removeNull($input);
+        $userId = Auth::id();
+
+        DB::beginTransaction();
+        try{
+            $profesi = Profesi::find($input['idprofesi']);
+            if(!$profesi->isparent){
+                $profesiinfo = [
+                    'kodeprofesi' => $profesi->kode,
+                    'profesi' => $profesi->nama,
+                    'idspesialisasi' => NULL,
+                    'spesialisasi' => NULL,
+                ];
+            }else{
+                $spesialisasi = Spesialisasi::find($input['idspesialisasi']);
+                $profesiinfo = [
+                    'kodeprofesi' => $profesi->kode,
+                    'profesi' => $profesi->nama,
+                    'idspesialisasi' => $spesialisasi->id,
+                    'spesialisasi' => $spesialisasi->nama,
+                ];
+            }            
+
+            $model = Pegawai::findOrFail($input['id']);
+            
+            // jika ganti profesi, mengganti nomorregis juga ke MAX
+            if( $model->idprofesi <> $input['idprofesi']){
+                $idmax = Pegawai::select( DB::raw("coalesce(MAX(nomorregis)+1 , 1) idmax"))->where('idprofesi',$input['idprofesi'])->pluck('idmax')->first();
+
+                $input['nomorregis'] = $idmax;
+            }
+        
+            $model->fill($input);
+            $model->fill($profesiinfo);
+            $model->idm = $userId;    
+            
+            $model->save();
+            DB::commit();
+            $this->flashSuccess('Data Berhasil Disimpan');
+            return back();
+        }catch (Exception $e) {
+            DB::rollback();
+            if(isset($e->errorInfo) AND $e->errorInfo[0] == 23000){
+                $this->flashError("Nomor regis {$model['nomorregis']} sudah terpakai");    
+            }else{
+                $this->flashError($e->getMessage());
+            }
+            return back();
         }
     }
 
