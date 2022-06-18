@@ -336,8 +336,6 @@ active
     let selfDOM = $self[0]
     let $inputprofesi = $self.find('select[name=idprofesi]')
 
-    console.log($self);
-  
     if($inputprofesi.data('value') != $inputprofesi.val()){
       swal({
         title: 'Yakin mengubah profesi?',

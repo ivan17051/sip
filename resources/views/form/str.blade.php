@@ -1,11 +1,86 @@
+<div class="modal modal-custom-1 fade" id="modal-str" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <form action="{{route('str.store')}}" method="POST" onsubmit="storeSTR(event)">
+        @csrf
+        <input type="hidden" name="idpegawai" value="{{$nakes->id}}">
+        <div class="modal-header">
+            <h4 class="modal-title">STR</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="material-icons">clear</i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-check-group mb-3" id="aksistr-wrapper">
+                <div class="form-check">
+                    <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="aksistr" value="baru" data-target="#form-str-baru" > Perbarui STR
+                    <span class="circle">
+                        <span class="check"></span>
+                    </span>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="aksistr" value="nonaktif" checked> Nonaktifkan
+                    <span class="circle">
+                        <span class="check"></span>
+                    </span>
+                    </label>
+                </div>
+            </div>
+            <!-- Form Str Baru -->
+            <div id="form-str-baru">
+                <div class="form-group">
+                    <label class="bmd-label-floating">Nomor <small class="text-danger align-text-top">*wajib</small></label>
+                    <input type="text" class="form-control" name="nomor" maxlength="22" required>
+                </div>
+                <div class="form-group">
+                    <label class="bmd-label force-top">Tanggal Terbit <small class="text-danger align-text-top">*wajib</small></label>
+                    <input type="date" class="form-control" name="since" required>
+                </div>
+                <div class="form-group">
+                    <label class="bmd-label force-top">Tanggal Berkahir <small class="text-danger align-text-top">*wajib</small></label>
+                    <input type="date" class="form-control" name="expiry" required>
+                </div>
+                <div class="form-group">
+                    <label class="bmd-label force-top">Tanggal Penetapan <small class="text-danger align-text-top">*wajib</small></label>
+                    <input type="date" class="form-control" name="tanggal" required>
+                </div>
+            </div>
+            <!-- End of Form Str Baru -->
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-link text-primary">SUBMIT</button>
+            <button type="button" class="btn btn-default btn-link" data-dismiss="modal">TUTUP</button>
+        </div>
+        </form>
+        </div>
+    </div>
+</div>
+
 @if(isset($str))
-<form onsubmit="submitSTR(event)">
+<!-- FORM DELETE STR -->
+<form action="{{route('str.destroy', ['str'=>$str->id])}}" method="POST" id="form-destroy-str">
+@csrf
+@method('DELETE')
+</form>
+<!-- END OF FORM DELETE STR -->
+
+<form onsubmit="updateSTR(event)">
+    <input type="hidden" name="id" value="{{$str->id}}">
     @csrf
     @method('PUT')
     <div class="row myform">
         <div class="col">
             <table class="table table-2-col">
                 <tbody>
+                    @if(!$str->isactive)
+                    <tr>
+                        <td><label>Status</label></td>
+                        <td><strong class="text-danger">STR Lawas / inactive</strong></td>
+                    </tr>
+                    @endif
                     <tr>
                         <td><label>Nomor STR</label></td>
                         <td>
@@ -44,23 +119,11 @@
                     </tr>
                     <tr>
                         <td><label>Peruntukan</label></td>
-                        <td>
-                            <span data-text="true"></span>
-                            <select data-editable=true class="selectpicker" data-style="btn btn-default btn-link input-editable" title="Single Select">
-                                @foreach($profesi as $p)
-                                <option value="{{$p->id}}" {{$nakes->idprofesi==$p->id ? 'selected' : ''}}>{{$p->nama}}</option>
-                                @endforeach
-                            </select>
-                        </td>
+                        <td>{{isset($nakes->profesi)? $nakes->profesi : '-'}}</td>
                     </tr>
                     <tr>
                         <td><label>Spesialis</label></td>
-                        <td>
-                            <span data-text="true"></span>
-                            <select data-editable=true class="selectpicker" data-style="btn btn-default btn-link input-editable" title="Single Select">
-                                <option value="">KOSONG</option>
-                            </select>
-                        </td>
+                        <td>{{isset($nakes->spesialisasi)? $nakes->spesialisasi : '-'}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -88,63 +151,10 @@
     </div>
 </form>
 <div class="btn-selengkapnya-wrapper d-absolute w-100 text-center">
-    <button type="button" class="btn btn-primary btn-selengkapnya"><i
+    <button type="button" class="btn btn-primary btn-selengkapnya" data-toggle="modal" data-target="#modal-str" ><i
             class="material-icons">priority_high</i> TINDAKAN PADA STR</button>
 </div>
 @else
-<div class="modal modal-custom-1 fade" id="modal-str" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <form action="{{route('str.store')}}" method="POST">
-        @csrf
-        <input type="hidden" name="idpegawai" value="{{$nakes->id}}">
-        <div class="modal-header">
-            <h4 class="modal-title">Tambah STR</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-            <i class="material-icons">clear</i>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <label class="bmd-label-floating">Nomor <small class="text-danger align-text-top">*wajib</small></label>
-                <input type="text" class="form-control" name="nomor" maxlength="22" required>
-            </div>
-            <div class="form-group">
-                <label class="bmd-label force-top">Tanggal Terbit <small class="text-danger align-text-top">*wajib</small></label>
-                <input type="date" class="form-control" name="since" required>
-            </div>
-            <div class="form-group">
-                <label class="bmd-label force-top">Tanggal Berkahir <small class="text-danger align-text-top">*wajib</small></label>
-                <input type="date" class="form-control" name="expiry" required>
-            </div>
-            <div class="form-group">
-                <label class="bmd-label force-top">Tanggal Penetapan <small class="text-danger align-text-top">*wajib</small></label>
-                <input type="date" class="form-control" name="tanggal" required>
-            </div>
-            <div class="form-group">
-                <label class="bmd-label force-top">Peruntukan <small class="text-danger align-text-top">*wajib</small></label>
-                <select class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Single Select" name="idprofesi" onchange="toggleSpesialisasi(event)" required>
-                    <option value="" >Peruntukan</option>
-                    @foreach($profesi as $p)
-                    <option value="{{$p->id}}" {{$nakes->idprofesi==$p->id ? 'selected' : ''}} data-isparent="{{$p->isparent}}" >{{$p->nama}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group spesialisasi-wrapper" hidden>
-                <label class="bmd-label force-top">Spesialisasi <small class="text-danger align-text-top">*wajib</small></label>
-                <select class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Spesialisasi" name="idspesialisasi" required>
-                </select>
-            </div>
-            
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-link text-primary">Simpan</button>
-            <button type="button" class="btn btn-default btn-link" data-dismiss="modal">TUTUP</button>
-        </div>
-        </form>
-        </div>
-    </div>
-</div>
 <div class="w-100 text-center">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-str"><i
             class="material-icons">add</i> TAMBAH STR</button>
@@ -153,66 +163,79 @@
 
 @push('script2')
 <script>
-    async function toggleSpesialisasi(e){
-        var idspesialisasi={{ (isset($str) AND $str->idspesialisasi <> NULL) ? $str->idspesialisasi : -1 }}
-        let $s = $(e.target).find('option:selected')
-        let idprofesi = $s.val()
-        let isparent = $s[0].dataset.isparent
-        if(parseInt(isparent)){
-            try {
-                let url = "{{route('data.getspesialisasi',['idprofesi'=>''])}}/"+idprofesi;
-                let res = await my.request.get(url)
-                let options = res.reduce(function(e,a){
-                    if(a.id == idspesialisasi){
-                        e += '<option value="'+a.id+'" selected>'+a.nama+'</option>'
-                    }else{
-                        e += '<option value="'+a.id+'" >'+a.nama+'</option>'
-                    }
-                    return e;
-                },'<option value="" >Pilih Spesialisasi</option>');
-                let $wrapper = $('.spesialisasi-wrapper')
-                let $select = $wrapper.find('select')
-                $select.html(options)
-                $select.prop("disabled", false)
-                $select.attr("required",true)  
-                $select.selectpicker('refresh')
-                $wrapper.attr('hidden', false)
-            } catch (error) {
-                let $wrapper = $('.spesialisasi-wrapper')
-                $wrapper.attr('hidden', true) 
-                let $select = $wrapper.find('select')
-                $select.removeAttr("required")  
-                $select.prop("disabled", true)  
-            }
+    function openModalSTR(){
+        $modal = $('modal-str');
+    }
+
+    function storeSTR(e){
+        e.preventDefault();
+        let $form = $(e.target)
+        let formDOM = $form[0]
+        let data = my.getFormData($form)
+        
+        if(data['aksistr'] == 'nonaktif'){
+            //nonaktifkan
+            swal({
+                title: 'Yakin menonaktifkan STR?',
+                text: "proses tidak dapat dilakukan lagi",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                confirmButtonText: 'Yakin',
+                cancelButtonText: 'Tidak',
+                buttonsStyling: false
+            }).then( function(isConfirm){
+                $('#form-destroy-str').submit();
+            }).catch(swal.noop)
         }else{
-            let $wrapper = $('.spesialisasi-wrapper')
-            $wrapper.attr('hidden', true) 
-            let $select = $wrapper.find('select')
-            $select.removeAttr("required")  
-            $select.prop("disabled", true)
+            formDOM.submit()
         }
     }
 
     @if(isset($str))
-    async function submitSTR(e){
+    async function updateSTR(e){
         LOADING.show()
         e.preventDefault()
         let $submitBtn = $(e.submitter)
         let $form = $(e.target)
         let data = my.getFormData($form)
         try {
-            let url = "{{route('str.store')}}";
+            let url = "{{route('str.update', ['idstr' => $str->id])}}";
             let res = await my.request.post(url, data)
             $submitBtn.myFormAndToggle().initInput()
             $submitBtn.myFormAndToggle().toggle(0)
             md.showNotification('check', 3, 'Berhasil Memperbarui Data')
         } catch (err) {
             md.showNotification('close', 2, Object.values(err.responseJSON.errors)[0])
-            LOADING.hide()
         }
+        LOADING.hide()
     }
-    @else
-    
     @endif
+
+    $(function(){
+        // toggle radio button aksistr
+        $('[name=aksistr]').change(function(e){
+            $('[name=aksistr]').each(function(k,elem){
+                let section =  $(elem.dataset.target)
+                if(!section.length) return;
+                if(elem.checked){
+                    section.find('input,select').prop("disabled", false)
+                    section.attr('hidden', false)
+                }else{
+                    section.find('input,select').prop("disabled", true)
+                    section.attr('hidden', true)
+                }
+            })
+        })
+        // end of toggle radio button aksistr
+
+        $('[name=aksistr][value=baru]').prop('checked',true).change();
+
+        @if(!isset($str) OR !$str->isactive)
+        $('#aksistr-wrapper').remove();
+        $('#modal-str .modal-title').text('Tambahkan STR');
+        @endif
+    })
 </script>
 @endpush

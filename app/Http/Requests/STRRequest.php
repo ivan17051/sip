@@ -31,8 +31,6 @@ class STRRequest extends FormRequest
             "expiry"=> "required_without:id|date",
             "tanggal"=> "required_without:id|date",
 
-            "idprofesi"=>"required_without:id|integer",
-            "idspesialisasi"=>"nullable|integer",
         ];
     }
 }

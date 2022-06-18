@@ -19,10 +19,29 @@ active
             <h5>Cari Nakes terlebih dahulu atau cari melalui <a href="{{url('/nakes')}}">link berikut</a></h5>
         </div>
     @else
-    <!-- <div class="alert alert-rose alert-with-icon" data-notify="container">
-        <i class="material-icons" data-notify="icon">notifications</i>
-        <span data-notify="message">STR AKAN MEMASUKI MASA EXPIRED PADA TANGGAL <strong>2 JUNI 2022</strong> !!!</span>
-    </div> -->
+
+    @if(isset($str))
+        @php
+            $daydiff = (new DateTime(date('Y-m-d')))->diff(new DateTime($str->expiry));
+        @endphp
+
+        @if( $daydiff->invert )
+        @php
+            $isstrexpired = TRUE;
+        @endphp
+        <!-- expired -->
+        <div class="alert alert-rose alert-with-icon" data-notify="container">
+            <i class="material-icons" data-notify="icon">notifications</i>
+            <span data-notify="message">STR TELAH EXPIRED PADA TANGGAL <strong>{{$str->expiry}}</strong> !!!</span>
+        </div>
+        @elseif( $daydiff->days < 60 )
+        <!-- 2 bulan maka sudah masuk expired -->
+        <div class="alert alert-rose alert-with-icon" data-notify="container">
+            <i class="material-icons" data-notify="icon">notifications</i>
+            <span data-notify="message">STR AKAN MEMASUKI MASA EXPIRED PADA TANGGAL <strong>{{$str->expiry}}</strong> !!!</span>
+        </div>
+        @endif
+    @endif
     <div class="row">
         <div class="col-md-12">
             <div class="card">

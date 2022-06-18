@@ -10,6 +10,8 @@ use App\Pegawai;
 use Illuminate\Support\Facades\DB;
 use Datatables;
 use App\Http\Requests\STRRequest;
+use \Illuminate\Database\QueryException;
+use Exception;
 
 class STRController extends Controller
 {
@@ -38,20 +40,54 @@ class STRController extends Controller
     }
 
     /*
-     * Store and update STR
+     * Store STR
      */
     public function store(STRRequest $request){
         $userId = Auth::id();
         $input = $request->validated();
         
+        DB::beginTransaction();
         try{
-            DB::beginTransaction();
-            $inputProfesiSpesialisasi = collect($input)->only("idprofesi", "idspesialisasi")->toArray();
-            $pegawai = Pegawai::where('id',$input['idpegawai'])->select('id')->first();
-            $pegawai->fill($inputProfesiSpesialisasi);
-            $pegawai->save();
+            $nakes = Pegawai::findOrFail($input['idpegawai']);
+
+            $current = STR::where( 'idpegawai', $nakes->id )
+                        ->orderBy('id','DESC')->first();
+            
+            if($current){
+                $current->isactive = false;
+                $current->save();
+            }
 
             $model = new STR();
+            $model->fill($input);
+            $model->fill([
+                'nomorregis' => $nakes->nomorregis,
+                'idprofesi' => $nakes->idprofesi,
+                'idspesialisasi' => $nakes->idspesialisasi,
+            ]);
+            $model->idc = $userId;
+            $model->idm = $userId;
+            $model->save();
+            DB::commit();
+            $this->flashSuccess('Data Berhasil Disimpan');
+            return back();
+        }catch(Exception $exception){
+            DB::rollBack();
+            $this->flashError($exception->getMessage());
+            return back();
+        }
+    }
+
+    /*
+     * Update STR
+     */
+    public function update(STRRequest $request){
+        $userId = Auth::id();
+        $input = $request->validated();
+
+        DB::beginTransaction();
+        try{
+            $model = STR::findOrFail($input['id']);
             $model->fill($input);
             $model->idc = $userId;
             $model->idm = $userId;
@@ -59,7 +95,7 @@ class STRController extends Controller
             DB::commit();
             $this->flashSuccess('Data Berhasil Disimpan');
             return back();
-        }catch(QueryException $exception){
+        }catch(Exception $exception){
             DB::rollBack();
             $this->flashError($exception->getMessage());
             return back();
@@ -67,15 +103,19 @@ class STRController extends Controller
     }
 
     public function destroy($id){
+        DB::beginTransaction();
         try {
             $akun = STR::findOrFail($id);
+            if(!$akun->isactive) throw new Exception("Unauthorized");
+
             $akun->delete();
-        }catch (QueryException $exception) {
+            DB::commit();
+            $this->flashSuccess('Data Berhasil Dihapus');
+            return back();
+        }catch (Exception $exception) {
+            DB::rollBack();
             $this->flashError($exception->getMessage());
             return back();
         }
-
-        $this->flashSuccess('Data Berhasil Dihapus');
-        return back();
     }
 }

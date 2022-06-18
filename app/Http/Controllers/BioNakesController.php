@@ -16,7 +16,7 @@ class BioNakesController extends Controller
         $d['urlparam']=null;
 
         if(isset($d['nakes'])){
-            $d['str']=STR::where('idpegawai', $idnakes)->orderBy('expiry','DESC')->first();
+            $d['str']=STR::where('idpegawai', $idnakes)->orderBy('id','DESC')->first();
             $d['urlparam'] ="?nakes={$idnakes}";
             $d['profesi'] = Profesi::all();
         }
@@ -32,10 +32,9 @@ class BioNakesController extends Controller
 
     public function rawBio(Request $request){
         $idnakes = $request->get('nakes');
-        $nakes=Pegawai::find($idnakes)->first();
-        return view('raw.bio',[
-            'nakes'=>$nakes,
-        ]);
+        $d['nakes']=Pegawai::find($idnakes);
+        $d['str']=STR::where('idpegawai', $idnakes)->orderBy('id','DESC')->first();
+        return view('raw.bio', $d);
     }
 
     public function rawHistoristr(Request $request){

@@ -12,6 +12,9 @@ class STR extends Model
 
     protected $fillable = [
         "idpegawai",
+        "nomorregis",
+        "idprofesi",
+        "idspesialisasi",
         "nomor",
         "since",
         "expiry",
