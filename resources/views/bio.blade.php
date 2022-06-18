@@ -111,13 +111,15 @@ active
                                 </li>
                                 @if(isset($str))
                                 @for($i=0;$i<=count($sips);$i++)
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#sip{{$i+1}}" data-toggle="tab">
-                                        <i class="material-icons">code</i> SIP {{$i+1}}
-                                        <div class="ripple-container"></div>
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                </li>
+                                    @if($str->isactive OR  (!$str->isactive AND isset($sips[$i])))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#sip{{$i+1}}" data-toggle="tab">
+                                            <i class="material-icons">code</i> SIP {{$i+1}}
+                                            <div class="ripple-container"></div>
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    @endif
                                 @endfor
                                 @endif
                             </ul>
@@ -131,9 +133,11 @@ active
                         </div>
                         @if(isset($str))
                         @for($i=0;$i<=count($sips);$i++)
+                        @if($str->isactive OR  (!$str->isactive AND isset($sips[$i])))
                         <div class="tab-pane" id="sip{{$i+1}}">
                             @include('form.sip', ['index'=> $i ])
                         </div>
+                        @endif
                         @endfor
                         @endif
                     </div>

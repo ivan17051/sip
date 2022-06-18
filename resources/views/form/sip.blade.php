@@ -1,9 +1,11 @@
+@push('modal2')
 <div class="modal modal-custom-1 fade" id="modal-sip{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         <form action="{{route('sip.store')}}" method="POST">
         @csrf
         <input type="hidden" name="idstr" value="{{$str->id}}">
+        <input type="text" name="idfaskes" required hidden>
         <div class="modal-header">
             <h4 class="modal-title">Tambah SIP</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -58,7 +60,14 @@
             </div>
             <div class="form-group">
                 <label class="bmd-label force-top">Faskes <small class="text-danger align-text-top">*wajib</small></label>
-                <input type="text" class="form-control" name="idfaskes" maxlength="100" required>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="faskes" required readonly>
+                    <div class="input-group-append">
+                        <button class="btn btn-info m-0" type="button" style="padding: 0 12px;" data-toggle="modal" data-target="#searchfaskes{{$index}}">
+                            <i class="material-icons">search</i>
+                        </button>
+                    </div>
+                </div>  
             </div>
             <div class="form-group">
                 <label class="bmd-label force-top">Jadwal Praktik </label>
@@ -73,6 +82,35 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade text-left bg-overlay-gray" id="searchfaskes{{$index}}" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel160" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+        role="document">
+        <div class="modal-content" style="overflow: visible!important;">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" >Cari Faskes
+                </h5>
+                <button type="button" class="close" data-bs-dismiss="modal"
+                    aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="typeahead__container ">
+                    <div class="typeahead__field">
+                        <div class="form-group typeahead__query">
+                            <input class="form-control js-typeahead"
+                                name="q"
+                                autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endpush
 
 @if(isset($sips[$index]))
 <div class="row myform">
@@ -210,10 +248,12 @@
         </div>
     </div>
 </div>
+@if($str->isactive OR  (!$str->isactive AND isset($sips[$index])))
 <div class="btn-selengkapnya-wrapper d-absolute w-100 text-center">
     <button type="button" class="btn btn-primary btn-selengkapnya"><i
             class="material-icons">priority_high</i> TINDAKAN PERIZINAN</button>
 </div>
+@endif
 @else
 <div class="w-100 text-center">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-sip{{$index}}"><i
@@ -231,5 +271,42 @@
 //   }
 //   return null;
 // }
+
+$(function(){
+
+    // SEARCH FASKES
+    $('#searchfaskes{{$index}} .js-typeahead').typeahead({
+        input: ".js-typeahead",
+        dynamic: true, 
+        hint: true,
+        order: "asc",
+        display: ["nama", "alamat"],
+        template: function (query, item) {return item.nama+', '+item.alamat},
+        emptyTemplate: "Tidak ditemukan",
+        source: {
+            faskes: {
+                // Ajax Request
+                ajax: function (query) {
+                    return {
+                        type: 'GET',
+                        url: '{{route("data.searchfaskes")}}',
+                        data: {'query':query}
+                    }
+                }
+            }
+        },
+        callback: {
+            onClick: function(node, a, item, event){
+                $('#searchfaskes{{$index}}').modal('hide')
+                let $modalsip = $('#modal-sip{{$index}}')
+                $modalsip.find('[name=faskes]').val(item.nama+', '+item.alamat)
+                $modalsip.find('[name=idfaskes]').val(item.id)
+            }
+        },
+        selector:{
+            result: 'typeahead__result c-typeahead',
+        }
+    });
+})
 </script>
 @endpush

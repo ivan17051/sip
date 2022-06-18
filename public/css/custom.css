@@ -365,3 +365,7 @@ label.force-top{
 .nomorsip-wrapper>span:nth-child(6) input{
     width: 36px;
 }
+
+.bg-overlay-gray{
+    background-color: #ffffff7d!important;
+}

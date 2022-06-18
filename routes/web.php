@@ -45,6 +45,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/raw/historisip', 'BioNakesController@rawHistorisip')->name('raw.historisip');
 
     Route::get('/data/getspesialisasi/{idprofesi}', 'DataController@getSpesialisasi')->name('data.getspesialisasi');
+    Route::get('/data/searchfaskes', 'DataController@searchFaskes')->name('data.searchfaskes');
+    Route::get('/data/searchpegawai', 'DataController@searchPegawai')->name('data.searchpegawai');
 
     Route::get('/cetak/perstek/{idpegawai}/{idprofesi}', 'CetakController@perstek')->name('cetak.perstek');
     Route::get('/cetak/kitir/{idsip}', 'CetakController@kitir')->name('cetak.kitir');
