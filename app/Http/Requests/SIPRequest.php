@@ -44,12 +44,14 @@ class SIPRequest extends FormRequest
             "jenispermohonan" => "required_without:id|string",
             "instance" => "required_without:id|integer",
             "nomor" => "required_without:id|string",
-            "nomorrekom" => "required_without:id|string",
+            "nomorrekom" => "nullable|string",
+            "nomoronline" => "nullable|string",
             "tglonline" => "required_without:id|date",
             "tglmasukdinas" => "required_without:id|date",
             "tglverif" => "required_without:id|date",
             "idfaskes" => "required_without:id|integer",
-            "jadwalpraktik" => "required_without:id|string",
+            "jadwalpraktik" => "nullable|string",
+            "jabatan" => "nullable|string",
         ];
     }
 }

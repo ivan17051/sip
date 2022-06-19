@@ -351,7 +351,7 @@ label.force-top{
 }
 
 .nomorsip-wrapper>span:nth-child(3) input{
-    width: 9px;
+    width: 27px;
 }
 
 .nomorsip-wrapper>span:nth-child(4) input{
@@ -368,4 +368,8 @@ label.force-top{
 
 .bg-overlay-gray{
     background-color: #ffffff7d!important;
+}
+
+.bg-color-unset{
+    background-color: unset!important;
 }

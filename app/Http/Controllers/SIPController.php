@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Validator;
 use App\SIP;
 use App\STR;
+use App\Faskes;
 use App\Http\Requests\SIPRequest;
 
 class SIPController extends Controller
@@ -35,14 +36,23 @@ class SIPController extends Controller
         try{
             DB::beginTransaction();
             
-            $str = STR::select('id','nomor','expiry','idpegawai')->find($input['idstr']);
+            $str = STR::select('id','nomor','expiry','idpegawai','nomorregis','idprofesi','idspesialisasi',)->find($input['idstr']);
+            $faskes = Faskes::where('id',$input['idfaskes'])->with('kategori')->first();
             $latestsip = SIP::where('idstr', $input['idstr'])->where('instance', $input['instance'])->max('iterator');
             $sip = new SIP($input);
             $sip->fill([
                 'iterator' => isset($latestsip) ? $latestsip+1 : 1,
                 'idpegawai' => $str['idpegawai'],
+                'nomorregis' => $str['nomorregis'],
+                'idprofesi' => $str['idprofesi'],
+                'idspesialisasi' => $str['idspesialisasi'],
                 'nomorstr' => $str['nomor'],
                 'expirystr' => $str['expiry'],
+
+                'saranapraktik' => $faskes->kategori['nama'],
+                'namafaskes' => $faskes['nama'],
+                'alamatfaskes' => $faskes['alamat'],
+                
                 'idc'=> $userId,
                 'idm'=> $userId,
             ]);
