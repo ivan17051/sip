@@ -23,9 +23,6 @@
 </head>
 
 <body>
-    @php
-    $bulan = ['','I','II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
-    @endphp
     <table class="screen panjang lebarKertasTegak">
         <tbody>
             <tr>
@@ -76,7 +73,7 @@
                           <td class="headerFont fontCenter paddingfont fontUnderline" style="font-size:13px">PERSETUJUAN TEKNIS</td>
                         </tr>
                         <tr>
-                          <td class="headerFont fontCenter paddingfont" style="font-size:13px">NOMOR : 503.446 /                  / 1850 / I / IP.DU / 436.7.2 / 2021</td>
+                          <td class="headerFont fontCenter paddingfont" style="font-size:13px">NOMOR : {{$sip->nomor}}</td>
                         </tr>
                         <tr>
                           <td>&nbsp;</td>
@@ -95,23 +92,23 @@
                         </tr>
                         <tr>
                           <td class="paddingfont w-25" style="font-size:13px">Nama Pemohon</td>
-                          <td class="paddingfont" style="font-size:13px">: dr. SUGIAR EMIWATI</td>
+                          <td class="paddingfont" style="font-size:13px">: {{$sip->pegawai->nama}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont" style="font-size:13px">Alamat</td>
-                          <td class="paddingfont" style="font-size:13px">: Karah Tama Asri II / 50 Surabaya</td>
+                          <td class="paddingfont" style="font-size:13px">: {{$sip->pegawai->alamatktp}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont" style="font-size:13px">Tanggal Masuk Dinas</td>
-                          <td class="paddingfont" style="font-size:13px">: 13 September 2021</td>
+                          <td class="paddingfont" style="font-size:13px">: {{Carbon\Carbon::parse($sip->tglmasukdinas)->isoformat('D MMMM Y')}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont" style="font-size:13px">Tanggal Permohonan</td>
-                          <td class="paddingfont" style="font-size:13px">: 13 September 2021</td>
+                          <td class="paddingfont" style="font-size:13px">: {{Carbon\Carbon::parse($sip->tglonline)->isoformat('D MMMM Y')}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont" style="font-size:13px">Nomor Permohonan</td>
-                          <td class="paddingfont" style="font-size:13px">: 8004</td>
+                          <td class="paddingfont" style="font-size:13px">: {{$sip->nomoronline}}</td>
                         </tr>
                         <tr>
                           <td colspan="2">&nbsp;</td>
@@ -123,14 +120,12 @@
                         <tr>
                           <td colspan="2" class="paddingfont fontJustify paragraf" style="font-size:13px">Maka Berdasarkan :</td>
                         </tr>
+                        @foreach($aturan as $i=>$a)
                         <tr>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">1. </td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">Peraturan Walikota Surabaya Nomor 41 Tahun 2021 tentang Perizinan Berusaha, Perizinan Non Berusaha dan Pelayanan Non Perizinan </td>
+                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">{{$i+1}}. </td>
+                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">{{$a}}</td>
                         </tr>
-                        <tr>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">2. </td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">Peraturan Menteri Kesehatan Republik Indonesia Nomor 2025/MENKES/PER/X TAHUN 2011 </td>
-                        </tr>
+                        @endforeach
                         <tr>
                           <td colspan="2">&nbsp;</td>
                         </tr>
@@ -146,15 +141,15 @@
                         </tr>
                         <tr>
                           <td class="paddingfont fontJustify paragraf w-25" style="font-size:13px">Nama</td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">: dr. SUGIAR EMIWATI</td>
+                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">: {{$sip->pegawai->nama}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont fontJustify paragraf" style="font-size:13px">Nama Fasyankes</td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">: PUSKESMAS TANJUNGSARI</td>
+                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">: {{$sip->namafaskes}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont fontJustify paragraf" style="font-size:13px">Alamat Fasyankes</td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">: Jl. Raya Tanjungsari 116 Surabaya</td>
+                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">: {{$sip->alamatfaskes}}</td>
                         </tr>
                         <tr>
                           <td colspan="2">&nbsp;</td>
@@ -178,7 +173,7 @@
                               <tbody>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Surabaya, 12 Januari 2022</td>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Surabaya, {{Carbon\Carbon::parse($sip->tglverif)->isoformat('D MMMM Y')}}</td>
                                 </tr>
                                 <tr>
                                   <td class="paddingfont fontCenter paragraf" style="font-size:13px">KEPALA DINAS,</td>

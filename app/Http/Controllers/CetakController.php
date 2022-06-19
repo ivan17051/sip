@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SIP;
 
 class CetakController extends Controller
 {
-    public function perstek(Request $request, $idpegawai, $idprofesi){
-        $d['aturan'] = $this->dasarPeraturanPerstek($idprofesi);
+    public function perstek(Request $request, $idsip){
+        $d['sip'] = SIP::where('id',$idsip)->with('pegawai')->first();
+        $d['aturan'] = $this->dasarPeraturanPerstek($d['sip']->idprofesi);
         return view('report.perstek', $d);
     }
 
@@ -21,7 +23,7 @@ class CetakController extends Controller
 
     private function dasarPeraturanPerstek($idprofesi){
         $text = [];
-        switch ($variable) {
+        switch ($idprofesi) {
             case "1" :      // Dokter
                 $text =  [
                     "Peraturan Menteri Kesehatan Republik Indonesia Nomor  2052 / Menkes / Per / X / 2011 Tentang Izin Praktik dan Pelaksanaan Praktik Kedokteran."
@@ -191,7 +193,7 @@ class CetakController extends Controller
                 break;
         }
 
-        array_merge($text, ["Peraturan Menteri Kesehatan Republik Indonesia Nomor 2025/MENKES/PER/X TAHUN 2011"]);
+        array_push($text, "Peraturan Menteri Kesehatan Republik Indonesia Nomor 2025/MENKES/PER/X TAHUN 2011");
         
         return $text;
     }

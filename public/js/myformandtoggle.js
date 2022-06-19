@@ -78,7 +78,6 @@
                                 if(i==0) val+=e.value
                                 else val+=(delimitter + e.value)
                             })
-                            console.log(val);
                             text=val
                         }
                         $elem.attr('data-previousvalue',val);

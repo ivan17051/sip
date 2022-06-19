@@ -42,4 +42,8 @@ class SIP extends Model
 
     ];
     
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class, 'idpegawai');
+    }
 }

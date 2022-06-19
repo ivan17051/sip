@@ -340,12 +340,16 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label>Preview SIP</label></td>
-                        <td><button class="btn btn-outline-primary btn-round btn-sm">preview <i class="material-icons">open_in_new</i></button></td>
+                        <td><label>Cetak Perstek</label></td>
+                        <td><a target="_blank" href="{{route('cetak.perstek', ['idsip'=>$sips[$index]['id']])}}" class="btn btn-outline-primary btn-round btn-sm" >Preview SIP <i class="material-icons">open_in_new</i></a></td>
                     </tr>
                     <tr>
-                        <td><label>Histori SIP</label></td>
-                        <td><button class="btn btn-outline-primary btn-round btn-sm" onclick="openHistoriSIP(1)">histori SIP <i class="material-icons">open_in_new</i></button></td>
+                        <td><label>Cetak SIP</label></td>
+                        <td><a target="_blank" href="{{route('cetak.sip', ['idsip'=>$sips[$index]['id']])}}" class="btn btn-outline-primary btn-round btn-sm" >Preview SIP <i class="material-icons">open_in_new</i></a></td>
+                    </tr>
+                    <tr>
+                        <td><label>Cetak Kitir</label></td>
+                        <td><a target="_blank" href="{{route('cetak.kitir', ['idsip'=>$sips[$index]['id']])}}" class="btn btn-outline-primary btn-round btn-sm" >Cetak Kitir <i class="material-icons">open_in_new</i></a></td>
                     </tr>
                 </tbody>
             </table>
@@ -355,6 +359,9 @@
                 <div data-state="0" class="anim slide">
                     <button type="button" class="btn btn-primary btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(1)">
                         <i class="material-icons">edit_note</i>
+                    </button>
+                    <button  type="button" class="btn btn-primary btn-round btn-fab" onclick="openHistoriSIP(1)">
+                        <i class="material-icons">pending_actions</i>
                     </button>
                 </div>
                 <div data-state="1" class="anim slide">

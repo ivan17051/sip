@@ -48,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data/searchfaskes', 'DataController@searchFaskes')->name('data.searchfaskes');
     Route::get('/data/searchpegawai', 'DataController@searchPegawai')->name('data.searchpegawai');
 
-    Route::get('/cetak/perstek/{idpegawai}/{idprofesi}', 'CetakController@perstek')->name('cetak.perstek');
+    Route::get('/cetak/perstek/{idsip}', 'CetakController@perstek')->name('cetak.perstek');
     Route::get('/cetak/kitir/{idsip}', 'CetakController@kitir')->name('cetak.kitir');
     Route::get('/cetak/sip/{idsip}', 'CetakController@sip')->name('cetak.sip');
     
