@@ -82,46 +82,28 @@ class SIPController extends Controller
      * update SIP
      */
     public function update(SIPRequest $request){
-        $user = Auth::user();
-        $input = array_map('trim', $request->all());
+        $userId = Auth::id();
+        $input = $request->validated();
         
-        $validator = Validator::make($input, [
-            'id' => 'nullable|exists:sip,id',
-        ]);
-        
-        if ($validator->fails()){ 
-            $this->flashError('Gagal memproses');
-            return back()->with('error','Gagal memproses');
-        }
-
         try{
-            if(isset($input['id'])){
-                $sip = SIP::find($input['id']);
-                $sip->fill($input);
-                $sip->fill([
-                    'idm'=> $user->id,
-                ]);
-                $sip->save();
-                $this->flashSuccess('Data Berhasil Diperbarui');
-                return back();
-            }else{
-                $str = STR::select('id','nomor','expiry','idpegawai')->find($input['idstr']);
-                $sip = new SIP($input);
-                $sip->fill([
-                    'idstr' => $str['id'],
-                    'idpegawai' => $str['idpegawai'],
-                    'nomorstr' => $str['nomor'],
-                    'expirystr' => $str['expiry'],
-                    'idc'=> $user->id,
-                    'idm'=> $user->id,
-                ]);
-                $sip->save();
-                $this->flashSuccess('Data Berhasil Ditambahkan');
-                return back();
-            }
-        }catch(QueryException $exception){
-            $this->flashError($exception->getMessage());
-            return back();
+            DB::beginTransaction();
+
+            $faskes = Faskes::where('id',$input['idfaskes'])->with('kategori')->first();
+            $sip = SIP::find($input['id']);
+            $sip->fill($input);
+            $sip->fill([
+                'saranapraktik' => $faskes->kategori['nama'],
+                'namafaskes' => $faskes['nama'],
+                'alamatfaskes' => $faskes['alamat'],
+                'idm'=> $userId,
+            ]);
+            $sip->save();
+            
+            DB::commit();
+            return response()->json(['message'=>'Berhasil Memperbarui Data'], 200);
+        }catch(Exception $exception){
+            DB::rollBack();
+            return response()->json($exception->getMessage(), 200);
         }
     }
 

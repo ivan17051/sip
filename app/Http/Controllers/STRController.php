@@ -93,12 +93,10 @@ class STRController extends Controller
             $model->idm = $userId;
             $model->save();
             DB::commit();
-            $this->flashSuccess('Data Berhasil Disimpan');
-            return back();
+            return response()->json(['message'=>'Berhasil Memperbarui Data'], 200);
         }catch(Exception $exception){
             DB::rollBack();
-            $this->flashError($exception->getMessage());
-            return back();
+            return response()->json($exception->getMessage(), 200);
         }
     }
 

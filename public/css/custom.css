@@ -306,6 +306,12 @@ div.anim.hidden.slide{
     color: #495057!important;
 }
 
+.myform textarea:not([hidden]){
+    border: 1px solid #00000052;
+    background-color: #0000000a!important;
+    color: #495057!important;
+}
+
 .timeline-inverted.active .timeline-panel{
     border-bottom: 4px solid #9c27b0!important;
     border: 2px solid #9c27b0;

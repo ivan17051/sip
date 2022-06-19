@@ -62,12 +62,12 @@
                                 <div class="form-group">
                                     <label class="bmd-label force-top">Nomor SIP <small class="text-danger align-text-top">*wajib</small></label>
                                     <div class="nomorsip-wrapper">
-                                        <span class="form-group d-inline-block"><input data-editable=true type="text" class="form-control" name="nomor[]" maxlength="7" value="503.446" readonly required></span> / 
+                                        <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="7" value="503.446" readonly required></span> / 
                                         <span class="form-group d-inline-block"><input type="text" class="form-control" name="nomor[]" maxlength="4" value="{{sprintf('%04d', $nakes->nomorregis)}}" readonly required></span> / 
-                                        <span class="form-group d-inline-block"><input data-editable=true type="text" class="form-control" name="nomor[]" maxlength="3" value="{{integerToRoman($index+1)}}" readonly required></span> / 
-                                        <span class="form-group d-inline-block"><input data-editable=true type="text" class="form-control" name="nomor[]" maxlength="5" value="IP.DU" readonly required></span> / 
-                                        <span class="form-group d-inline-block"><input data-editable=true type="text" class="form-control" name="nomor[]" maxlength="7" value="436.7.2" readonly required></span> / 
-                                        <span class="form-group d-inline-block"><input data-editable=true type="text" class="form-control" name="nomor[]" maxlength="4" value="{{date('Y')}}" readonly required></span>
+                                        <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="3" value="{{integerToRoman($index+1)}}" readonly required></span> / 
+                                        <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="5" value="IP.DU" readonly required></span> / 
+                                        <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="7" value="436.7.2" readonly required></span> / 
+                                        <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="4" value="{{date('Y')}}" readonly required></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -197,141 +197,178 @@
 </form>
 <!-- END OF FORM DELETE STR -->
 
-<div class="row myform">
-    <div class="col">
-        <table class="table table-2-col">
-            <tbody>
-                <tr>
-                    <td><label>Jenis Permohonan</label></td>
-                    <td>
-                        <span data-text="true"></span>
-                        <select data-editable=true class="selectpicker" data-style="btn btn-default btn-link input-editable" title="Single Select">
-                            <option value="1" selected>PERMOHONAN BARU</option>
-                            <option value="2">CABUT DAN PINDAH</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Praktik Ke-</label></td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td><label>Nomor SIP</label></td>
-                    <td>
-                        <span data-text="true"></span>
-                        <span>
-                            <input data-editable=true type="text" class="form-control" name="" maxlength="5" value="ADAS2" required="true" />
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Nomor Rekom</label></td>
-                    <td>
-                        <span data-text="true"></span>
-                        <span>
-                            <input data-editable=true type="text" class="form-control" value="81292" required="true" />
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Tanggal Online</label></td>
-                    <td>
-                        <span data-text="true"></span>
-                        <span>
-                            <input data-editable=true type="text" class="form-control datepicker" value="02/01/2022" required="true" />
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Tanggal Masuk Dinas</label></td>
-                    <td>
-                        <span data-text="true"></span>
-                        <span>
-                            <input data-editable=true type="text" class="form-control datepicker" value="02/01/2022" required="true" />
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Tanggal Verif & Cetak</label></td>
-                    <td>
-                        <span data-text="true"></span>
-                        <span>
-                            <input data-editable=true type="text" class="form-control datepicker" value="02/01/2022" required="true" />
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Jenis Praktik</label></td>
-                    <td>
-                        <span data-text="true"></span>
-                        <select data-editable=true class="selectpicker" data-style="btn btn-default btn-link input-editable" title="Single Select">
-                            <option value="1" selected>Dokter</option>
-                            <option value="2">Dokter Gigi</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Spesialis</label></td>
-                    <td>
-                        <span data-text="true"></span>
-                        <select data-editable=true class="selectpicker" data-style="btn btn-default btn-link input-editable" title="Single Select">
-                            <option value="1" selected>Dokter Anak</option>
-                            <option value="2">Dokter Bedah</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Sarana Praktik</label></td>
-                    <td>
-                        <span data-text="true"></span>
-                        <select data-editable=true class="selectpicker" data-style="btn btn-default btn-link input-editable" title="Single Select">
-                            <option value="1" selected>Dokter Anak</option>
-                            <option value="2">Dokter Bedah</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Alamat Praktik</label></td>
-                    <td>Jl. Jemursari, Surabaya</td>
-                </tr>
-                <tr>
-                    <td><label>Jadwal Praktik</label></td>
-                    <td>
-                        <span data-text="true"></span>
-                        <span>
-                            <input data-editable=true type="text" class="form-control" name="" value="Senin-Jumat, 13:00-18:00" required="true" />
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Preview SIP</label></td>
-                    <td><button class="btn btn-outline-primary btn-round btn-sm">preview <i class="material-icons">open_in_new</i></button></td>
-                </tr>
-                <tr>
-                    <td><label>Histori SIP</label></td>
-                    <td><button class="btn btn-outline-primary btn-round btn-sm" onclick="openHistoriSIP(1)">histori SIP <i class="material-icons">open_in_new</i></button></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col" style="flex-grow:0;">
-        <div class="float-right absolute myform-actions">
-            <div data-state="0" class="anim slide">
-                <button class="btn btn-primary btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(1)">
-                    <i class="material-icons">edit_note</i>
-                </button>
-            </div>
-            <div data-state="1" class="anim slide">
-                <button class="btn btn-danger btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(0)">
-                    <i class="material-icons">close</i>
-                </button>
-                <button class="btn btn-success btn-round btn-fab">
-                    <i class="material-icons">save</i>
-                </button>
+<form id="form-update-sip-{{$index}}">
+    <input type="hidden" name="id" value="{{$sips[$index]['id']}}">
+    @csrf
+    @method('PUT')
+    <div class="row myform">
+        <div class="col">
+            <table class="table table-2-col">
+                <tbody>
+                    <tr>
+                        <td><label>Jenis Permohonan</label></td>
+                        <td>@php 
+                            switch($sips[$index]['jenispermohonan']){
+                                case 'baru':
+                                    echo 'Permohonan Baru';
+                                    break;
+                                case 'cabut':
+                                    echo 'Cabut';
+                                    break;
+                                case 'cabutpindah':
+                                    echo 'Cabut Pindah';
+                                    break;
+                            }
+                            @endphp</td>
+                    </tr>
+                    <tr>
+                        <td><label>Praktik Ke-</label></td>
+                        <td>{{$sips[$index]['instance']}}</td>
+                    </tr>
+                    <tr>
+                        <td><label>Nomor SIP</label></td>
+                        <td>
+                            <span data-text="true"></span>
+                            <span>
+                                @php
+                                $nomors = explode(' / ', $sips[$index]['nomor']);
+                                @endphp
+                                <div class="nomorsip-wrapper" data-editable=true data-delimitter=" / " >
+                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="7" value="{{$nomors[0]}}" readonly required></span> / 
+                                    <span class="form-group d-inline-block"><input type="text" class="form-control" name="nomor[]" maxlength="4" value="{{sprintf('%04d', $nomors[1])}}" readonly required></span> / 
+                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="3" value="{{$nomors[2]}}" readonly required></span> / 
+                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="5" value="{{$nomors[3]}}" readonly required></span> / 
+                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="7" value="{{$nomors[4]}}" readonly required></span> / 
+                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="4" value="{{$nomors[5]}}" readonly required></span>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Nomor Online</label></td>
+                        <td>
+                            <span data-text="true"></span>
+                            <span>
+                                <input data-editable=true type="text" class="form-control" name="nomoronline" value="{{$sips[$index]['nomoronline']}}" maxlength="28" >
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Nomor Rekom</label></td>
+                        <td>
+                            <span data-text="true"></span>
+                            <span>
+                                <input data-editable=true type="text" class="form-control" name="nomorrekom" value="{{$sips[$index]['nomorrekom']}}" maxlength="22" >
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Tanggal Online</label></td>
+                        <td>
+                            <span data-text="true"></span>
+                            <span>
+                                <input data-editable=true  type="date" class="form-control" name="tglonline" value="{{$sips[$index]['tglonline']}}" required>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Tanggal Masuk Dinas</label></td>
+                        <td>
+                            <span data-text="true"></span>
+                            <span>
+                                <input data-editable=true  type="date" class="form-control" name="tglmasukdinas" value="{{$sips[$index]['tglmasukdinas']}}" required>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Tanggal Verif & Cetak</label></td>
+                        <td>
+                            <span data-text="true"></span>
+                            <span>
+                                <input data-editable=true  type="date" class="form-control" name="tglverif" value="{{$sips[$index]['tglverif']}}" required>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr hidden>
+                        <td><label>FASKES HIDDEN</label></td>
+                        <td>
+                            <span data-text="true"></span>
+                            <span>
+                                <input data-editable=true type="text" name="idfaskes" value="{{$sips[$index]['idfaskes']}}" required hidden>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Sarana Praktik</label></td>
+                        <td>
+                            <span data-text="true"></span>
+                            <span class="input-group">
+                                <input class="form-control" data-editable=true type="text" name="namafaskes" value="{{$sips[$index]['namafaskes']}}" required readonly>
+                                <div class="input-group-append">
+                                    <button class="btn btn-info m-0" type="button" style="padding: 0 12px;" data-toggle="modal" data-target="#searchfaskes{{$index}}">
+                                        <i class="material-icons">search</i>
+                                    </button>
+                                </div>  
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Alamat Praktik</label></td>
+                        <td>
+                            <span data-text="true"></span>
+                            <span>
+                                <input class="form-control" data-editable=true type="text" name="alamatfaskes" value="{{$sips[$index]['alamatfaskes']}}" readonly>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Jadwal Praktik</label></td>
+                        <td>
+                            <span data-text="true"></span>
+                            <span>
+                                <textarea data-editable=true type="text" class="form-control" name="jadwalpraktik" value="{{$sips[$index]['jadwalpraktik']}}" maxlength="100" ></textarea>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Jabatan</label></td>
+                        <td>
+                            <span data-text="true"></span>
+                            <span>
+                                <input data-editable=true type="text" class="form-control" value="{{$sips[$index]['jabatan']}}" name="jabatan" maxlength="30" >
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Preview SIP</label></td>
+                        <td><button class="btn btn-outline-primary btn-round btn-sm">preview <i class="material-icons">open_in_new</i></button></td>
+                    </tr>
+                    <tr>
+                        <td><label>Histori SIP</label></td>
+                        <td><button class="btn btn-outline-primary btn-round btn-sm" onclick="openHistoriSIP(1)">histori SIP <i class="material-icons">open_in_new</i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col" style="flex-grow:0;">
+            <div class="float-right absolute myform-actions">
+                <div data-state="0" class="anim slide">
+                    <button type="button" class="btn btn-primary btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(1)">
+                        <i class="material-icons">edit_note</i>
+                    </button>
+                </div>
+                <div data-state="1" class="anim slide">
+                    <button type="button" class="btn btn-danger btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(0)">
+                        <i class="material-icons">close</i>
+                    </button>
+                    <button type="submit" class="btn btn-success btn-round btn-fab">
+                        <i class="material-icons">save</i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 @if($str->isactive OR  (!$str->isactive AND isset($sips[$index])))
 <div class="btn-selengkapnya-wrapper d-absolute w-100 text-center">
     <button type="button" class="btn btn-primary btn-selengkapnya" data-toggle="modal" data-target="#modal-sip{{$index}}"><i
@@ -347,18 +384,9 @@
 
 @push('script2')
 <script>
-// function formatNomor(nomor) {
-//   var cleaned = ('' + nomor).replace(/[^ \/\.]/gm, '');
-//   var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-//   if (match) {
-//     return '(' + match[1] + ') ' + match[2] + '-' + match[3];
-//   }
-//   return null;
-// }
-
 $(function(){
 
-    $('#modal-sip{{$index}} form').submit(function storeSIP(e){
+    $('#modal-sip{{$index}} form').submit(function(e){
         e.preventDefault();
         let formDOM = this
         let jenispermohonan = $(this).find('[name=jenispermohonan]:checked').val()
@@ -385,7 +413,7 @@ $(function(){
 
 
     // EDITABLE NOMOR SIP
-    $('#modal-sip{{$index}} [name="nomor[]"][data-editable=true]').focusin(function(e,a){
+    $('#modal-sip{{$index}} [name="nomor[]"][data-editable2=true], #form-update-sip-{{$index}} [name="nomor[]"][data-editable2=true]').focusin(function(e,a){
         e.target.readOnly = false;
     }).focusout(function(e){
         e.target.readOnly = true;
@@ -416,9 +444,20 @@ $(function(){
         callback: {
             onClick: function(node, a, item, event){
                 $('#searchfaskes{{$index}}').modal('hide')
-                let $modalsip = $('#modal-sip{{$index}}')
-                $modalsip.find('[name=faskes]').val(item.nama+', '+item.alamat)
-                $modalsip.find('[name=idfaskes]').val(item.id)
+
+                if( $('#modal-sip{{$index}}').hasClass('show') ){
+                    // CALLBACK UNTUK SEARCH FASKES PADA FORM MODAL SIP
+                    let $modalsip = $('#modal-sip{{$index}}')
+                    $modalsip.find('[name=faskes]').val(item.nama+', '+item.alamat)
+                    $modalsip.find('[name=idfaskes]').val(item.id)
+                }else{
+                    // CALLBACK UNTUK SEARCH FASKES PADA FORM UPDATE SIP
+                    let $form = $('#form-update-sip-{{$index}}')
+                    $form.find('[name=namafaskes]').val(item.nama)
+                    $form.find('[name=alamatfaskes]').val(item.alamat)
+                    console.log($form.find('[name=idfaskes]'))
+                    $form.find('[name=idfaskes]').val(item.id)
+                }
             }
         },
         selector:{
@@ -442,6 +481,29 @@ $(function(){
         })
     })
     // END OF TOGGLE RADIO BUTTON JENISPERMOHONAN
+
+    @if(isset($sips[$index]))
+    // UPDATE SIP HANDLER
+    $('#form-update-sip-{{$index}}').submit(async function(e){
+        LOADING.show()
+        e.preventDefault()
+        let $submitBtn = $(e.submitter)
+        let $form = $(e.target)
+        let data = my.getFormData($form)
+        try {
+            let url = "{{route('sip.update', ['idsip' => $sips[$index]['id']])}}";
+            let res = await my.request.post(url, data)
+            $submitBtn.myFormAndToggle().initInput()
+            $submitBtn.myFormAndToggle().toggle(0)
+            md.showNotification('check', 3, 'Berhasil Memperbarui Data')
+        } catch (err) {
+            console.log(err);
+            md.showNotification('close', 2, Object.values(err.responseJSON.errors)[0])
+        }
+        LOADING.hide()
+    })
+    // END OF UPDATE SIP HANDLER
+    @endif
 
     $('#modal-sip{{$index}} [name=jenispermohonan]').change();
 
