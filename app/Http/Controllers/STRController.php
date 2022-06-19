@@ -108,9 +108,10 @@ class STRController extends Controller
             $akun = STR::findOrFail($id);
             if(!$akun->isactive) throw new Exception("Unauthorized");
 
-            $akun->delete();
+            $akun->isactive = 0;
+            $akun->save();
             DB::commit();
-            $this->flashSuccess('Data Berhasil Dihapus');
+            $this->flashSuccess('STR Berhasil Dinonaktifkan');
             return back();
         }catch (Exception $exception) {
             DB::rollBack();

@@ -186,7 +186,7 @@
                 cancelButtonText: 'Tidak',
                 buttonsStyling: false
             }).then( function(isConfirm){
-                $('#form-destroy-str').submit();
+                if(isConfirm.value) $('#form-destroy-str').submit();
             }).catch(swal.noop)
         }else{
             formDOM.submit()

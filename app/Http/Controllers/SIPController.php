@@ -10,6 +10,8 @@ use App\SIP;
 use App\STR;
 use App\Faskes;
 use App\Http\Requests\SIPRequest;
+use \Illuminate\Database\QueryException;
+use Exception;
 
 class SIPController extends Controller
 {
@@ -38,10 +40,19 @@ class SIPController extends Controller
             
             $str = STR::select('id','nomor','expiry','idpegawai','nomorregis','idprofesi','idspesialisasi',)->find($input['idstr']);
             $faskes = Faskes::where('id',$input['idfaskes'])->with('kategori')->first();
-            $latestsip = SIP::where('idstr', $input['idstr'])->where('instance', $input['instance'])->max('iterator');
+            $latestsip = SIP::where('idstr', $input['idstr'])->where('instance', $input['instance'])->orderBy('iterator', 'DESC')->first();
+
+            // UNTUK CABUT PINDAH
+            if(isset($latestsip)){
+                $latestsip->isactive = 0;
+                $latestsip->tgldeactive = date('Y-m-d');
+                $latestsip->idm = $userId;
+                $latestsip->save();
+            }
+
             $sip = new SIP($input);
             $sip->fill([
-                'iterator' => isset($latestsip) ? $latestsip+1 : 1,
+                'iterator' => isset($latestsip) ? $latestsip->iterator+1 : 1,
                 'idpegawai' => $str['idpegawai'],
                 'nomorregis' => $str['nomorregis'],
                 'idprofesi' => $str['idprofesi'],
@@ -60,7 +71,7 @@ class SIPController extends Controller
             DB::commit();
             $this->flashSuccess('Data Berhasil Ditambahkan');
             return back();
-        }catch(QueryException $exception){
+        }catch(Exception $exception){
             DB::rollBack();
             $this->flashError($exception->getMessage());
             return back();
@@ -115,15 +126,21 @@ class SIPController extends Controller
     }
 
     public function destroy($id){
+        DB::beginTransaction();
         try {
             $akun = SIP::findOrFail($id);
-            $akun->delete();
-        }catch (QueryException $exception) {
+            if(!$akun->isactive) throw new Exception("Unauthorized");
+
+            $akun->isactive = 0;
+            $akun->tgldeactive = date('Y-m-d');
+            $akun->save();
+            DB::commit();
+            $this->flashSuccess('SIP Berhasil Dicabut');
+            return back();
+        }catch (Exception $exception) {
+            DB::rollBack();
             $this->flashError($exception->getMessage());
             return back();
         }
-
-        $this->flashSuccess('Data Berhasil Dihapus');
-        return back();
     }
 }

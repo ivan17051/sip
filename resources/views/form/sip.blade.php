@@ -5,7 +5,6 @@
         <form action="{{route('sip.store')}}" method="POST">
         @csrf
         <input type="hidden" name="idstr" value="{{$str->id}}">
-        <input type="text" name="idfaskes" required hidden>
         <div class="modal-header">
             <h4 class="modal-title">SIP {{$index+1}}</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -16,17 +15,17 @@
             <div id="sip-form-accordion{{$index}}" role="tablist">
                 @if(isset($sips[$index]) AND $sips[$index]['isactive'] )
                 <div class="form-check-group mb-3" id="aksisip-wrapper-{{$index}}">
-                    <div class="form-check">
+                    <!-- <div class="form-check">
                         <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="jenispermohonan" value="perpanjangan" data-target="#" > Perpanjangan
                         <span class="circle">
                             <span class="check"></span>
                         </span>
                         </label>
-                    </div>
+                    </div> -->
                     <div class="form-check">
                         <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="jenispermohonan" value="cabut" data-target="#" > Cabut
+                        <input class="form-check-input" type="radio" name="jenispermohonan" value="cabut" > Cabut
                         <span class="circle">
                             <span class="check"></span>
                         </span>
@@ -34,7 +33,7 @@
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="jenispermohonan" value="cabutpindah" data-target="#" > Cabut Pindah
+                        <input class="form-check-input" type="radio" name="jenispermohonan" value="cabutpindah" data-target="#form-sip-baru-{{$index}}" checked > Cabut Pindah
                         <span class="circle">
                             <span class="check"></span>
                         </span>
@@ -44,104 +43,107 @@
                 @else
                 <input type="hidden" name="jenispermohonan" value="baru">
                 @endif
-                <div class="card-collapse">
-                    <div class="card-header" role="tab" >
-                        <h5 class="mb-0">
-                            <a data-toggle="collapse" href="#sip-form-1-{{$index}}" aria-expanded="true" class="collapsed">
-                            NOMOR
-                            <i class="material-icons">keyboard_arrow_down</i>
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="sip-form-1-{{$index}}" class="collapse show" role="tabpanel" data-parent="#sip-form-accordion{{$index}}">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label class="bmd-label force-top">Praktik ke- <small class="text-danger align-text-top">*wajib</small></label>
-                                <input type="number" class="form-control bg-color-unset" name="instance" value="{{$index+1}}" readonly required>
-                            </div>
-                            <div class="form-group">
-                                <label class="bmd-label force-top">Nomor SIP <small class="text-danger align-text-top">*wajib</small></label>
-                                <div class="nomorsip-wrapper">
-                                    <span class="form-group d-inline-block"><input data-editable=true type="text" class="form-control" name="nomor[]" maxlength="7" value="503.446" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input type="text" class="form-control" name="nomor[]" maxlength="4" value="{{sprintf('%04d', $nakes->nomorregis)}}" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input data-editable=true type="text" class="form-control" name="nomor[]" maxlength="3" value="{{integerToRoman($index+1)}}" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input data-editable=true type="text" class="form-control" name="nomor[]" maxlength="5" value="IP.DU" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input data-editable=true type="text" class="form-control" name="nomor[]" maxlength="7" value="436.7.2" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input data-editable=true type="text" class="form-control" name="nomor[]" maxlength="4" value="{{date('Y')}}" readonly required></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="bmd-label force-top">Nomor Online</label>
-                                <div>
-                                    <input type="text" class="form-control" name="nomoronline" maxlength="28" >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="bmd-label force-top">Nomor Rekom</label>
-                                <div>
-                                    <input type="text" class="form-control" name="nomorrekom" maxlength="22" >
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="bmd-label force-top">Jabatan</label>
-                                <div>
-                                    <input type="text" class="form-control" name="jabatan" maxlength="30" >
-                                </div>
-                            </div>
+                <div id="form-sip-baru-{{$index}}">
+                    <div class="card-collapse">
+                        <div class="card-header" role="tab" >
+                            <h5 class="mb-0">
+                                <a data-toggle="collapse" href="#sip-form-1-{{$index}}" aria-expanded="true" class="collapsed">
+                                NOMOR
+                                <i class="material-icons">keyboard_arrow_down</i>
+                                </a>
+                            </h5>
                         </div>
-                    </div>
-                </div>
-                <div class="card-collapse">
-                    <div class="card-header" role="tab" >
-                        <h5 class="mb-0">
-                            <a data-toggle="collapse" href="#sip-form-2-{{$index}}" aria-expanded="false" class="">
-                            FASKES
-                            <i class="material-icons">keyboard_arrow_down</i>
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="sip-form-2-{{$index}}" class="collapse" role="tabpanel" data-parent="#sip-form-accordion{{$index}}">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label class="bmd-label force-top">Faskes <small class="text-danger align-text-top">*wajib</small></label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" name="faskes" required readonly>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-info m-0" type="button" style="padding: 0 12px;" data-toggle="modal" data-target="#searchfaskes{{$index}}">
-                                            <i class="material-icons">search</i>
-                                        </button>
+                        <div id="sip-form-1-{{$index}}" class="collapse show" role="tabpanel" data-parent="#sip-form-accordion{{$index}}">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="bmd-label force-top">Praktik ke- <small class="text-danger align-text-top">*wajib</small></label>
+                                    <input type="number" class="form-control bg-color-unset" name="instance" value="{{$index+1}}" readonly required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="bmd-label force-top">Nomor SIP <small class="text-danger align-text-top">*wajib</small></label>
+                                    <div class="nomorsip-wrapper">
+                                        <span class="form-group d-inline-block"><input data-editable=true type="text" class="form-control" name="nomor[]" maxlength="7" value="503.446" readonly required></span> / 
+                                        <span class="form-group d-inline-block"><input type="text" class="form-control" name="nomor[]" maxlength="4" value="{{sprintf('%04d', $nakes->nomorregis)}}" readonly required></span> / 
+                                        <span class="form-group d-inline-block"><input data-editable=true type="text" class="form-control" name="nomor[]" maxlength="3" value="{{integerToRoman($index+1)}}" readonly required></span> / 
+                                        <span class="form-group d-inline-block"><input data-editable=true type="text" class="form-control" name="nomor[]" maxlength="5" value="IP.DU" readonly required></span> / 
+                                        <span class="form-group d-inline-block"><input data-editable=true type="text" class="form-control" name="nomor[]" maxlength="7" value="436.7.2" readonly required></span> / 
+                                        <span class="form-group d-inline-block"><input data-editable=true type="text" class="form-control" name="nomor[]" maxlength="4" value="{{date('Y')}}" readonly required></span>
                                     </div>
-                                </div>  
-                            </div>
-                            <div class="form-group">
-                                <label class="bmd-label force-top">Jadwal Praktik </label>
-                                <textarea type="text" class="form-control" name="jadwalpraktik" maxlength="100" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="bmd-label force-top">Nomor Online</label>
+                                    <div>
+                                        <input type="text" class="form-control" name="nomoronline" maxlength="28" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="bmd-label force-top">Nomor Rekom</label>
+                                    <div>
+                                        <input type="text" class="form-control" name="nomorrekom" maxlength="22" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="bmd-label force-top">Jabatan</label>
+                                    <div>
+                                        <input type="text" class="form-control" name="jabatan" maxlength="30" >
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-collapse">
-                    <div class="card-header" role="tab" >
-                        <h5 class="mb-0">
-                            <a data-toggle="collapse" href="#sip-form-3-{{$index}}" aria-expanded="false" class="">
-                            TANGGAL
-                            <i class="material-icons">keyboard_arrow_down</i>
-                            </a>
-                        </h5>
+                    <div class="card-collapse">
+                        <div class="card-header" role="tab" >
+                            <h5 class="mb-0">
+                                <a data-toggle="collapse" href="#sip-form-2-{{$index}}" aria-expanded="false" class="">
+                                FASKES
+                                <i class="material-icons">keyboard_arrow_down</i>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="sip-form-2-{{$index}}" class="collapse" role="tabpanel" data-parent="#sip-form-accordion{{$index}}">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="bmd-label force-top">Faskes <small class="text-danger align-text-top">*wajib</small></label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="idfaskes" required hidden>
+                                        <input type="text" class="form-control" name="faskes" required readonly>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-info m-0" type="button" style="padding: 0 12px;" data-toggle="modal" data-target="#searchfaskes{{$index}}">
+                                                <i class="material-icons">search</i>
+                                            </button>
+                                        </div>
+                                    </div>  
+                                </div>
+                                <div class="form-group">
+                                    <label class="bmd-label force-top">Jadwal Praktik </label>
+                                    <textarea type="text" class="form-control" name="jadwalpraktik" maxlength="100" ></textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div id="sip-form-3-{{$index}}" class="collapse" role="tabpanel" data-parent="#sip-form-accordion{{$index}}">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label class="bmd-label force-top">Tanggal Online <small class="text-danger align-text-top">*wajib</small></label>
-                                <input type="date" class="form-control" name="tglonline" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="bmd-label force-top">Tanggal Masuk Dinas <small class="text-danger align-text-top">*wajib</small></label>
-                                <input type="date" class="form-control" name="tglmasukdinas" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="bmd-label force-top">Tanggal Verif & Cetak <small class="text-danger align-text-top">*wajib</small></label>
-                                <input type="date" class="form-control" name="tglverif" required>
+                    <div class="card-collapse">
+                        <div class="card-header" role="tab" >
+                            <h5 class="mb-0">
+                                <a data-toggle="collapse" href="#sip-form-3-{{$index}}" aria-expanded="false" class="">
+                                TANGGAL
+                                <i class="material-icons">keyboard_arrow_down</i>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="sip-form-3-{{$index}}" class="collapse" role="tabpanel" data-parent="#sip-form-accordion{{$index}}">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="bmd-label force-top">Tanggal Online <small class="text-danger align-text-top">*wajib</small></label>
+                                    <input type="date" class="form-control" name="tglonline" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="bmd-label force-top">Tanggal Masuk Dinas <small class="text-danger align-text-top">*wajib</small></label>
+                                    <input type="date" class="form-control" name="tglmasukdinas" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="bmd-label force-top">Tanggal Verif & Cetak <small class="text-danger align-text-top">*wajib</small></label>
+                                    <input type="date" class="form-control" name="tglverif" required>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -187,6 +189,14 @@
 @endpush
 
 @if(isset($sips[$index]))
+
+<!-- FORM DELETE STR -->
+<form action="{{route('sip.destroy', ['str'=>$sips[$index]['id']])}}" method="POST" id="form-destroy-sip-{{$index}}">
+@csrf
+@method('DELETE')
+</form>
+<!-- END OF FORM DELETE STR -->
+
 <div class="row myform">
     <div class="col">
         <table class="table table-2-col">
@@ -324,7 +334,7 @@
 </div>
 @if($str->isactive OR  (!$str->isactive AND isset($sips[$index])))
 <div class="btn-selengkapnya-wrapper d-absolute w-100 text-center">
-    <button type="button" class="btn btn-primary btn-selengkapnya"><i
+    <button type="button" class="btn btn-primary btn-selengkapnya" data-toggle="modal" data-target="#modal-sip{{$index}}"><i
             class="material-icons">priority_high</i> TINDAKAN PERIZINAN</button>
 </div>
 @endif
@@ -348,12 +358,39 @@
 
 $(function(){
 
+    $('#modal-sip{{$index}} form').submit(function storeSIP(e){
+        e.preventDefault();
+        let formDOM = this
+        let jenispermohonan = $(this).find('[name=jenispermohonan]:checked').val()
+        
+        if(jenispermohonan == 'cabut'){
+            //cabut
+            swal({
+                title: 'Yakin ingin mencabut SIP?',
+                text: "proses tidak dapat dilakukan lagi",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                confirmButtonText: 'Yakin',
+                cancelButtonText: 'Tidak',
+                buttonsStyling: false
+            }).then( function(isConfirm){
+                if(isConfirm.value) $('#form-destroy-sip-{{$index}}').submit();
+            }).catch(swal.noop)
+        }else{
+            formDOM.submit()
+        }
+    })
+
+
     // EDITABLE NOMOR SIP
     $('#modal-sip{{$index}} [name="nomor[]"][data-editable=true]').focusin(function(e,a){
         e.target.readOnly = false;
     }).focusout(function(e){
         e.target.readOnly = true;
     })
+    // END OF EDITABLE NOMOR SIP
 
     // SEARCH FASKES
     $('#searchfaskes{{$index}} .js-typeahead').typeahead({
@@ -388,6 +425,25 @@ $(function(){
             result: 'typeahead__result c-typeahead',
         }
     });
+    // END OF SEARCH FASKES
+
+    // TOGGLE RADIO BUTTON JENISPERMOHONAN
+    $('#modal-sip{{$index}} [name=jenispermohonan]').change(function(e){
+        $('#modal-sip{{$index}} [name=jenispermohonan]').each(function(k,elem){
+            let section =  $(elem.dataset.target)
+            if(!section.length) return;
+            if(elem.checked){
+                section.find('input,select,textarea').prop("disabled", false)
+                section.attr('hidden', false)
+            }else{
+                section.find('input,select,textarea').prop("disabled", true)
+                section.attr('hidden', true)
+            }
+        })
+    })
+    // END OF TOGGLE RADIO BUTTON JENISPERMOHONAN
+
+    $('#modal-sip{{$index}} [name=jenispermohonan]').change();
 
     @if(!isset($sips[$index]) OR !$sips[$index]['isactive'])
     $('#modal-sip{{$index}} .modal-title').text('Tambahkan SIP');
