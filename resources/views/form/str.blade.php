@@ -14,7 +14,7 @@
             <div class="form-check-group mb-3" id="aksistr-wrapper">
                 <div class="form-check">
                     <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="aksistr" value="baru" data-target="#form-str-baru" > Perbarui STR
+                    <input class="form-check-input" type="radio" name="aksistr" value="baru" data-target="#form-str-baru" > Perpanjangan STR
                     <span class="circle">
                         <span class="check"></span>
                     </span>
@@ -43,10 +43,10 @@
                     <label class="bmd-label force-top">Tanggal Berkahir <small class="text-danger align-text-top">*wajib</small></label>
                     <input type="date" class="form-control" name="expiry" required>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label class="bmd-label force-top">Tanggal Penetapan <small class="text-danger align-text-top">*wajib</small></label>
                     <input type="date" class="form-control" name="tanggal" required>
-                </div>
+                </div> -->
             </div>
             <!-- End of Form Str Baru -->
         </div>
@@ -108,7 +108,7 @@
                             </span>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td><label>Tanggal Penetapan</label></td>
                         <td>
                             <span data-text="true"></span>
@@ -116,7 +116,7 @@
                                 <input data-editable=true type="date" name="tanggal" class="form-control" required value="{{$str->tanggal}}" />
                             </span>
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td><label>Peruntukan</label></td>
                         <td>{{isset($nakes->profesi)? $nakes->profesi : '-'}}</td>

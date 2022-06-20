@@ -200,14 +200,65 @@
                     <table class="w-85">
                       <tbody>
                         <tr>
+                        <td width="40%">
+                            <table>
+                              <tbody>
+                                <tr><td>&nbsp;</td></tr>
+                                <tr>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px"></td>
+                                </tr>
+                                <tr>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Sub Koordinator,</td>
+                                </tr>
+                                <tr>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Sumber Daya Manusia Kesehatan,</td>
+                                </tr>
+                                <tr><td>&nbsp;</td></tr>
+                                <tr><td>&nbsp;</td></tr>
+                                <tr><td>&nbsp;</td></tr>
+                                <tr><td>&nbsp;</td></tr>
+                                <tr>
+                                  <td class="paddingfont fontCenter fontUnderline paragraf" style="font-size:13px">Emy Ratmawati, S.KM.</td>
+                                </tr>
+                                <tr>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Penata Tk. I</td>
+                                </tr>
+                                <tr>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">NIP 197511072000032003</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
                           <td></td>
-                          <td width="35%">
+                          <td width="40%">
                             <table>
                               <tbody>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr>
                                   <td class="paddingfont fontCenter paragraf" style="font-size:13px">Surabaya, 12 Januari 2022</td>
                                 </tr>
+                                <tr>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px"></td>
+                                </tr>
+                                <tr>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Sumber Daya Kesehatan,</td>
+                                </tr>
+                                <tr><td>&nbsp;</td></tr>
+                                <tr><td>&nbsp;</td></tr>
+                                <tr><td>&nbsp;</td></tr>
+                                <tr><td>&nbsp;</td></tr>
+                                <tr>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Bapak Heri</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">
+                            <table>
+                              <tbody>
+                                <tr><td>&nbsp;</td></tr>
                                 <tr>
                                   <td class="paddingfont fontCenter paragraf" style="font-size:13px">KEPALA BIDANG,</td>
                                 </tr>
@@ -219,13 +270,13 @@
                                 <tr><td>&nbsp;</td></tr>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Ibu Nanik</td>
+                                  <td class="paddingfont fontCenter fontUnderline paragraf" style="font-size:13px">Hariyanto, S.KM., M.Si.</td>
                                 </tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Pembina Utama Muda</td>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Pembina</td>
                                 </tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">NIP 196502281992032008</td>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">NIP 196508141988031012</td>
                                 </tr>
                               </tbody>
                             </table>

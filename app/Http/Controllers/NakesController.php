@@ -26,7 +26,7 @@ class NakesController extends Controller
         
         $datatable = Datatables::of($data);
         $datatable->addIndexColumn()
-            ->rawColumns(['id','nik','nama','tempatlahir','tanggallahir', 'jeniskelamin', 'alamat', 'nohp', 'action']);
+            ->rawColumns(['action']);
         
         $datatable->addColumn('action', function ($t) { 
                 return '<a href="'.route('bio').'?nakes='.$t->id.'" class="btn btn-info btn-link" style="padding:5px;"><i class="material-icons">launch</i></a>&nbsp'.

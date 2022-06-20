@@ -95,8 +95,12 @@
                           <td class="paddingfont" style="font-size:13px">: {{$sip->pegawai->nama}}</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont" style="font-size:13px">Alamat</td>
+                          <td class="paddingfont" style="font-size:13px">Alamat KTP</td>
                           <td class="paddingfont" style="font-size:13px">: {{$sip->pegawai->alamatktp}}</td>
+                        </tr>
+                        <tr>
+                          <td class="paddingfont" style="font-size:13px">Alamat Domisili</td>
+                          <td class="paddingfont" style="font-size:13px">: {{$sip->pegawai->alamat}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont" style="font-size:13px">Tanggal Masuk Dinas</td>

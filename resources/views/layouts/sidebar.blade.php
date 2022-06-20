@@ -35,7 +35,7 @@ $role = explode(', ', $role);
             <li class="nav-item @yield('strStatus') ">
                 <a class="nav-link" href="{{url('/str')}}">
                     <i class="material-icons">list_alt</i>
-                    <p> Data STR </p>
+                    <p> Data SIP </p>
                 </a>
             </li>
             <li class="nav-item @yield('nakesStatus')">

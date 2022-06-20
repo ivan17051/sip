@@ -384,7 +384,7 @@ active
           select:{
               className: 'dataTable-selector form-select'
           },
-          
+          responsive: true,
           processing: true,
           serverSide: true,
           ajax: {type: "POST", url: '{{route("nakes.data")}}', data:{'_token':@json(csrf_token())}},
@@ -393,11 +393,13 @@ active
               { data:'nik', title:'NIK'},
               { data:'nama', title:'Nama'},
               { data:'jeniskelamin', title:'JenisKelamin', visible: false},
+              { data:'tempatlahir', title:'TempatLahir'},
+              { data:'tanggallahir', title:'TanggalLahir',render: function(e, d, row){
+                return new Date(e).toLocaleDateString('id',{ day: 'numeric', month: 'long',year: 'numeric'})
+              }},
+              { data:'alamatktp', title:'Alamat'},
               { data:'nohp', title:'No. HP'},
-              { data:'tempatlahir', title:'TempatLahir', visible: false},
-              { data:'tanggallahir', title:'TanggalLahir', visible: false},
-              { data:'alamat', title:'Alamat', visible: false},
-              { data:'action', title:'Aksi', width:'15%'},
+              { data:'action', title:'Aksi', width:'10%'},
           ],
       });      
   });

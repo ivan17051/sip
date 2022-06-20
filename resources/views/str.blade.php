@@ -2,7 +2,7 @@
 @extends('layouts.sidebar')
 
 @section('title')
-Data STR
+Data SIP
 @endsection
 
 @section('strStatus')
@@ -18,7 +18,7 @@ active
             <div class="card-icon">
                 <i class="material-icons">list_alt</i>
             </div>
-            <h4 class="card-title">Data STR</h4>
+            <h4 class="card-title">Data SIP</h4>
         </div>
         <div class="card-body">
             <div class="material-datatables">
@@ -66,25 +66,32 @@ active
             ajax: {type: "POST", url: '{{route("data")}}', data:{'_token':@json(csrf_token())}},
             columns: [
                 { data:'pegawai.nama', title:'Nama'},
-                { data:'nomor', title:'Nomor'},
+                { data:'nomor', title:'Nomor SIP'},
                 { data:'expiry', title:'Tanggal Exp.',  render: function(e,d,row){return moment(row['expiry']).format('L');} },
                 { data:'expiry', title:'Status.',  render: function(e,d,row){
                     let exp = moment(row['expiry']);
-                    let weeks = exp.diff(now, 'weeks');
-                    console.log(weeks);
+                    let days = exp.diff(now, 'days');
 
-                    if(weeks <= 0){
+                    if(days <= 0){
                         return '<span class="text-danger">Expired</span>'
-                    }else if(weeks < 3){
+                    }else if(days < 60){
                         return '<span class="text-warning">Akan Expired</span>'
                     }else{
                         return '<span class="text-success">Valid</span>'
                     }
                 }},
                 { data:'id', title:'Aksi', class:"text-right", render: function(e,d,row){
-                    return '<a href="#" title="Detil STR" class="btn btn-link btn-success  btn-sm pd-04rem" ><i class="material-icons">launch</i> str</button>'
+                    return '<a href="{{route("bio")}}?nakes='+row['id']+'" class="btn btn-info btn-link" style="padding:5px;"><i class="material-icons">launch</i> Cek</a>'
                 }},
             ],
+            createdRow: function (row, data, dataIndex) {
+                let exp = moment(data['expiry']);
+                let days = exp.diff(now, 'days');
+
+                if(days <= 0){
+                    $(row).addClass('is-expired');
+                }
+            },
         });
     }
 

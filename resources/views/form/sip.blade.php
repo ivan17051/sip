@@ -63,6 +63,7 @@
                                     <label class="bmd-label force-top">Nomor SIP <small class="text-danger align-text-top">*wajib</small></label>
                                     <div class="nomorsip-wrapper">
                                         <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="7" value="503.446" readonly required></span> / 
+                                        <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="5" value="" readonly required></span> / 
                                         <span class="form-group d-inline-block"><input type="text" class="form-control" name="nomor[]" maxlength="4" value="{{sprintf('%04d', $nakes->nomorregis)}}" readonly required></span> / 
                                         <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="3" value="{{integerToRoman($index+1)}}" readonly required></span> / 
                                         <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="5" value="IP.DU" readonly required></span> / 
@@ -235,6 +236,7 @@
                                 @endphp
                                 <div class="nomorsip-wrapper" data-editable=true data-delimitter=" / " >
                                     <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="7" value="{{$nomors[0]}}" readonly required></span> / 
+                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="5" value="" readonly required></span> / 
                                     <span class="form-group d-inline-block"><input type="text" class="form-control" name="nomor[]" maxlength="4" value="{{sprintf('%04d', $nomors[1])}}" readonly required></span> / 
                                     <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="3" value="{{$nomors[2]}}" readonly required></span> / 
                                     <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="5" value="{{$nomors[3]}}" readonly required></span> / 
@@ -339,18 +341,22 @@
                             </span>
                         </td>
                     </tr>
-                    <tr>
-                        <td><label>Cetak Perstek</label></td>
-                        <td><a target="_blank" href="{{route('cetak.perstek', ['idsip'=>$sips[$index]['id']])}}" class="btn btn-outline-primary btn-round btn-sm" >Preview SIP <i class="material-icons">open_in_new</i></a></td>
-                    </tr>
+                    @if( in_array($sips[$index]['idprofesi'], [31]) )
+                    <!-- KHUSUS Tenaga Kesehata Tradisional Interkontinental -->
                     <tr>
                         <td><label>Cetak SIP</label></td>
-                        <td><a target="_blank" href="{{route('cetak.sip', ['idsip'=>$sips[$index]['id']])}}" class="btn btn-outline-primary btn-round btn-sm" >Preview SIP <i class="material-icons">open_in_new</i></a></td>
+                        <td><a target="_blank" href="{{route('cetak.sip', ['idsip'=>$sips[$index]['id']])}}" class="btn btn-outline-primary btn-round btn-sm" >Cetak SIP <i class="material-icons">open_in_new</i></a></td>
+                    </tr>
+                    @else
+                    <tr>
+                        <td><label>Cetak Perstek</label></td>
+                        <td><a target="_blank" href="{{route('cetak.perstek', ['idsip'=>$sips[$index]['id']])}}" class="btn btn-outline-primary btn-round btn-sm" >Cetak Perstek <i class="material-icons">open_in_new</i></a></td>
                     </tr>
                     <tr>
                         <td><label>Cetak Kitir</label></td>
                         <td><a target="_blank" href="{{route('cetak.kitir', ['idsip'=>$sips[$index]['id']])}}" class="btn btn-outline-primary btn-round btn-sm" >Cetak Kitir <i class="material-icons">open_in_new</i></a></td>
                     </tr>
+                    @endif
                 </tbody>
             </table>
         </div>
