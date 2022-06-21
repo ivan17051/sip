@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Validator;
 use App\STR;
+use App\SIP;
 use App\Pegawai;
 use Illuminate\Support\Facades\DB;
 use Datatables;
@@ -20,15 +21,23 @@ class STRController extends Controller
     }
 
     public function data(Request $request){
-        $latest = STR::select('idpegawai', DB::raw('max(expiry) as expiry'))
-            ->groupBy('idpegawai');
 
-        $data = STR::select('str.id','str.idpegawai','str.expiry', 'str.nomor')
-            ->rightJoinSub($latest, 'latest', function($join){
-                $join->on('str.idpegawai','=','latest.idpegawai')
-                    ->on('str.expiry','=','latest.expiry');
+        $subquery = Pegawai::select('mpegawai.id','nik','nama','sip.expirystr','str.nomor as nomorstr','sip.nomor as nomorsip', DB::raw('@expirydiff := DATEDIFF(expiry, current_date) as expirydiff'),
+            DB::raw("IF(sip.nomor IS NULL, -2, IF(@expirydiff<0, -1, IF(@expirydiff<60, 0, 1)) )  as validstatus")
+        )
+            ->leftJoin('str', function($q){
+                $q->on('str.idpegawai','=','mpegawai.id')->where('str.isactive', 1);
             })
-            ->with('pegawai:id,nik,nama');
+            ->leftJoin('sip', function($join){
+                $latestsip = SIP::select(DB::raw('max(id) as maxid'))->where('isactive', 1)->whereColumn('idpegawai', 'mpegawai.id');
+                $join->on('sip.idstr','=', 'str.id')
+                    ->whereRaw("sip.id = ({$latestsip->toSql()})")
+                    ->mergeBindings($latestsip->getQuery());
+            });
+        
+        $data = DB::table( DB::raw("({$subquery->toSql()}) as sub") )
+            ->mergeBindings($subquery->getQuery());
+
         $datatable = Datatables::of($data);
         return $datatable->addIndexColumn()->make(true);
     }

@@ -387,3 +387,11 @@ label.force-top{
 tr.is-expired{
     background-color: #ffd2d2!important;
 }
+
+tr.is-expired-soon{
+    background-color: #ffe3d2!important;
+}
+
+tr.is-no-data{
+    background-color: #d3f7ff!important;
+}
