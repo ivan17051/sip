@@ -30,7 +30,6 @@ class ProfesiController extends Controller
         try{
             $profesi = Profesi::findOrFail($id);
             $profesi->fill($request->all());
-            dd($profesi);
             $profesi->save();
         }catch(QueryException $exception){
             $this->flashError($exception->getMessage());
