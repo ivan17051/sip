@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/faskes/data', 'FaskesController@data')->name('faskes.data');
     Route::apiResource('faskes', FaskesController::class)->except('show');
+    Route::get('getpegawai/{id}', 'FaskesController@getpegawai')->name('pegawai.get');
     
     Route::resource('profesi', ProfesiController::class)->only(['index','store','update','destroy']);
     Route::get('getspesialisasi/{id}', 'ProfesiController@getspesialisasi')->name('spesialisasi.get');

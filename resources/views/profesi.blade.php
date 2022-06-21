@@ -242,21 +242,23 @@ active
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header card-header-primary card-header-icon">
-          <div class="card-icon">
-            <i class="material-icons">group</i>
+        <div class="card-header card-header-tabs card-header-primary">
+          <div class="subtitle-wrapper">
+            <h4 class="card-title">Data Profesi dan Spesialisasi</h4>
           </div>
-          <h4 class="card-title">
-            <div class="row">
-              <div class="col">Data Profesi</div>
-              <div class="col text-right"><button id="btntambah" class="btn btn-sm btn-primary" data-toggle="modal"
-                  data-target="#tambah">Tambah</button></div>
-            </div>
-          </h4>
         </div>
+        
         <div class="card-body">
-          <div class="toolbar">
-            <!--        Here you can write extra buttons/actions for the toolbar              -->
+          <div class="toolbar row">
+            <!-- Here you can write extra buttons/actions for the toolbar -->
+            <div class="col">
+              <button type="button" id="btnkembali" class="btn btn-sm btn-warning" onclick="back()" hidden>Kembali</button>
+            </div>
+            <div class="col">
+              <div class="text-right"><button id="btntambah" class="btn btn-sm btn-primary" data-toggle="modal"
+                    data-target="#tambah">Tambah</button></div>
+            </div>
+            
           </div>
           <div class="anim slide" id="table-container">
             <div class="material-datatables">
@@ -297,7 +299,7 @@ active
             </div>
           </div>
           <div class="anim slide hidden" id="nakes-container">
-            <button type="button" class="btn btn-sm btn-warning" onclick="back()">Kembali</button>
+            
 
             <div class="material-datatable">
               <table id="datatables2" class="table table-striped table-no-bordered table-hover">
@@ -335,6 +337,7 @@ active
   });
   function back() {
     $('#nakes-container').addClass('hidden');
+    $('#btnkembali').attr('hidden', true);
     $('#table-container').removeClass('hidden');
     $('#btntambah').attr('data-target', '#tambah');
     if ($.fn.dataTable.isDataTable('#datatables2')) {
@@ -355,6 +358,7 @@ active
   function show(x){
     $('#table-container').addClass('hidden');
     $('#nakes-container').removeClass('hidden');
+    $('#btnkembali').attr('hidden', false);
     $('#btntambah').attr('data-target', '#tambahsp');
     $('#tambahsp').find('input[name=idprofesi]').val(x).change();
 
