@@ -43,7 +43,10 @@ class BioNakesController extends Controller
 
     public function rawHistoristr(Request $request){
         $idnakes = $request->get('nakes');
-        return view('raw.historistr');
+        $str = STR::where('idpegawai', $idnakes)->with('profesi')->orderBy('since', 'desc')
+            ->select('idprofesi', 'nomor', 'since', 'expiry')->get();
+        
+        return view('raw.historistr', ['str'=>$str]);
     }
 
     public function rawHistorisip(Request $request, $index){

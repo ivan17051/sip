@@ -1,7 +1,8 @@
 <ul class="timeline timeline-simple">
-    <li class="timeline-inverted active">
+    @foreach($str as $key=>$unit)
+    <li class="timeline-inverted @if($key==0) active @endif">
         <div class="timeline-badge primary">
-            1
+            {{$key+1}}
         </div>
         <div class="timeline-panel">
             <div class="timeline-body">
@@ -13,12 +14,13 @@
                         <a class="dropdown-item" href="#">Tampilkan</a>
                     </div>
                 </div>
-                <h5><strong>12/02/2022</strong></h5>
+                <h5><strong>{{$unit->since}} - {{$unit->expiry}}</strong></h5>
                 <p>
-                    <span><strong>No:</strong> 204 0230 23230</span><br> 
-                    <span>Dokter Umum</span>
+                    <span><strong>No:</strong> {{$unit->nomor}}</span><br> 
+                    <span>{{$unit->profesi->nama}}</span>
                 </p>
             </div>
         </div>
     </li>
+    @endforeach
 </ul>

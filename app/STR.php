@@ -32,4 +32,12 @@ class STR extends Model
     {
         return $this->belongsTo(Pegawai::class, 'idpegawai');
     }
+    /**
+     * Get the Profesi Name
+     *
+     */
+    public function profesi()
+    {
+        return $this->belongsTo(Profesi::class, 'idprofesi');
+    }
 }
