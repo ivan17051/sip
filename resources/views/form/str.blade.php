@@ -100,7 +100,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label>Tanggal Berkahir</label></td>
+                        <td><label>Tanggal Berakhir</label></td>
                         <td>
                             <span data-text="true"></span>
                             <span>
