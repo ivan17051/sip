@@ -15,26 +15,6 @@ active
 
 
 @section('modal')
-<div class="modal modal-custom-1 fade" id="modal-pratinjau" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Pratinjau Faskes</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <i class="material-icons">clear</i>
-                </button>
-            </div>
-            <div class="modal-body">
-                UNDER DEVELOPMENT
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-link" data-dismiss="modal">TUTUP</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Modal Tambah Faskes -->
 <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -45,7 +25,7 @@ active
           <i class="material-icons">clear</i>
         </button>
       </div>
-      <form class="form-horizontal input-margin-additional" method="POST" action="{{route('profesi.store')}}">
+      <form class="form-horizontal input-margin-additional" method="POST" action="{{route('faskes.store')}}">
         @csrf
         <div class="modal-body">
           <div class="row">
@@ -56,15 +36,19 @@ active
               </div>
             </div>
             <div class="col-md-12">
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" value=1 id="isparent" name="isparent"> Profesi
-                  Memiliki Spesialisasi
-                  <span class="form-check-sign">
-                    <span class="check"></span>
-                  </span>
-                </label>
-              </div>
+              <div class="form-group">
+                <label for="nama" class="bmd-label-floating">Alamat</label>
+                <input type="text" class="form-control" id="alamat" name="alamat" required>
+              </div>  
+            </div>
+            <div class="col-md-12">
+              <label class="bmd-label force-top">Kategori Faskes <small class="text-danger align-text-top">*wajib</small></label>
+              <select name="idkategori" class="selectpicker form-control" data-size="5" data-style="btn btn-primary btn-round" title="Kategori">
+                <option disabled selected>Pilih Kategori Faskes</option>
+                @foreach($kategori as $unit)
+                <option value="{{$unit->id}}">{{$unit->nama}}</option>
+                @endforeach
+              </select>
             </div>
           </div>
 
@@ -79,52 +63,54 @@ active
 </div>
 <!--  End Modal Tambah Faskes -->
 
-<!-- Modal Edit Faskes -->
-<div class="modal fade" id="sunting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Sunting Profesi </h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-          <i class="material-icons">clear</i>
-        </button>
-      </div>
-      <form class="form-horizontal input-margin-additional" id="formedit" method="POST" action="">
-        @csrf
-        @method('PUT')
-        <div class="modal-body">
-          <input type="hidden" name="id">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label for="nama" class="bmd-label-floating">Nama Profesi</label>
-                <input type="text" class="form-control" id="nama" name="nama" required>
-              </div>
+<!-- Modal Sunting Faskes -->
+<div class="modal modal-custom-1 fade" id="sunting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Sunting Faskes</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="material-icons">clear</i>
+                </button>
             </div>
-            <div class="col-md-12">
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="isparent" name="isparent"> Profesi
-                  Memiliki Spesialisasi
-                  <span class="form-check-sign">
-                    <span class="check"></span>
-                  </span>
-                </label>
+            <form id="formedit" class="form-horizontal input-margin-additional" method="POST" action="">
+            @csrf
+            @method('PUT')
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="nama" class="bmd-label-floating">Nama Faskes</label>
+                      <input type="text" class="form-control" id="nama" name="nama" required>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="nama" class="bmd-label-floating">Alamat</label>
+                      <input type="text" class="form-control" id="alamat" name="alamat" required>
+                    </div>  
+                  </div>
+                  <div class="col-md-12">
+                    <label class="bmd-label force-top">Kategori Faskes <small class="text-danger align-text-top">*wajib</small></label>
+                    <select name="idkategori" class="selectpicker form-control" data-size="5" data-style="btn btn-primary btn-round" title="Kategori">
+                      <option disabled selected>Pilih Kategori Faskes</option>
+                      @foreach($kategori as $unit)
+                      <option value="{{$unit->id}}">{{$unit->nama}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default btn-link" data-dismiss="modal">TUTUP</button>
+                  <button type="submit" class="btn btn-link text-primary">Simpan</button>
+              </div>
+            </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Tutup</button>
-          <button type="submit" class="btn btn-link text-primary">Simpan</button>
-        </div>
-      </form>
     </div>
-  </div>
 </div>
-<!-- End Modal Edit Faskes -->
-
+<!-- End Modal Sunting Faskes -->
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -196,11 +182,18 @@ active
     var oTable;
     var now = moment();
 
-    function pratinjau(self) {
+    function sunting(self) {
         var tr = $(self).closest('tr');
         var data = oTable.row(tr).data();
+        
+        var $modal = $('#sunting');
+        
+        $modal.find('input[name=nama]').val(data['nama']).change();
+        $modal.find('input[name=alamat]').val(data['alamat']).change();
+        $modal.find('select[name=idkategori]').val(data['kategori']['id']).change();
 
-        $('#modal-pratinjau').modal('show')
+        $('#formedit').attr('action', '{{route("faskes.update", ["id"=>""])}}/'+data['id']);
+        $modal.modal('show')
     }
 
     function daftarNakes(self) {
@@ -303,7 +296,7 @@ active
                             '<i class="material-icons">more_vert</i>' +
                             '</a>' +
                             '<div class="dropdown-menu dropdown-menu-left" >' +
-                            '<a class="dropdown-item" href="#" onclick="pratinjau(this)" >Pratinjau</a>' +
+                            '<a class="dropdown-item" href="#" onclick="sunting(this)" >Sunting</a>' +
                             '<a class="dropdown-item" href="#" onclick="daftarNakes(this)">Nakes Terkait</a>' +
                             '</div>' +
                             '</span>'

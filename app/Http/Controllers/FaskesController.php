@@ -11,7 +11,8 @@ use App\Kategori;
 class FaskesController extends Controller
 {
     public function index(){
-        return view('faskes');
+        $kategori = Kategori::all();
+        return view('faskes', ['kategori'=>$kategori]);
     }
 
     public function data(){
@@ -30,12 +31,31 @@ class FaskesController extends Controller
         return $datatable->addIndexColumn()->make(true);
     }
 
-    public function store(){
-        
+    public function store(Request $request){
+        try{
+            $faskes_baru = new Faskes($request->all());
+            $faskes_baru->save();
+        }catch(QueryException $exception){
+            $this->flashError($exception->getMessage());
+            return back();
+        }
+
+        $this->flashSuccess('Data Faskes Berhasil Ditambahkan');
+        return back();
     }
 
-    public function update(Request $request, $faskes){
+    public function update(Request $request, $id){
+        try{
+            $faskes = Faskes::findOrFail($id);
+            $faskes->fill($request->all());
+            $faskes->save();
+        }catch(QueryException $exception){
+            $this->flashError($exception->getMessage());
+            return back();
+        }
         
+        $this->flashSuccess('Data Faskes Berhasil Diubah');
+        return back();
     }
 
     public function destroy(Request $request, $faskes){
