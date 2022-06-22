@@ -67,6 +67,11 @@ class STRController extends Controller
                 $current->save();
             }
 
+            // JIKA PERPANJANG SIP SEKALIAN
+            // if(isset($input['isperpanjangsip']) AND $input['isperpanjangsip']){
+
+            // }
+
             $model = new STR();
             $model->fill($input);
             $model->fill([

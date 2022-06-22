@@ -14,11 +14,21 @@
             <div class="form-check-group mb-3" id="aksistr-wrapper">
                 <div class="form-check">
                     <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="aksistr" value="baru" data-target="#form-str-baru" > Perpanjangan STR
+                    <input class="form-check-input" type="radio" name="aksistr" value="baru" data-target='["#form-str-baru","#isperpanjangsip-wrapper"]' > Perpanjangan STR
                     <span class="circle">
                         <span class="check"></span>
                     </span>
                     </label>
+                </div>
+                <div id="isperpanjangsip-wrapper">
+                    <div class="form-check" style="padding-left:32px;">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="isperpanjangsip" value="1" checked> Perpanjang SIP
+                        <span class="form-check-sign" style="transform: scale(0.8);">
+                            <span class="check"></span>
+                        </span>
+                        </label>
+                    </div>
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
@@ -217,14 +227,18 @@
         // toggle radio button aksistr
         $('[name=aksistr]').change(function(e){
             $('[name=aksistr]').each(function(k,elem){
-                let section =  $(elem.dataset.target)
-                if(!section.length) return;
-                if(elem.checked){
-                    section.find('input,select').prop("disabled", false)
-                    section.attr('hidden', false)
-                }else{
-                    section.find('input,select').prop("disabled", true)
-                    section.attr('hidden', true)
+                let targets = $(elem).data('target');
+                if(!targets) return
+                for (const target of targets) {
+                    let section =  $(target)
+                    if(!section.length) return;
+                    if(elem.checked){
+                        section.find('input,select').prop("disabled", false)
+                        section.attr('hidden', false)
+                    }else{
+                        section.find('input,select').prop("disabled", true)
+                        section.attr('hidden', true)
+                    }
                 }
             })
         })
