@@ -43,7 +43,7 @@ class BioNakesController extends Controller
 
     public function rawHistoristr(Request $request){
         $idnakes = $request->get('nakes');
-        $str = STR::where('idpegawai', $idnakes)->with('profesi')->orderBy('since', 'desc')
+        $str = STR::where('idpegawai', $idnakes)->with('profesi')->orderBy('id', 'desc')
             ->select('idprofesi', 'nomor', 'since', 'expiry')->get();
         
         return view('raw.historistr', ['str'=>$str]);
@@ -52,7 +52,7 @@ class BioNakesController extends Controller
     public function rawHistorisip(Request $request, $index){
         $idnakes = $request->get('nakes');
         $sip = SIP::where('idpegawai', $idnakes)->where('instance', $index)
-            ->orderBy('tglmasukdinas', 'desc')->get();
+            ->orderBy('id', 'desc')->get();
 
         return view('raw.historisip', ['sip'=>$sip]);
     }
