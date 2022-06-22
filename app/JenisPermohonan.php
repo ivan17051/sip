@@ -4,15 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Profesi extends Model
+class JenisPermohonan extends Model
 {
-    protected $table = 'mprofesi';
+    
+    protected $table = 'mjenispermohonan';
 
     public $timestamps = false;
 
     protected $fillable = [
+        "idprofesi",
         "nama",
-        "makssip",
-        "isparent",
     ];
+    
 }

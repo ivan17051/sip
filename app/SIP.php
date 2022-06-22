@@ -30,6 +30,7 @@ class SIP extends Model
         "nomoronline",
         "idfaskes",
         "jadwalpraktik",
+        "idjenispermohonan",
         "jenispermohonan",
         "jabatan",
         "tglonline",

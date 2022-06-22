@@ -56,27 +56,27 @@
                         </tr>
                         <tr>
                           <td class="paddingfont " style="font-size:13px">Nama</td>
-                          <td class="paddingfont" style="font-size:13px">: dr. SUGIAR EMIWATI</td>
+                          <td class="paddingfont" style="font-size:13px">: {{$sip->pegawai->nama}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont" style="font-size:13px">Tempat Tanggal Lahir</td>
-                          <td class="paddingfont" style="font-size:13px">: Surabaya, 03 November 1969</td>
+                          <td class="paddingfont" style="font-size:13px">: {{$sip->pegawai->tempatlahir}}, {{Carbon\Carbon::parse($sip->tgllahir)->isoformat('D MMMM Y')}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont" style="font-size:13px">Alamat KTP</td>
-                          <td class="paddingfont" style="font-size:13px">: Karah Tama Asri II / 50 Surabaya</td>
+                          <td class="paddingfont" style="font-size:13px">: {{$sip->pegawai->alamatktp}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont" style="font-size:13px">Nomor Online/Tanggal Pendaftaran</td>
-                          <td class="paddingfont" style="font-size:13px">: 8004 / 13 September 2021</td>
+                          <td class="paddingfont" style="font-size:13px">: {{$sip->nomoronline}} / {{Carbon\Carbon::parse($sip->tglonline)->isoformat('D MMMM Y')}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont" style="font-size:13px">Tanggal Masuk Dinkes</td>
-                          <td class="paddingfont" style="font-size:13px">: 13 September 2021</td>
+                          <td class="paddingfont" style="font-size:13px">: {{Carbon\Carbon::parse($sip->tglmasukdinas)->isoformat('D MMMM Y')}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont" style="font-size:13px">Jenis Perizinan</td>
-                          <td class="paddingfont" style="font-size:13px">: Sarana Perpanjangan - Dokter Umum</td>
+                          <td class="paddingfont" style="font-size:13px">: {{$jenispermohonan->nama}}</td>
                         </tr>
                         <tr>
                           <td colspan="2">&nbsp;</td>
@@ -174,15 +174,15 @@
                         </tr>
                         <tr>
                           <td class="paddingfont fontJustify paragraf w-25" style="font-size:13px">Nama</td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">: dr. SUGIAR EMIWATI</td>
+                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">: {{$sip->pegawai->nama}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont fontJustify paragraf" style="font-size:13px">Nama Fasyankes</td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">: PUSKESMAS TANJUNGSARI</td>
+                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">: {{$sip->namafaskes}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont fontJustify paragraf" style="font-size:13px">Alamat Fasyankes</td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">: Jl. Raya Tanjungsari 116 Surabaya</td>
+                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">: {{$sip->alamatfaskes}}</td>
                         </tr>
                         <tr>
                           <td colspan="2">&nbsp;</td>
@@ -208,7 +208,7 @@
                                   <td class="paddingfont fontCenter paragraf" style="font-size:13px"></td>
                                 </tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Sub Koordinator,</td>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">{{$subkoor->jabatan}},</td>
                                 </tr>
                                 <tr>
                                   <td class="paddingfont fontCenter paragraf" style="font-size:13px">Sumber Daya Manusia Kesehatan,</td>
@@ -218,13 +218,13 @@
                                 <tr><td>&nbsp;</td></tr>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter fontUnderline paragraf" style="font-size:13px">Emy Ratmawati, S.KM.</td>
+                                  <td class="paddingfont fontCenter fontUnderline paragraf" style="font-size:13px">{{$subkoor->nama}}</td>
                                 </tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Penata Tk. I</td>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">{{$subkoor->pangkat}}</td>
                                 </tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">NIP 197511072000032003</td>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">NIP {{$subkoor->nip}}</td>
                                 </tr>
                               </tbody>
                             </table>
@@ -235,7 +235,7 @@
                               <tbody>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Surabaya, 12 Januari 2022</td>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Surabaya, {{Carbon\Carbon::parse($sip->tglverif)->isoformat('D MMMM Y')}}</td>
                                 </tr>
                                 <tr>
                                   <td class="paddingfont fontCenter paragraf" style="font-size:13px"></td>
@@ -248,7 +248,7 @@
                                 <tr><td>&nbsp;</td></tr>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Bapak Heri</td>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">{{$staf->nama}}</td>
                                 </tr>
                               </tbody>
                             </table>
@@ -260,7 +260,7 @@
                               <tbody>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">KEPALA BIDANG,</td>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">{{$kabid->jabatan}},</td>
                                 </tr>
                                 <tr>
                                   <td class="paddingfont fontCenter paragraf" style="font-size:13px">Sumber Daya Kesehatan,</td>
@@ -270,13 +270,13 @@
                                 <tr><td>&nbsp;</td></tr>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter fontUnderline paragraf" style="font-size:13px">Hariyanto, S.KM., M.Si.</td>
+                                  <td class="paddingfont fontCenter fontUnderline paragraf" style="font-size:13px">{{$kabid->nama}}</td>
                                 </tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Pembina</td>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">{{$kabid->pangkat}}</td>
                                 </tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">NIP 196508141988031012</td>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">NIP {{$kabid->nip}}</td>
                                 </tr>
                               </tbody>
                             </table>

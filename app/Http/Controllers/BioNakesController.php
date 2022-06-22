@@ -7,6 +7,8 @@ use App\Pegawai;
 use App\Profesi;
 use App\STR;
 use App\SIP;
+use App\Pejabat;
+use App\JenisPermohonan;
 
 class BioNakesController extends Controller
 {
@@ -19,6 +21,8 @@ class BioNakesController extends Controller
             $d['str']=STR::where('idpegawai', $idnakes)->orderBy('id','DESC')->first();
             $d['urlparam'] ="?nakes={$idnakes}";
             $d['profesi'] = Profesi::all();
+            $d['staf'] = Pejabat::where('jabatan','Staf')->get();
+            $d['jenispermohonan'] = JenisPermohonan::where('idprofesi',$d['nakes']->idprofesi)->get();
         }
         
         if (isset($d['str'])) {
