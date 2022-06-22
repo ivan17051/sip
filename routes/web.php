@@ -43,7 +43,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/raw/bio', 'BioNakesController@rawBio')->name('raw.bio');
     Route::get('/raw/historistr', 'BioNakesController@rawHistoristr')->name('raw.historistr');
-    Route::get('/raw/historisip', 'BioNakesController@rawHistorisip')->name('raw.historisip');
+    Route::get('/raw/historisip/{index}', 'BioNakesController@rawHistorisip')->name('raw.historisip');
 
     Route::get('/data/getspesialisasi/{idprofesi}', 'DataController@getSpesialisasi')->name('data.getspesialisasi');
     Route::get('/data/searchfaskes', 'DataController@searchFaskes')->name('data.searchfaskes');

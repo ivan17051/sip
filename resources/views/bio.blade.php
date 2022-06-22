@@ -197,10 +197,10 @@ active
     }
 
     async function openHistoriSIP(index){
-        if(!$('#modal-historisip').length){
+        // if(!$('#modal-historisip').length){
             LOADING.show();
             try {
-                let res = await my.request.get("{{route('raw.historisip').$urlparam}}")
+                let res = await my.request.get("{{route('raw.historisip', ['index'=>''])}}/"+index+"{{$urlparam}}")
                 let $modal = $($('#modal-template').html())
                 $modal.attr('id','modal-historisip')
                 $modal.find('.modal-title').text('Histori SIP')
@@ -211,9 +211,9 @@ active
                 console.log(err)
             }
             LOADING.hide();
-        }else{
-            $('#modal-historisip').modal('show')
-        }
+        // }else{
+        //     $('#modal-historisip').modal('show')
+        // }
     }
     
     $(function(){

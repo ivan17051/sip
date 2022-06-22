@@ -366,7 +366,7 @@
                     <button type="button" class="btn btn-primary btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(1)">
                         <i class="material-icons">edit_note</i>
                     </button>
-                    <button  type="button" class="btn btn-primary btn-round btn-fab" onclick="openHistoriSIP(1)">
+                    <button  type="button" class="btn btn-primary btn-round btn-fab" onclick="openHistoriSIP({{$sips[$index]['instance']}})">
                         <i class="material-icons">pending_actions</i>
                     </button>
                 </div>
