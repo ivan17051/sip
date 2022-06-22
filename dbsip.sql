@@ -8,8 +8,6 @@
 CREATE DATABASE IF NOT EXISTS `dbsip` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `dbsip`;
 
-DROP PROCEDURE IF EXISTS `agregatnakesbyprofesi`;
-
 DELIMITER //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `agregatnakesbyprofesi`()
 BEGIN
@@ -20,8 +18,6 @@ BEGIN
 	GROUP BY (p.id);
 END//
 DELIMITER ;
-
-DROP PROCEDURE IF EXISTS `agregatnakesbystatussip`;
 
 DELIMITER //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `agregatnakesbystatussip`()
@@ -108,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `mfaskes` (
   PRIMARY KEY (`id`),
   KEY `fk_kategori` (`idkategori`),
   CONSTRAINT `fk_kategori` FOREIGN KEY (`idkategori`) REFERENCES `mkategori` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=453 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=454 DEFAULT CHARSET=utf8mb4;
 
 DELETE FROM `mfaskes`;
 /*!40000 ALTER TABLE `mfaskes` DISABLE KEYS */;
@@ -564,7 +560,8 @@ INSERT INTO `mfaskes` (`id`, `nama`, `alamat`, `idkategori`) VALUES
 	(449, 'LABORATORIUM KLINIK PRATAMA LARISSA', 'Jl. Raya Rungkut Asri XII No. 15 Surabaya', 6),
 	(450, 'LABORATORIUM KLINIK PRATAMA PRODIA', 'Jl. Wiyung Indah I No 207 Surabaya', 6),
 	(451, 'LABORATORIUM KLINIK UTAMA KEDUNGDORO KEDUNGSARI SU', 'Jl. Kedungsari No. 84 A Surabaya', 6),
-	(452, 'UTD PMI KOTA SURABAYA', 'Jl. Embong Ploso No. 7 - 15 Surabaya', 7);
+	(452, 'UTD PMI KOTA SURABAYA', 'Jl. Embong Ploso No. 7 - 15 Surabaya', 7),
+	(453, 'Rumah Sakit DKK', 'Jl. Jemursari No. 197', 9);
 /*!40000 ALTER TABLE `mfaskes` ENABLE KEYS */;
 
 CREATE TABLE IF NOT EXISTS `mjenispermohonan` (
@@ -905,45 +902,46 @@ CREATE TABLE IF NOT EXISTS `mprofesi` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nama` varchar(50) NOT NULL DEFAULT '0',
   `kode` varchar(10) NOT NULL DEFAULT '',
+  `makssip` tinyint(2) unsigned NOT NULL DEFAULT 1 COMMENT 'Maksimum SIP aktif yg bisa dimiliki',
   `isparent` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4;
 
 DELETE FROM `mprofesi`;
 /*!40000 ALTER TABLE `mprofesi` DISABLE KEYS */;
-INSERT INTO `mprofesi` (`id`, `nama`, `kode`, `isparent`) VALUES
-	(1, 'Dokter', 'dru', 0),
-	(2, 'Dokter Gigi', 'drg', 0),
-	(3, 'Dokter Spesialis', 'drs', 1),
-	(4, 'Dokter Gigi Spesialis', 'dgs', 1),
-	(5, 'PPDS (Program Pendidikan Dokter Spesialis)', 'pdr', 0),
-	(6, 'PPDGS (Program Pendidikan Dokter Gig Spesialis)', 'pdg', 0),
-	(7, 'Dokter Internship', 'dri', 0),
-	(8, 'Psikologi Klinis', 'psi', 0),
-	(9, 'Perawat', 'prw', 0),
-	(10, 'Bidan', 'bid', 0),
-	(11, 'Apoteker', 'apt', 0),
-	(12, 'Tenaga Teknis Kefarmasian', 'ttk', 0),
-	(13, 'Sanitasi Lingkungan', 'san', 0),
-	(14, 'Nutrisionis/Dietisien', 'nut', 0),
-	(15, 'Fisioterapis', 'fis', 0),
-	(16, 'Okupasi Terapis', 'oku', 0),
-	(17, 'Terapis Wicara', 'trw', 0),
-	(18, 'Akupunktur Terapis', 'aku', 0),
-	(19, 'Perekam Medis dan Informasi Kesehatan', 'rm', 0),
-	(20, 'Teknik Kardiovaskuler', 'kar', 0),
-	(21, 'Refraksionis Optisien/Optometris', 'ref', 0),
-	(22, 'Teknisi Gigi', 'tkg', 0),
-	(23, 'Penata Anestesi', 'ane', 0),
-	(24, 'Terapis Gigi dan Mulut', 'tgm', 0),
-	(25, 'Radiografer', 'rad', 0),
-	(26, 'Elektromedis', 'elt', 0),
-	(27, 'Ahli Teknologi Laboratorium Medik', 'lab', 0),
-	(28, 'Ortotik Prostetik', 'ort', 0),
-	(29, 'Tenaga Kesehata Tradisional', 'bat', 0),
-	(30, 'Tenaga Kesehata Tradisional Jamu', 'baj', 0),
-	(31, 'Tenaga Kesehata Tradisional Interkontinental', 'bai', 0),
-	(32, 'Penyehat Tradisional', 'tra', 0);
+INSERT INTO `mprofesi` (`id`, `nama`, `kode`, `makssip`, `isparent`) VALUES
+	(1, 'Dokter', 'dru', 3, 0),
+	(2, 'Dokter Gigi', 'drg', 3, 0),
+	(3, 'Dokter Spesialis', 'drs', 3, 1),
+	(4, 'Dokter Gigi Spesialis', 'dgs', 3, 1),
+	(5, 'PPDS (Program Pendidikan Dokter Spesialis)', 'pdr', 1, 0),
+	(6, 'PPDGS (Program Pendidikan Dokter Gig Spesialis)', 'pdg', 1, 0),
+	(7, 'Dokter Internship', 'dri', 1, 0),
+	(8, 'Psikologi Klinis', 'psi', 1, 0),
+	(9, 'Perawat', 'prw', 1, 0),
+	(10, 'Bidan', 'bid', 1, 0),
+	(11, 'Apoteker', 'apt', 1, 0),
+	(12, 'Tenaga Teknis Kefarmasian', 'ttk', 1, 0),
+	(13, 'Sanitasi Lingkungan', 'san', 1, 0),
+	(14, 'Nutrisionis/Dietisien', 'nut', 1, 0),
+	(15, 'Fisioterapis', 'fis', 1, 0),
+	(16, 'Okupasi Terapis', 'oku', 1, 0),
+	(17, 'Terapis Wicara', 'trw', 1, 0),
+	(18, 'Akupunktur Terapis', 'aku', 1, 0),
+	(19, 'Perekam Medis dan Informasi Kesehatan', 'rm', 1, 0),
+	(20, 'Teknik Kardiovaskuler', 'kar', 1, 0),
+	(21, 'Refraksionis Optisien/Optometris', 'ref', 1, 0),
+	(22, 'Teknisi Gigi', 'tkg', 1, 0),
+	(23, 'Penata Anestesi', 'ane', 1, 0),
+	(24, 'Terapis Gigi dan Mulut', 'tgm', 1, 0),
+	(25, 'Radiografer', 'rad', 1, 0),
+	(26, 'Elektromedis', 'elt', 1, 0),
+	(27, 'Ahli Teknologi Laboratorium Medik', 'lab', 1, 0),
+	(28, 'Ortotik Prostetik', 'ort', 1, 0),
+	(29, 'Tenaga Kesehata Tradisional', 'bat', 1, 0),
+	(30, 'Tenaga Kesehata Tradisional Jamu', 'baj', 1, 0),
+	(31, 'Tenaga Kesehata Tradisional Interkontinental', 'bai', 1, 0),
+	(32, 'Penyehat Tradisional', 'tra', 1, 0);
 /*!40000 ALTER TABLE `mprofesi` ENABLE KEYS */;
 
 CREATE TABLE IF NOT EXISTS `mspesialisasi` (
@@ -1070,8 +1068,8 @@ DELETE FROM `sip`;
 /*!40000 ALTER TABLE `sip` DISABLE KEYS */;
 INSERT INTO `sip` (`id`, `instance`, `iterator`, `idstr`, `idpegawai`, `nomorregis`, `idprofesi`, `idspesialisasi`, `nomorstr`, `expirystr`, `nomorrekom`, `nomoronline`, `nomor`, `idc`, `doc`, `idm`, `dom`, `idfaskes`, `saranapraktik`, `namafaskes`, `alamatfaskes`, `jadwalpraktik`, `jenispermohonan`, `idjenispermohonan`, `jabatan`, `tglonline`, `tglmasukdinas`, `tglverif`, `tgldeactive`, `isactive`) VALUES
 	(7, 1, 1, 4, 14, 0003, 1, NULL, '32 1 1 100 3 19 095497', '2022-06-18', '10 29  31 2 9310', '89 / I / 23 / 19 / 06 / 2022', '503.446 / 0001 / 0003 / I / IP.DU / 436.7.2 / 2022', 1, '2022-06-19 14:42:29', 1, '2022-06-22 09:44:55', 67, 'PUSKESMAS', 'PUSKESMAS Dr. SOETOMO', 'Jl. Pandegiling No. 223 A Surabaya', 'SENIN-JUMAT 08.00-12.00\r\nSABTU 15.00-17.00', 'baru', NULL, 'Direktur Perjajanan', '2022-06-19', '2022-06-19', '2022-06-19', '2022-06-19', 0),
-	(8, 1, 2, 4, 11, 0003, 1, NULL, '32 1 1 100 3 19 095497', '2022-06-18', NULL, '90 / I / 23 / 19 / 06 / 2022', '503.347 / 0001 / 0003 / I / IP.DU / 436.7.2 / 2022', 1, '2022-06-19 14:53:43', 1, '2022-06-22 09:44:59', 59, 'PUSKESMAS', 'PUSKESMAS ASEMROWO', 'Jl. Asemraya No. 8 Surabaya', NULL, 'cabutpindah', NULL, NULL, '2022-06-19', '2022-06-19', '2022-06-19', NULL, 1),
-	(10, 2, 1, 4, 14, 0003, 1, NULL, '32 1 1 100 3 19 095497', '2022-06-18', NULL, '89 / II / 2 / 19 / 06 / 2022', '503.446 / 0001 / 0003 / II / IP.DU / 436.7.2 / 2022', 1, '2022-06-19 14:56:29', 1, '2022-06-22 09:45:01', 60, 'PUSKESMAS', 'PUSKESMAS BALAS KLUMPRIK', 'Jl. Raya Balas Klumprik Surabaya', NULL, 'baru', NULL, NULL, '2022-06-19', '2022-06-19', '2022-06-19', NULL, 1),
+	(8, 1, 2, 4, 14, 0003, 1, NULL, '32 1 1 100 3 19 095497', '2022-06-18', NULL, '90 / I / 23 / 19 / 06 / 2022', '503.347 / 0001 / 0003 / I / IP.DU / 436.7.2 / 2022', 1, '2022-06-19 14:53:43', 1, '2022-06-22 16:07:11', 59, 'PUSKESMAS', 'PUSKESMAS ASEMROWO', 'Jl. Asemraya No. 8 Surabaya', NULL, 'cabutpindah', 1, NULL, '2022-06-19', '2022-06-19', '2022-06-19', NULL, 1),
+	(10, 2, 1, 4, 14, 0003, 1, NULL, '32 1 1 100 3 19 095497', '2022-06-18', NULL, '89 / II / 2 / 19 / 06 / 2022', '503.446 / 0001 / 0003 / II / IP.DU / 436.7.2 / 2022', 1, '2022-06-19 14:56:29', 1, '2022-06-22 14:17:36', 60, 'PUSKESMAS', 'PUSKESMAS BALAS KLUMPRIK', 'Jl. Raya Balas Klumprik Surabaya', NULL, 'baru', 4, NULL, '2022-06-19', '2022-06-19', '2022-06-19', NULL, 1),
 	(16, 1, 1, 6, 11, 0001, 1, NULL, '123456789', '2022-06-30', NULL, NULL, '503.446 / 0001 / 0001 / I / IP.DU / 436.7.2 / 2022', 1, '2022-06-22 08:04:42', 1, '2022-06-22 08:09:47', 59, 'PUSKESMAS', 'PUSKESMAS ASEMROWO', 'Jl. Asemraya No. 8 Surabaya', NULL, 'baru', NULL, NULL, '2022-06-22', '2022-06-22', '2022-06-22', NULL, 1),
 	(17, 2, 1, 6, 11, 0001, 1, NULL, '123456789', '2022-06-30', NULL, '90 / I / 23 / 19 / 06 / 2022', '503.447 / 12 / 0001 / II / IP.DU / 436.7.2 / 2022', 1, '2022-06-22 08:13:47', 1, '2022-06-22 08:56:57', 69, 'PUSKESMAS', 'PUSKESMAS DUPAK', 'Jl. Dupak Bangunrejo Gg. Poli No. 6 Surabaya', NULL, 'baru', NULL, NULL, '2022-06-22', '2022-06-22', '2022-06-22', NULL, 1);
 /*!40000 ALTER TABLE `sip` ENABLE KEYS */;
@@ -1214,7 +1212,7 @@ FROM `mpegawai`
  LEFT JOIN `sip` on `sip`.`idstr` = `str`.`id` AND 
  	sip.id = ( SELECT MAX(id) as maxid  FROM `sip` WHERE `isactive` = 1 and `idpegawai` = `mpegawai`.`id` )
 ) AS aa) AS nn ON tt.status = nn.validstatus
-GROUP BY tt.status; ;
+GROUP BY tt.status, tt.jenis ;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
