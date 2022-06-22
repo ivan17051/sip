@@ -151,7 +151,7 @@ active
                                     </a>
                                 </li>
                                 @if(isset($str))
-                                @for($i=0;$i<=count($sips);$i++)
+                                @for($i=0;$i<=min($makssip-1, count($sips));$i++)
                                     @if($str->isactive OR  (!$str->isactive AND isset($sips[$i])))
                                     <li class="nav-item">
                                         <a class="nav-link" href="#sip{{$i+1}}" data-toggle="tab">
@@ -173,7 +173,7 @@ active
                             @include('form.str')
                         </div>
                         @if(isset($str))
-                        @for($i=0;$i<=count($sips);$i++)
+                        @for($i=0;$i<=min($makssip-1, count($sips));$i++)
                         @if($str->isactive OR  (!$str->isactive AND isset($sips[$i])))
                         <div class="tab-pane" id="sip{{$i+1}}">
                             @include('form.sip', ['index'=> $i ])

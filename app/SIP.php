@@ -47,4 +47,9 @@ class SIP extends Model
     {
         return $this->belongsTo(Pegawai::class, 'idpegawai');
     }
+
+    public function profesirelation()
+    {
+        return $this->belongsTo(Profesi::class, 'idprofesi');
+    }
 }

@@ -56,4 +56,9 @@ class Pegawai extends Model
     public function spesialisasiTable(){
         return $this->belongsTo(Spesialisasi::class, 'idspesialisasi');
     }
+
+    public function profesirelation()
+    {
+        return $this->belongsTo(Profesi::class, 'idprofesi');
+    }
 }

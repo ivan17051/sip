@@ -40,7 +40,13 @@ class SIPController extends Controller
             
             $str = STR::select('id','nomor','expiry','idpegawai','nomorregis','idprofesi','idspesialisasi',)->find($input['idstr']);
             $faskes = Faskes::where('id',$input['idfaskes'])->with('kategori')->first();
-            $latestsip = SIP::where('idstr', $input['idstr'])->where('instance', $input['instance'])->orderBy('iterator', 'DESC')->first();
+            $latestsip = SIP::where('idstr', $input['idstr'])->where('instance', $input['instance'])
+                ->with('profesirelation')->orderBy('iterator', 'DESC')->first();
+
+            $totalsip = SIP::where('idstr', $input['idstr'])->where('isactive', 1)->count();
+            if($totalsip > $latestsip->profesirelation->makssip){
+                throw new Exception("SIP lebih dari {$latestsip->profesirelation->makssip}");
+            }
 
             // UNTUK CABUT PINDAH
             if(isset($latestsip)){

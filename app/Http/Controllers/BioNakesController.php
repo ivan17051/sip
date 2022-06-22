@@ -14,10 +14,12 @@ class BioNakesController extends Controller
 {
     public function index(Request $request){
         $idnakes = $request->get('nakes');
-        $d['nakes']= isset($idnakes) ? Pegawai::where('id',$idnakes)->first() : null;
+        $d['nakes']= isset($idnakes) ? Pegawai::where('id',$idnakes)->with('profesirelation')->first() : null;
         $d['urlparam']=null;
+        $d['makssip']=0;
 
         if(isset($d['nakes'])){
+            $d['makssip']=$d['nakes']->profesirelation->makssip;
             $d['str']=STR::where('idpegawai', $idnakes)->orderBy('id','DESC')->first();
             $d['urlparam'] ="?nakes={$idnakes}";
             $d['profesi'] = Profesi::all();
