@@ -172,7 +172,7 @@
                       <tbody>
                         <tr>
                           <td></td>
-                          <td width="35%">
+                          <td width="40%">
                             <table>
                               <tbody>
                                 <tr><td>&nbsp;</td></tr>
@@ -180,20 +180,20 @@
                                   <td class="paddingfont fontCenter paragraf" style="font-size:13px">Surabaya, {{Carbon\Carbon::parse($sip->tglverif)->isoformat('D MMMM Y')}}</td>
                                 </tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">KEPALA DINAS,</td>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">{{strtoupper($kadinkes->jabatan)}},</td>
                                 </tr>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Ibu Nanik</td>
+                                  <td class="paddingfont fontCenter paragraf fontUnderline" style="font-size:13px">{{$kadinkes->nama}}</td>
                                 </tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Pembina Utama Muda</td>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">{{$kadinkes->pangkat}}</td>
                                 </tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">NIP 196502281992032008</td>
+                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">NIP {{$kadinkes->nip}}</td>
                                 </tr>
                               </tbody>
                             </table>

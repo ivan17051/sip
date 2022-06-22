@@ -10,7 +10,48 @@ active
 @endsection
 
 @section('modal')
-
+@if(isset($nakes))
+<div class="modal fade text-left bg-overlay-gray" id="dropdowncetakkitir" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel160" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+        role="document">
+        <div class="modal-content" style="overflow: visible!important;">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" >Cetak Kitir
+                </h5>
+                <button type="button" class="close" data-bs-dismiss="modal"
+                    aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <form class="form-horizontal input-margin-additional" method="GET" target="_blank" >
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="bmd-label force-top">Jenis Permohonan</label>
+                        <select class="selectpicker form-control" data-style="btn btn-outline-primary btn-round" title="Jenis Permohonan" name="idjenispermohonan" data-size="3" required>
+                            @foreach($jenispermohonan as $j)
+                            <option value="{{$j->id}}" >{{$j->nama}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="bmd-label force-top">Staf SDM</label>
+                        <select class="selectpicker form-control" data-style="btn btn-outline-primary btn-round" title="Staf SDM" name="idpejabat" data-size="3" required>
+                            @foreach($staf as $j)
+                            <option value="{{$j->id}}" >{{$j->nama}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-link text-primary">Cetak</button>
+                    <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Tutup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endif
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -214,6 +255,15 @@ active
         }else{
             $('#modal-historisip').modal('show')
         }
+    }
+
+    function cetakKitir(idsip, idjenispermohonan=null){
+        let $modal = $('#dropdowncetakkitir')
+        let $form = $modal.find('form')
+        $form.attr('action',"{{route('cetak.kitir', ['idsip'=>''])}}/"+ idsip)
+        $form.find('[name=idjenispermohonan]').selectpicker('val', idjenispermohonan).change();
+        $form.find('[name=idpejabat]').selectpicker('val', null).change();
+        $modal.modal('show')
     }
     
     $(function(){

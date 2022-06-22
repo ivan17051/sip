@@ -4,17 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SIP;
+use App\Pejabat;
+use App\JenisPermohonan;
 
 class CetakController extends Controller
 {
     public function perstek(Request $request, $idsip){
         $d['sip'] = SIP::where('id',$idsip)->with('pegawai')->first();
         $d['aturan'] = $this->dasarPeraturanPerstek($d['sip']->idprofesi);
+        $d['kadinkes'] = Pejabat::where('jabatan','Kepala Dinas')->first();
         return view('report.perstek', $d);
     }
 
     public function kitir(Request $request, $idsip){
-        return view('report.kitir');
+        $d['sip'] = SIP::where('id',$idsip)->with('pegawai')->first();
+        $d['sip']->idjenispermohonan = $request->input('idjenispermohonan');
+        $d['sip']->save();
+
+        $d['jenispermohonan'] = JenisPermohonan::where('id',$request->input('idjenispermohonan'))->first();
+
+        $d['subkoor'] = Pejabat::where('jabatan','Sub Koordinator')->first();
+        $d['kabid'] = Pejabat::where('jabatan','Kepala Bidang')->first();
+        $d['staf'] = Pejabat::where('id',$request->input('idpejabat'))->first();
+        return view('report.kitir', $d);
     }
 
     public function sip(Request $request, $idsip){

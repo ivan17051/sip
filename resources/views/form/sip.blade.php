@@ -354,7 +354,7 @@
                     </tr>
                     <tr>
                         <td><label>Cetak Kitir</label></td>
-                        <td><a target="_blank" href="{{route('cetak.kitir', ['idsip'=>$sips[$index]['id']])}}" class="btn btn-outline-primary btn-round btn-sm" >Cetak Kitir <i class="material-icons">open_in_new</i></a></td>
+                        <td><button type="button" onclick="cetakKitir({{$sips[$index]['id']}},{{$sips[$index]['idjenispermohonan']}})" class="btn btn-outline-primary btn-round btn-sm" >Cetak Kitir <i class="material-icons">open_in_new</i></button></td>
                     </tr>
                     @endif
                 </tbody>
