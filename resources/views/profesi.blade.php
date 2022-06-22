@@ -276,7 +276,7 @@ active
                   @foreach($profesi as $key=>$unit)
                   <tr>
                     <td>{{$key+1}}</td>
-                    <td>{{$unit->nama}}</td>
+                    <td>{{$unit->nama}} <span class="badge badge-pill badge-info" style="font-size:12px;">{{$unit->total}}</span></td>
                     <td>
                       @if($unit->isparent == 1)
                       <span class="badge badge-pill badge-success">Spesialisasi</span>

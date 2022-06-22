@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
 use App\Profesi;
 use App\Spesialisasi;
@@ -9,7 +10,8 @@ use App\Spesialisasi;
 class ProfesiController extends Controller
 {
     public function index(){
-        $profesi = Profesi::all();
+        $profesi = Profesi::join('vw_agregatnakesbyprofesi', 'mprofesi.id', '=', 'vw_agregatnakesbyprofesi.idprofesi')->get();
+        
         return view('profesi', ['profesi'=>$profesi]);
     }
 
