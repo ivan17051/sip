@@ -54,7 +54,7 @@ class SIPController extends Controller
             $sip->fill([
                 'iterator' => isset($latestsip) ? $latestsip->iterator+1 : 1,
                 'idpegawai' => $str['idpegawai'],
-                'nomorregis' => $str['nomorregis'],
+                'nomorregis' => sprintf("%04d", $str['nomorregis']),
                 'idprofesi' => $str['idprofesi'],
                 'idspesialisasi' => $str['idspesialisasi'],
                 'nomorstr' => $str['nomor'],
@@ -103,7 +103,7 @@ class SIPController extends Controller
             return response()->json(['message'=>'Berhasil Memperbarui Data'], 200);
         }catch(Exception $exception){
             DB::rollBack();
-            return response()->json($exception->getMessage(), 200);
+            return response()->json($exception->getMessage(), 400);
         }
     }
 

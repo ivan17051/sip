@@ -236,12 +236,12 @@
                                 @endphp
                                 <div class="nomorsip-wrapper" data-editable=true data-delimitter=" / " >
                                     <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="7" value="{{$nomors[0]}}" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="5" value="" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input type="text" class="form-control" name="nomor[]" maxlength="4" value="{{sprintf('%04d', $nomors[1])}}" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="3" value="{{$nomors[2]}}" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="5" value="{{$nomors[3]}}" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="7" value="{{$nomors[4]}}" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="4" value="{{$nomors[5]}}" readonly required></span>
+                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="5" value="{{$nomors[1]}}" readonly required></span> / 
+                                    <span class="form-group d-inline-block"><input type="text" class="form-control" name="nomor[]" maxlength="4" value="{{sprintf('%04d', $nomors[2])}}" readonly required></span> / 
+                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="3" value="{{$nomors[3]}}" readonly required></span> / 
+                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="5" value="{{$nomors[4]}}" readonly required></span> / 
+                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="7" value="{{$nomors[5]}}" readonly required></span> / 
+                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="4" value="{{$nomors[6]}}" readonly required></span>
                                 </div>
                             </span>
                         </td>
@@ -500,7 +500,7 @@ $(function(){
     $('#form-update-sip-{{$index}}').submit(async function(e){
         LOADING.show()
         e.preventDefault()
-        let $submitBtn = $(e.submitter)
+        let $submitBtn = $(e.target).find('button[type=submit]')
         let $form = $(e.target)
         let data = my.getFormData($form)
         try {
