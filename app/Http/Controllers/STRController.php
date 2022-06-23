@@ -60,17 +60,14 @@ class STRController extends Controller
             $nakes = Pegawai::findOrFail($input['idpegawai']);
 
             $current = STR::where( 'idpegawai', $nakes->id )
+                        ->where('isactive', 1)
                         ->orderBy('id','DESC')->first();
             
+            // NON AKTIFKAN STR LAMA
             if($current){
                 $current->isactive = false;
                 $current->save();
             }
-
-            // JIKA PERPANJANG SIP SEKALIAN
-            // if(isset($input['isperpanjangsip']) AND $input['isperpanjangsip']){
-
-            // }
 
             $model = new STR();
             $model->fill($input);
@@ -82,6 +79,26 @@ class STRController extends Controller
             $model->idc = $userId;
             $model->idm = $userId;
             $model->save();
+
+            // JIKA PERPANJANG SIP SEKALIAN
+            if($current AND isset($input['isperpanjangsip']) AND $input['isperpanjangsip']){
+                $sips=SIP::where('idstr', $current->id)->where('isactive', 1)->get();
+
+                foreach ($sips as $sip) {
+                    $newSIP = $sip->replicate();
+                    $newSIP->fill([
+                        'idstr' => $model->id,
+                        'nomorstr' => $model->nomor,
+                        'expirystr' => $model->expiry,
+                        'iterator' => 1,
+                        'jenispermohonan' => 'perpanjangan',
+                        'idc'=> $userId,
+                        'idm'=> $userId,
+                    ]);
+                    $newSIPs[] = $newSIP->toArray();
+                }
+                SIP::insert($newSIPs);
+            }
             DB::commit();
             $this->flashSuccess('Data Berhasil Disimpan');
             return back();

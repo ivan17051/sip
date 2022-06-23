@@ -219,6 +219,9 @@
                                 case 'cabutpindah':
                                     echo 'Cabut Pindah';
                                     break;
+                                case 'perpanjangan':
+                                    echo 'Perpanjangan';
+                                    break;
                             }
                             @endphp</td>
                     </tr>
