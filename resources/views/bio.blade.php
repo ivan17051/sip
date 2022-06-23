@@ -217,11 +217,13 @@ active
         }
     }
 
-    async function openHistoriSTR(){
+    async function openHistoriSTR(idstr=null){
         if(!$('#modal-historistr').length){
             LOADING.show();
             try {
-                let res = await my.request.get("{{route('raw.historistr').$urlparam}}")
+                let additionalParam = ''
+                if(idstr) additionalParam+='&idstr='+idstr
+                let res = await my.request.get("{{route('raw.historistr').$urlparam}}"+additionalParam)
                 let $modal = $($('#modal-template').html())
                 $modal.attr('id','modal-historistr')
                 $modal.find('.modal-title').text('Histori STR')
@@ -237,24 +239,22 @@ active
         }
     }
 
-    async function openHistoriSIP(index){
-        // if(!$('#modal-historisip').length){
-            LOADING.show();
-            try {
-                let res = await my.request.get("{{route('raw.historisip', ['index'=>''])}}/"+index+"{{$urlparam}}")
-                let $modal = $($('#modal-template').html())
-                $modal.attr('id','modal-historisip')
-                $modal.find('.modal-title').text('Histori SIP')
-                $modal.find('.modal-body').append(res)
-                $('body').prepend($modal);
-                $modal.modal('show')
-            } catch (err) {
-                console.log(err)
-            }
-            LOADING.hide();
-        // }else{
-        //     $('#modal-historisip').modal('show')
-        // }
+    async function openHistoriSIP(index, idstr=null){
+        LOADING.show();
+        try {
+            let additionalParam = ''
+            if(idstr) additionalParam+='&idstr='+idstr
+            let res = await my.request.get("{{route('raw.historisip', ['index'=>''])}}/"+index+"{{$urlparam}}"+additionalParam)
+            let $modal = $($('#modal-template').html())
+            $modal.attr('id','modal-historisip')
+            $modal.find('.modal-title').text('Histori SIP')
+            $modal.find('.modal-body').append(res)
+            $('body').prepend($modal);
+            $modal.modal('show')
+        } catch (err) {
+            console.log(err)
+        }
+        LOADING.hide();
     }
 
     function cetakKitir(idsip, idjenispermohonan=null){

@@ -1,6 +1,6 @@
 <ul class="timeline timeline-simple">
     @foreach($str as $key=>$unit)
-    <li class="timeline-inverted @if($key==0) active @endif">
+    <li class="timeline-inverted @if($unit->id==$idstr) active @endif">
         <div class="timeline-badge primary">
             {{$key+1}}
         </div>
@@ -11,7 +11,7 @@
                         <i class="material-icons">more_horiz</i>
                     </a>
                     <div class="dropdown-menu ">
-                        <a class="dropdown-item" href="#">Tampilkan</a>
+                        <a class="dropdown-item" href="{{route('bio').$urlparam.'&idstrlawas='.$unit->id}}">Tampilkan</a>
                     </div>
                 </div>
                 <h5><strong>{{$unit->since}} - {{$unit->expiry}}</strong></h5>

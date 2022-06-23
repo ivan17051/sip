@@ -6,14 +6,14 @@
         </div>
         <div class="timeline-panel">
             <div class="timeline-body">
-                <div class="float-right tampilkan-wrapper">
+                <!-- <div class="float-right tampilkan-wrapper">
                     <a class="nav-link p-0" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="material-icons">more_horiz</i>
                     </a>
                     <div class="dropdown-menu ">
                         <a class="dropdown-item" href="#">Tampilkan</a>
                     </div>
-                </div>
+                </div> -->
                 <h5><strong>{{$unit->tglmasukdinas}}</strong></h5>
                 <p>
                     <span><strong>SIP {{strtoupper($unit->jenispermohonan)}}</strong><br> 

@@ -144,7 +144,7 @@
                     <button type="button" class="btn btn-primary btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(1)">
                         <i class="material-icons">edit_note</i>
                     </button>
-                    <button  type="button" class="btn btn-primary btn-round btn-fab" onclick="openHistoriSTR()">
+                    <button  type="button" class="btn btn-primary btn-round btn-fab" onclick="openHistoriSTR({{$str->id}})">
                         <i class="material-icons">pending_actions</i>
                     </button>
                 </div>
@@ -160,10 +160,12 @@
         </div>
     </div>
 </form>
+@if($str->isactive)
 <div class="btn-selengkapnya-wrapper d-absolute w-100 text-center">
     <button type="button" class="btn btn-primary btn-selengkapnya" data-toggle="modal" data-target="#modal-str" ><i
             class="material-icons">priority_high</i> TINDAKAN PADA STR</button>
 </div>
+@endif
 @else
 <div class="w-100 text-center">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-str"><i
