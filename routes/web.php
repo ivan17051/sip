@@ -53,8 +53,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cetak/kitir/{idsip}', 'CetakController@kitir')->name('cetak.kitir');
     Route::get('/cetak/sip/{idsip}', 'CetakController@sip')->name('cetak.sip');
     
-    Route::put('/profil/update', 'ProfileController@update')->middleware('auth')->name('profil.update');
-    Route::post('/profil/upload', 'ProfileController@upload')->name('profil.upload');
-    Route::delete('/profil/delete', 'ProfileController@deleteFoto')->name('profil.hapus');
+    Route::put('/profil/update', 'PegawaiController@update')->middleware('auth')->name('profil.update');
+    Route::post('/profil/upload', 'PegawaiController@upload')->name('profil.upload');
+    Route::delete('/profil/delete/{idpegawai}', 'PegawaiController@deleteFoto')->name('profil.hapus');
 
 });

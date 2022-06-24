@@ -102,14 +102,14 @@ active
                                     <div class="card mb-xl-0 mt-1">
                                         <div class="card-body text-center">
                                             <div style="height:10rem;width:10rem;margin: auto;overflow: hidden;position: relative;" class=" rounded-circle">
-                                                <img class="img-account-profile profile-pict mb-2" src="{{ isset($profil->foto) ? $profil->foto : asset('public/img/logo.png')}}" alt=""
-                                                    style="position:absolute;top:0;left:-10%;">
+                                                <img class="img-account-profile profile-pict mb-2" src="{{ isset($nakes->foto) ? $nakes->foto : asset('public/img/logo.png')}}" alt=""
+                                                    style="position:absolute;top:0;left:0;width:10rem;">
                                             </div>
-                                            @if(isset($profil->foto))
-                                            <form action="{{route('profil.hapus')}}" method="post">
+                                            @if(isset($nakes->foto))
+                                            <form action="{{route('profil.hapus', ['id'=>$nakes->id])}}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-circle btn-danger" style="position: relative; top: -150px; right: -60px"><i class="fas fa-times"></i></button>
+                                                <button type="submit" class="btn btn-sm btn-round btn-fab btn-danger" style="position: relative; top: -150px; right: -60px"><i class="material-icons">close</i><div class="ripple-container"></div></button>
                                             </form>
                                             @endif
                                             <button class="btn btn-primary" type="button" id="trigger-photo">Upload Foto</button>
@@ -299,12 +299,13 @@ active
         try {
             var formData = new FormData();
             formData.append('_token', "{{ csrf_token() }}");
+            formData.append('idpegawai', "{{$nakes->id}}");
             var newfile = await my.noMoreBigFile(file);
             formData.append('file', newfile);
             const res = await myRequest.upload( "{{route('profil.upload')}}" , formData);
             window.location.reload();
         } catch (err) {
-            console.log('ayee');
+            console.log('ayee'+err);
             myAlert('Terjadi kesalahan, pastikan file berupa gambar.');
         }
     };

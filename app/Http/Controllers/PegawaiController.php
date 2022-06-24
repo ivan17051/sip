@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Pegawai;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Storage;
+
 
 class PegawaiController extends Controller
 {
-    public function show(){
-        $id = Auth::user()->id;
-        $profil = Profile::where('id_user', $id)->first();
+    // public function show(){
+    //     $id = Auth::user()->id;
+    //     $profil = Pegawai::where('id_user', $id)->first();
         
-        return view('profil.profil', ['profil'=>$profil]);
-    }
+    //     return view('profil.profil', ['profil'=>$profil]);
+    // }
     /**
      * Update the specified resource in storage.
      *
@@ -22,7 +28,7 @@ class PegawaiController extends Controller
     public function update(Request $request)
     {
         $user= Auth::user();
-        $profil = \App\Profile::firstOrNew([
+        $profil = \App\Pegawai::firstOrNew([
             'id_user' => $user->id,
         ]);
 
@@ -49,9 +55,8 @@ class PegawaiController extends Controller
 
     public function upload(Request $request)
     {
-        $user= Auth::user();
-        $profil = \App\Profile::firstOrNew([
-            'id_user' => $user->id,
+        $profil = \App\Pegawai::firstOrNew([
+            'id' => $request->idpegawai,
         ]);
 
         $validator = Validator::make($request->all(), [
@@ -67,7 +72,7 @@ class PegawaiController extends Controller
         preg_match($pattern, $mime, $matches);
         $mime = $matches[0];
 
-        $filename = $user->id.'.'.$mime;
+        $filename = $request->idpegawai.'.'.$mime;
         $path = Storage::putFileAs(
             'photos/',
             $request->file('file'),
@@ -85,13 +90,12 @@ class PegawaiController extends Controller
         return back()->with('success', 'Data Berhasil Diubah');
     }
 
-    public function deleteFoto(){
-        $user = Auth::user();
-        $profil = Profile::where('id_user', $user->id)->first();
+    public function deleteFoto($idpegawai){
+        $pegawai = Pegawai::where('id', $idpegawai)->first();
+        Storage::delete($pegawai->foto);
+        $pegawai->fill(['foto'=>null]);
 
-        $profil->fill(['foto'=>null]);
-
-        $profil->save();
+        $pegawai->save();
 
         return back()->with('success', 'Foto Berhasil Dihapus');
     }

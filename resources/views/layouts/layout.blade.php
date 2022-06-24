@@ -252,6 +252,65 @@ $role = explode(', ', $role);
         LOADING.hide();
       }, 300);
     })
+
+    const myRequest = {
+      get: function (url) {
+        return $.ajax({
+          url: url,
+          type: 'GET',
+        });
+      },
+      post: function (url, data) {
+        data["_token"] = "{{ csrf_token() }}"
+        return $.ajax({
+          url: url,
+          method: 'POST',
+          data: data,
+        });
+      },
+      delete: function (url) {
+        const data = { "_token": "{{ csrf_token() }}" }
+        return $.ajax({
+          url: url,
+          method: 'DELETE',
+          data: data,
+        });
+      },
+      put: function (url, data) {
+        data["_token"] = "{{ csrf_token() }}"
+        return $.ajax({
+          url: url,
+          method: 'PUT',
+          data: data,
+        });
+      },
+      upload: function (url, formdata) {
+        console.log(url)
+        // return
+        return $.ajax({
+          xhr: function () {
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener('progress', function (e) {
+              if (e.lengthComputable) {
+                // console.log('Bytes Loaded : ' + e.loaded);
+                // console.log('Total Size : ' + e.total);
+                // console.log('Persen : ' + (e.loaded / e.total));
+
+                // var percent = Math.round((e.loaded / e.total) * 100);
+
+                // $('#progressBar').attr('aria-valuenow', percent).css('width', percent + '%').text(percent + '%');
+              }
+            });
+            return xhr;
+          },
+          url: url,
+          method: 'POST',
+          data: formdata,
+          contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+          processData: false, // NEEDED, DON'T OMIT THIS
+        });
+      },
+    }
   </script>
 </body>
 
