@@ -29,6 +29,7 @@ class STRRequest extends FormRequest
             "nomor"=> "required_without:id|string",
             "since"=> "required_without:id|date",
             "expiry"=> "required_without:id|date",
+            "isperpanjangsip"=>"nullable|integer",
             // "tanggal"=> "required_without:id|date",
 
         ];

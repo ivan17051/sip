@@ -11,6 +11,7 @@ use Datatables;
 class DashboardController extends Controller
 {
     public function index(){
-        return view('dashboard');
+        $d['stats'] = DB::table('vw_agregatnakesbystatussip')->get()->keyBy('status');
+        return view('dashboard', $d);
     }
 }

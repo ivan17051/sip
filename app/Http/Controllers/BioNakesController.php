@@ -13,12 +13,21 @@ use App\JenisPermohonan;
 class BioNakesController extends Controller
 {
     public function index(Request $request){
+        $idstrlawas = $request->get('idstrlawas');
+
         $idnakes = $request->get('nakes');
-        $d['nakes']= isset($idnakes) ? Pegawai::where('id',$idnakes)->first() : null;
+        $d['nakes']= isset($idnakes) ? Pegawai::where('id',$idnakes)->with('profesirelation')->first() : null;
         $d['urlparam']=null;
+        $d['makssip']=0;
 
         if(isset($d['nakes'])){
-            $d['str']=STR::where('idpegawai', $idnakes)->orderBy('id','DESC')->first();
+            $d['makssip']=$d['nakes']->profesirelation->makssip;
+
+            if(isset($idstrlawas)){
+                $d['str']=STR::where('idpegawai', $idnakes)->where('id', $idstrlawas)->first();
+            }else{
+                $d['str']=STR::where('idpegawai', $idnakes)->orderBy('id','DESC')->first();
+            }
             $d['urlparam'] ="?nakes={$idnakes}";
             $d['profesi'] = Profesi::all();
             $d['staf'] = Pejabat::where('jabatan','Staf')->get();
@@ -43,16 +52,21 @@ class BioNakesController extends Controller
 
     public function rawHistoristr(Request $request){
         $idnakes = $request->get('nakes');
-        $str = STR::where('idpegawai', $idnakes)->with('profesi')->orderBy('since', 'desc')
-            ->select('idprofesi', 'nomor', 'since', 'expiry')->get();
-        
-        return view('raw.historistr', ['str'=>$str]);
+        $idstr = $request->get('idstr');
+        $str = STR::where('idpegawai', $idnakes)->with('profesi')->orderBy('id', 'desc')
+            ->select('id','idprofesi', 'nomor', 'since', 'expiry')->get();        
+        // SELECTED ID STR YANG DITAMPILKAN PADA HISTORI
+        if(!isset($idstr) AND $str->isNotEmpty()) $idstr=$str[0]->id;
+        $urlparam ="?nakes={$idnakes}";
+        return view('raw.historistr', ['str'=>$str, 'idstr'=>$idstr, 'urlparam'=>$urlparam]);
     }
 
     public function rawHistorisip(Request $request, $index){
         $idnakes = $request->get('nakes');
+        $idstr = $request->get('idstr');
         $sip = SIP::where('idpegawai', $idnakes)->where('instance', $index)
-            ->orderBy('tglmasukdinas', 'desc')->get();
+            ->where('idstr',$idstr)
+            ->orderBy('id', 'desc')->get();
 
         return view('raw.historisip', ['sip'=>$sip]);
     }

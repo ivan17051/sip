@@ -17,7 +17,7 @@ active
           <div class="card-header card-header-warning card-header-icon pt-3 pb-3">
             <span class="float-left"><i class="material-icons">group</i></span>
             <p class="card-category text-white "><strong>Akan Expired</strong></p>
-            <h3 class="card-title text-white font-weight-bold"><strong>184</strong></h3>
+            <h3 class="card-title text-white font-weight-bold"><strong>{{$stats['0']->total}}</strong></h3>
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@ active
           <div class="card-header card-header-warning card-header-icon pt-3 pb-3">
             <span class="float-left"><i class="material-icons">group_off</i></span>
             <p class="card-category text-white "><strong>Expired</strong></p>
-            <h3 class="card-title text-white font-weight-bold"><strong>184</strong></h3>
+            <h3 class="card-title text-white font-weight-bold"><strong>{{$stats['-1']->total}}</strong></h3>
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@ active
           <div class="card-header card-header-warning card-header-icon pt-3 pb-3">
             <span class="float-left"><i class="material-icons">supervisor_account</i></span>
             <p class="card-category text-white "><strong>Belum Memiliki STR</strong></p>
-            <h3 class="card-title text-white font-weight-bold"><strong>184</strong></h3>
+            <h3 class="card-title text-white font-weight-bold"><strong>{{$stats['-2']->total}}</strong></h3>
           </div>
         </div>
       </div>

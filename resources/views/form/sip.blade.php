@@ -206,6 +206,12 @@
         <div class="col">
             <table class="table table-2-col">
                 <tbody>
+                    @if(!$str->isactive)
+                    <tr>
+                        <td><label>Status</label></td>
+                        <td><strong class="text-danger">SIP Lawas / inactive</strong></td>
+                    </tr>
+                    @endif
                     <tr>
                         <td><label>Jenis Permohonan</label></td>
                         <td>@php 
@@ -218,6 +224,9 @@
                                     break;
                                 case 'cabutpindah':
                                     echo 'Cabut Pindah';
+                                    break;
+                                case 'perpanjangan':
+                                    echo 'Perpanjangan';
                                     break;
                             }
                             @endphp</td>
@@ -366,7 +375,7 @@
                     <button type="button" class="btn btn-primary btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(1)">
                         <i class="material-icons">edit_note</i>
                     </button>
-                    <button  type="button" class="btn btn-primary btn-round btn-fab" onclick="openHistoriSIP({{$sips[$index]['instance']}})">
+                    <button  type="button" class="btn btn-primary btn-round btn-fab" onclick="openHistoriSIP({{$sips[$index]['instance']}}, {{$sips[$index]['idstr']}})">
                         <i class="material-icons">pending_actions</i>
                     </button>
                 </div>
@@ -382,7 +391,7 @@
         </div>
     </div>
 </form>
-@if($str->isactive OR  (!$str->isactive AND isset($sips[$index])))
+@if($str->isactive)
 <div class="btn-selengkapnya-wrapper d-absolute w-100 text-center">
     <button type="button" class="btn btn-primary btn-selengkapnya" data-toggle="modal" data-target="#modal-sip{{$index}}"><i
             class="material-icons">priority_high</i> TINDAKAN PERIZINAN</button>
