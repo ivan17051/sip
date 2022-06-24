@@ -27,7 +27,7 @@ active
                         <option value="1">Valid</option>
                         <option value="0">Akan Expired</option>
                         <option value="-1">Expired</option>
-                        <option value="-2">Belum memiliki SIP</option>
+                        <!-- <option value="-2">Belum memiliki SIP</option> -->
                     </select>
                 </div>
                 <div class="h-100 d-inline-block">
@@ -84,9 +84,10 @@ active
             columns: [
                 { data:'nama', title:'Nama'},
                 { data:'nomorsip', title:'Nomor SIP'},
-                { data:'expiry', title:'Tanggal Exp.',  render: function(e,d,row){
+                { data:'profesi', title:'Profesi'},
+                { data:'expirystr', title:'Tanggal Exp.',  render: function(e,d,row){
                     if(!e) return '';
-                    return moment(row['expiry']).format('L');} 
+                    return moment(e).format('L');} 
                 },
                 { data:'validstatus', title:'Status', render: function(e,d,row){
                     switch (parseInt(e)) {

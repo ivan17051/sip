@@ -22,7 +22,7 @@ class STRController extends Controller
 
     public function data(Request $request){
 
-        $subquery = Pegawai::select('mpegawai.id','nik','nama','sip.expirystr','str.nomor as nomorstr','sip.nomor as nomorsip', DB::raw('@expirydiff := DATEDIFF(expiry, current_date) as expirydiff'),
+        $subquery = Pegawai::select('mpegawai.id','nik','nama','sip.expirystr', 'mpegawai.profesi', 'str.nomor as nomorstr','sip.nomor as nomorsip', DB::raw('@expirydiff := DATEDIFF(expiry, current_date) as expirydiff'),
             DB::raw("IF(sip.nomor IS NULL, -2, IF(@expirydiff<0, -1, IF(@expirydiff<60, 0, 1)) )  as validstatus")
         )
             ->leftJoin('str', function($q){
@@ -36,7 +36,8 @@ class STRController extends Controller
             });
         
         $data = DB::table( DB::raw("({$subquery->toSql()}) as sub") )
-            ->mergeBindings($subquery->getQuery());
+            ->mergeBindings($subquery->getQuery())
+            ->where('validstatus','<>',-2);
 
         $datatable = Datatables::of($data);
         return $datatable->addIndexColumn()->make(true);
