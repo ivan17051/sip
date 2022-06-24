@@ -96,7 +96,7 @@ active
                         <div class="col-xs-12 col-md-2 text-center"> 
                             <div class="profil-image-wrapper d-inline-block">
                                 <div class="">
-                                    <img src="{{asset('public/img/faces/marc.jpg')}}" alt="">
+                                    <img src="{{asset('public/img/person.png')}}" alt="">
                                 </div>
                             </div>
                         </div>
