@@ -392,12 +392,12 @@ active
               { data:'id', title:'ID', visible: false},
               { data:'nik', title:'NIK'},
               { data:'nama', title:'Nama'},
+              { data:'profesi', title:'Profesi'},
               { data:'jeniskelamin', title:'JenisKelamin', visible: false},
               { data:'tempatlahir', title:'TempatLahir'},
               { data:'tanggallahir', title:'TanggalLahir',render: function(e, d, row){
                 return new Date(e).toLocaleDateString('id',{ day: 'numeric', month: 'long',year: 'numeric'})
               }},
-              { data:'alamatktp', title:'Alamat'},
               { data:'nohp', title:'No. HP'},
               { data:'action', title:'Aksi', width:'10%'},
           ],
