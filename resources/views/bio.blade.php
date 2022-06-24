@@ -93,14 +93,32 @@ active
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-xs-12 col-md-2 text-center"> 
-                            <div class="profil-image-wrapper d-inline-block">
-                                <div class="">
-                                    <img src="{{asset('public/img/faces/marc.jpg')}}" alt="">
-                                </div>
-                            </div>
+                        <div class="col-lg-3 text-center"> 
+                            <!-- <div class="profil-image-wrapper d-inline-block"> -->
+                                <form action="{{route('profil.upload')}}" method="post" enctype="multipart/form-data" id="photo-form" style="display: none;">
+                                    @csrf
+                                    <input type="file" id="photo" name="file" hidden>
+                                </form>
+                                    <div class="card mb-xl-0 mt-1">
+                                        <div class="card-body text-center">
+                                            <div style="height:10rem;width:10rem;margin: auto;overflow: hidden;position: relative;" class=" rounded-circle">
+                                                <img class="img-account-profile profile-pict mb-2" src="{{ isset($profil->foto) ? $profil->foto : asset('public/img/logo.png')}}" alt=""
+                                                    style="position:absolute;top:0;left:-10%;">
+                                            </div>
+                                            @if(isset($profil->foto))
+                                            <form action="{{route('profil.hapus')}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-circle btn-danger" style="position: relative; top: -150px; right: -60px"><i class="fas fa-times"></i></button>
+                                            </form>
+                                            @endif
+                                            <button class="btn btn-primary" type="button" id="trigger-photo">Upload Foto</button>
+                                        </div>
+                                    </div>
+                                
+                            <!-- </div> -->
                         </div>
-                        <div class="col">
+                        <div class="col mt-3">
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">Nama</label>
                                 <div class="col-sm-10">
@@ -270,5 +288,25 @@ active
         $('.myform').myFormAndToggle()
         my.initFormExtendedDatetimepickers()
     })
+
+    $("#trigger-photo").click(function(){
+        $("#photo").click();
+    });
+
+    document.getElementById("photo").onchange = async function() {
+        file=$(this)[0].files[0];
+
+        try {
+            var formData = new FormData();
+            formData.append('_token', "{{ csrf_token() }}");
+            var newfile = await my.noMoreBigFile(file);
+            formData.append('file', newfile);
+            const res = await myRequest.upload( "{{route('profil.upload')}}" , formData);
+            window.location.reload();
+        } catch (err) {
+            console.log('ayee');
+            myAlert('Terjadi kesalahan, pastikan file berupa gambar.');
+        }
+    };
 </script>
 @endsection
