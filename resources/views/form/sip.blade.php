@@ -240,19 +240,8 @@
                         <td>
                             <span data-text="true"></span>
                             <span>
-                                @php
-                                $nomors = explode(' / ', $sips[$index]['nomor']);
-                                @endphp
-                                <div class="nomorsip-wrapper" data-editable=true data-delimitter=" / " >
-                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="7" value="{{$nomors[0]}}" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="5" value="{{$nomors[1]}}" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input type="text" class="form-control" name="nomor[]" maxlength="4" value="{{sprintf('%04d', $nomors[2])}}" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="3" value="{{$nomors[3]}}" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="5" value="{{$nomors[4]}}" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="7" value="{{$nomors[5]}}" readonly required></span> / 
-                                    <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="4" value="{{$nomors[6]}}" readonly required></span>
-                                </div>
-                            </span>
+                                <input data-editable=true type="text" class="form-control" name="nomor" value="{{$sips[$index]['nomor']}}" maxlength="50" >
+                            </span>                            
                         </td>
                     </tr>
                     <tr>

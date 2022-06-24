@@ -18,9 +18,9 @@ class SIPRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $this->merge([
-            'nomor' => implode(' / ', $this->nomor),
-        ]);
+        // $this->merge([
+        //     'nomor' => implode(' / ', $this->nomor),
+        // ]);
     }
 
     public function withValidator($validator)
