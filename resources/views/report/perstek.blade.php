@@ -36,22 +36,22 @@
                                 <table style="margin: 0;">
                                   <tbody>
                                     <tr>
-                                      <td class="headerFont fontCenter paddingfont" style="font-size:16px">PEMERINTAH KOTA SURABAYA</td>
+                                      <td class="headerFont fontCenter " style="font-size:16px">PEMERINTAH KOTA SURABAYA</td>
                                     </tr>
                                     <tr>
-                                      <td class="headerFont fontCenter paddingfont" style="font-size:16px">DINAS KESEHATAN</td>
+                                      <td class="headerFont fontCenter " style="font-size:16px">DINAS KESEHATAN</td>
                                     </tr>
                                     <tr>
                                       <td>&nbsp;</td>
                                     </tr>
                                     <tr>
-                                      <td class="fontCenter paddingfont" style="font-size:13px; vertical-align:bottom;">Jalan Jemursari No. 197 Surabaya 60243</td>                                    
+                                      <td class="fontCenter " style="font-size:13px; vertical-align:bottom;">Jalan Jemursari No. 197 Surabaya 60243</td>                                    
                                     </tr>
                                     <tr>
-                                      <td class="fontCenter paddingfont" style="font-size:13px">Telp. (031) 8439473, 8439372, 8473729 Fax. (031) 8483393</td>
+                                      <td class="fontCenter " style="font-size:13px">Telp. (031) 8439473, 8439372, 8473729 Fax. (031) 8483393</td>
                                     </tr>
                                     <tr>
-                                      <td class="fontCenter paddingfont" style="font-size:13px">S U R A B A Y A</td>
+                                      <td class="fontCenter " style="font-size:13px">S U R A B A Y A</td>
                                     </tr>
                                   </tbody>
                                 </table>
@@ -70,10 +70,10 @@
                     <table>
                       <tbody>
                         <tr>
-                          <td class="headerFont fontCenter paddingfont fontUnderline" style="font-size:13px">PERSETUJUAN TEKNIS</td>
+                          <td class="headerFont fontCenter  fontUnderline" style="font-size:13px">PERSETUJUAN TEKNIS</td>
                         </tr>
                         <tr>
-                          <td class="headerFont fontCenter paddingfont" style="font-size:13px">NOMOR : {{$sip->nomor}}</td>
+                          <td class="headerFont fontCenter " style="font-size:13px">NOMOR : {{$sip->nomor}}</td>
                         </tr>
                         <tr>
                           <td>&nbsp;</td>
@@ -85,34 +85,34 @@
                     <table class="w-85">
                       <tbody>
                         <tr>
-                          <td colspan="2" class="paddingfont fontJustify paragraf" style="font-size:13px">Sehubungan dengan surat permohonan perizinan Sarana Perpanjangan - Izin Dokter Umum yang diajukan oleh :</td>
+                          <td colspan="2" class=" fontJustify paragraf" style="font-size:13px">Sehubungan dengan surat permohonan perizinan Sarana Perpanjangan - Izin Dokter Umum yang diajukan oleh :</td>
                         </tr>
                         <tr>
                           <td colspan="2">&nbsp;</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont w-25" style="font-size:13px">Nama Pemohon</td>
-                          <td class="paddingfont" style="font-size:13px">: {{$sip->pegawai->nama}}</td>
+                          <td class=" w-25" style="font-size:13px">Nama Pemohon</td>
+                          <td class="" style="font-size:13px">: {{$sip->pegawai->nama}}</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont" style="font-size:13px">Alamat KTP</td>
-                          <td class="paddingfont" style="font-size:13px">: {{$sip->pegawai->alamatktp}}</td>
+                          <td class="" style="font-size:13px">Alamat KTP</td>
+                          <td class="" style="font-size:13px">: {{$sip->pegawai->alamatktp}}</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont" style="font-size:13px">Alamat Domisili</td>
-                          <td class="paddingfont" style="font-size:13px">: {{$sip->pegawai->alamat}}</td>
+                          <td class="" style="font-size:13px">Alamat Domisili</td>
+                          <td class="" style="font-size:13px">: {{$sip->pegawai->alamat}}</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont" style="font-size:13px">Tanggal Masuk Dinas</td>
-                          <td class="paddingfont" style="font-size:13px">: {{Carbon\Carbon::parse($sip->tglmasukdinas)->isoformat('D MMMM Y')}}</td>
+                          <td class="" style="font-size:13px">Tanggal Masuk Dinas</td>
+                          <td class="" style="font-size:13px">: {{Carbon\Carbon::parse($sip->tglmasukdinas)->isoformat('D MMMM Y')}}</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont" style="font-size:13px">Tanggal Permohonan</td>
-                          <td class="paddingfont" style="font-size:13px">: {{Carbon\Carbon::parse($sip->tglonline)->isoformat('D MMMM Y')}}</td>
+                          <td class="" style="font-size:13px">Tanggal Permohonan</td>
+                          <td class="" style="font-size:13px">: {{Carbon\Carbon::parse($sip->tglonline)->isoformat('D MMMM Y')}}</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont" style="font-size:13px">Nomor Permohonan</td>
-                          <td class="paddingfont" style="font-size:13px">: {{$sip->nomoronline}}</td>
+                          <td class="" style="font-size:13px">Nomor Permohonan</td>
+                          <td class="" style="font-size:13px">: {{$sip->nomoronline}}</td>
                         </tr>
                         <tr>
                           <td colspan="2">&nbsp;</td>
@@ -122,12 +122,12 @@
                     <table class="w-85">
                       <tbody>
                         <tr>
-                          <td colspan="2" class="paddingfont fontJustify paragraf" style="font-size:13px">Maka Berdasarkan :</td>
+                          <td colspan="2" class=" fontJustify paragraf" style="font-size:13px">Maka Berdasarkan :</td>
                         </tr>
                         @foreach($aturan as $i=>$a)
                         <tr>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">{{$i+1}}. </td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">{{$a}}</td>
+                          <td class=" fontJustify paragraf" style="font-size:13px">{{$i+1}}. </td>
+                          <td class=" fontJustify paragraf" style="font-size:13px">{{$a}}</td>
                         </tr>
                         @endforeach
                         <tr>
@@ -138,28 +138,28 @@
                     <table class="w-85">
                       <tbody>
                         <tr>
-                          <td colspan="2" class="paddingfont fontJustify paragraf" style="font-size:13px">dengan ini memutuskan memberikan persetujuan untuk diterbitkan Sarana Perpanjangan - Izin Dokter Umum Kepada :</td>
+                          <td colspan="2" class=" fontJustify paragraf" style="font-size:13px">dengan ini memutuskan memberikan persetujuan untuk diterbitkan Sarana Perpanjangan - Izin Dokter Umum Kepada :</td>
                         </tr>
                         <tr>
                           <td colspan="2">&nbsp;</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont fontJustify paragraf w-25" style="font-size:13px">Nama</td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">: {{$sip->pegawai->nama}}</td>
+                          <td class=" fontJustify paragraf w-25" style="font-size:13px">Nama</td>
+                          <td class=" fontJustify paragraf" style="font-size:13px">: {{$sip->pegawai->nama}}</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">Nama Fasyankes</td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">: {{$sip->namafaskes}}</td>
+                          <td class=" fontJustify paragraf" style="font-size:13px">Nama Fasyankes</td>
+                          <td class=" fontJustify paragraf" style="font-size:13px">: {{$sip->namafaskes}}</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">Alamat Fasyankes</td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">: {{$sip->alamatfaskes}}</td>
+                          <td class=" fontJustify paragraf" style="font-size:13px">Alamat Fasyankes</td>
+                          <td class=" fontJustify paragraf" style="font-size:13px">: {{$sip->alamatfaskes}}</td>
                         </tr>
                         <tr>
                           <td colspan="2">&nbsp;</td>
                         </tr>
                         <tr>
-                          <td colspan="2" class="paddingfont fontJustify paragraf" style="font-size:13px">Demikian persetujuan ini dibuat untuk dapat digunakan sebagaiamana mestinya.</td>
+                          <td colspan="2" class=" fontJustify paragraf" style="font-size:13px">Demikian persetujuan ini dibuat untuk dapat digunakan sebagaiamana mestinya.</td>
                         </tr>
                         <tr>
                           <td colspan="2">&nbsp;</td>
@@ -177,23 +177,23 @@
                               <tbody>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Surabaya, {{Carbon\Carbon::parse($sip->tglverif)->isoformat('D MMMM Y')}}</td>
+                                  <td class=" fontCenter paragraf" style="font-size:13px">Surabaya, {{Carbon\Carbon::parse($sip->tglverif)->isoformat('D MMMM Y')}}</td>
                                 </tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">{{strtoupper($kadinkes->jabatan)}},</td>
+                                  <td class=" fontCenter paragraf" style="font-size:13px">{{strtoupper($kadinkes->jabatan)}},</td>
                                 </tr>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf fontUnderline" style="font-size:13px">{{$kadinkes->nama}}</td>
+                                  <td class=" fontCenter paragraf fontUnderline" style="font-size:13px">{{$kadinkes->nama}}</td>
                                 </tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">{{$kadinkes->pangkat}}</td>
+                                  <td class=" fontCenter paragraf" style="font-size:13px">{{$kadinkes->pangkat}}</td>
                                 </tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">NIP {{$kadinkes->nip}}</td>
+                                  <td class=" fontCenter paragraf" style="font-size:13px">NIP {{$kadinkes->nip}}</td>
                                 </tr>
                               </tbody>
                             </table>
