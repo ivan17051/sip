@@ -61,14 +61,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="bmd-label force-top">Nomor SIP <small class="text-danger align-text-top">*wajib</small></label>
-                                    <div class="nomorsip-wrapper">
-                                        <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="7" value="503.446" readonly required></span> / 
-                                        <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="5" value="" readonly required></span> / 
-                                        <span class="form-group d-inline-block"><input type="text" class="form-control" name="nomor[]" maxlength="4" value="{{sprintf('%04d', $nakes->nomorregis)}}" readonly required></span> / 
-                                        <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="3" value="{{integerToRoman($index+1)}}" readonly required></span> / 
-                                        <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="5" value="IP.DU" readonly required></span> / 
-                                        <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="7" value="436.7.2" readonly required></span> / 
-                                        <span class="form-group d-inline-block"><input data-editable2=true type="text" class="form-control" name="nomor[]" maxlength="4" value="{{date('Y')}}" readonly required></span>
+                                    <div>
+                                        <input type="text" class="form-control" name="nomor" maxlength="70" value="503.446 /       / {{sprintf('%04d', $nakes->nomorregis)}} / {{integerToRoman($index+1)}} / IP.DU / 436.7.2 / {{date('Y')}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -240,7 +234,7 @@
                         <td>
                             <span data-text="true"></span>
                             <span>
-                                <input data-editable=true type="text" class="form-control" name="nomor" value="{{$sips[$index]['nomor']}}" maxlength="50" >
+                                <input data-editable=true type="text" class="form-control" name="nomor" value="{{$sips[$index]['nomor']}}" maxlength="70" >
                             </span>                            
                         </td>
                     </tr>
