@@ -293,6 +293,7 @@ active
         $("#photo").click();
     });
 
+    @if(isset($nakes))
     document.getElementById("photo").onchange = async function() {
         file=$(this)[0].files[0];
 
@@ -309,5 +310,6 @@ active
             myAlert('Terjadi kesalahan, pastikan file berupa gambar.');
         }
     };
+    @endif
 </script>
 @endsection
