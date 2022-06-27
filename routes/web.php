@@ -57,4 +57,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profil/upload', 'PegawaiController@upload')->name('profil.upload');
     Route::delete('/profil/delete/{idpegawai}', 'PegawaiController@deleteFoto')->name('profil.hapus');
 
+    Route::apiResource('user', UserController::class)->except('show');
 });

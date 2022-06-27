@@ -111,6 +111,31 @@ active
     </div>
 </div>
 <!-- End Modal Sunting Faskes -->
+
+<!-- Modal Hapus -->
+<div class="modal fade modal-mini modal-primary" id="hapus" tabindex="-1" role="dialog" aria-labelledby="myDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-small">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+        </div>
+        <form class="" method="POST" action="">
+            @method('DELETE')
+            @csrf
+        <div class="modal-body text-center">
+            <p>Yakin ingin menghapus?</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-link" data-dismiss="modal">Tidak</button>
+            <button type="submit" class="btn btn-danger btn-link">Ya, Hapus
+                <div class="ripple-container"></div>
+            </button>
+        </div>
+        </form>
+        </div>
+    </div>
+</div>
+<!--  End Modal Hapus  -->
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -249,6 +274,13 @@ active
         }
     }
 
+    function hapus(id){
+      $modal=$('#hapus');
+      $modal.find('form').attr('action', "{{route('faskes.destroy', ['id'=>''])}}/"+id);
+    
+      $modal.modal('show');
+    }
+
     // Datatable
     function showTable() {
 
@@ -298,6 +330,8 @@ active
                             '<div class="dropdown-menu dropdown-menu-left" >' +
                             '<a class="dropdown-item" href="#" onclick="sunting(this)" >Sunting</a>' +
                             '<a class="dropdown-item" href="#" onclick="daftarNakes(this)">Nakes Terkait</a>' +
+                            '<div class="dropdown-divider"></div>' +
+                            '<a class="dropdown-item" href="#" onclick="hapus('+e+')">Hapus</a>' +
                             '</div>' +
                             '</span>'
                     }

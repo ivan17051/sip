@@ -32,6 +32,36 @@ $role = explode(', ', $role);
                     <p> Dashboard </p>
                 </a>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#sidebar-master">
+                    <i class="material-icons">assignment</i>
+                    <p> Data Master
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse @yield('masterShow')" id="sidebar-master">
+                    <ul class="nav">
+                        <li class="nav-item @yield('faskesStatus')">
+                            <a class="nav-link" href="{{route('faskes.index')}}">
+                                <span class="sidebar-mini"> F </span>
+                                <span class="sidebar-normal"> Faskes </span>
+                            </a>
+                        </li>
+                        <li class="nav-item @yield('profesiStatus')">
+                            <a class="nav-link" href="{{route('profesi.index')}}">
+                                <span class="sidebar-mini"> P </span>
+                                <span class="sidebar-normal"> Profesi </span>
+                            </a>
+                        </li>
+                        <li class="nav-item @yield('userStatus')">
+                            <a class="nav-link" href="{{route('user.index')}}">
+                                <span class="sidebar-mini"> U </span>
+                                <span class="sidebar-normal"> User </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
             <li class="nav-item @yield('strStatus') ">
                 <a class="nav-link" href="{{url('/str')}}">
                     <i class="material-icons">list_alt</i>
@@ -50,30 +80,7 @@ $role = explode(', ', $role);
                     <p> Bio Nakes </p>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#sidebar-master">
-                    <i class="material-icons">assignment</i>
-                    <p> Master
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse @yield('masterShow')" id="sidebar-master">
-                    <ul class="nav">
-                        <li class="nav-item @yield('faskesStatus')">
-                            <a class="nav-link" href="{{route('faskes.index')}}">
-                                <span class="sidebar-mini"> F </span>
-                                <span class="sidebar-normal"> Faskes </span>
-                            </a>
-                        </li>
-                        <li class="nav-item @yield('profesiStatus')">
-                            <a class="nav-link" href="{{route('profesi.index')}}">
-                                <span class="sidebar-mini"> P </span>
-                                <span class="sidebar-normal"> Profesi </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+            
         </ul>
     </div>
     <div class="sidebar-background"></div>

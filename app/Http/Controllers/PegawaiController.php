@@ -12,12 +12,6 @@ use Illuminate\Support\Facades\Storage;
 
 class PegawaiController extends Controller
 {
-    // public function show(){
-    //     $id = Auth::user()->id;
-    //     $profil = Pegawai::where('id_user', $id)->first();
-        
-    //     return view('profil.profil', ['profil'=>$profil]);
-    // }
     /**
      * Update the specified resource in storage.
      *

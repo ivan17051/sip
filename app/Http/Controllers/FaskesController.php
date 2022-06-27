@@ -58,7 +58,16 @@ class FaskesController extends Controller
         return back();
     }
 
-    public function destroy(Request $request, $faskes){
-        
+    public function destroy(Request $request, $id){
+        try {
+            $faskes = Faskes::findOrFail($id);
+            $faskes->delete();
+        }catch (QueryException $exception) {
+            $this->flashError($exception->getMessage());
+            return back();
+        }
+
+        $this->flashSuccess('Data Faskes Berhasil Dihapus');
+        return back();
     }
 }

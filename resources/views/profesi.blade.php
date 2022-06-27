@@ -268,6 +268,7 @@ active
                   <tr>
                     <th data-priority="3" style="width:30px;" class="disabled-sorting">No</th>
                     <th data-priority="1">Nama Profesi</th>
+                    <th data-priority="1">Total Profesi</th>
                     <th data-priority="2">Punya Spesialisasi</th>
                     <th data-priority="3" class="disabled-sorting text-right">Aksi</th>
                   </tr>
@@ -276,7 +277,8 @@ active
                   @foreach($profesi as $key=>$unit)
                   <tr>
                     <td>{{$key+1}}</td>
-                    <td>{{$unit->nama}} <span class="badge badge-pill badge-info" style="font-size:12px;">{{$unit->total}}</span></td>
+                    <td>{{$unit->nama}}</td>
+                    <td>{{$unit->total}}</td>
                     <td>
                       @if($unit->isparent == 1)
                       <span class="badge badge-pill badge-success">Spesialisasi</span>

@@ -3,11 +3,14 @@
 
 @php
 $role = Auth::user()->role;
-$role = explode(', ', $role);
 @endphp
 
 @section('title')
 User
+@endsection
+
+@section('masterShow')
+show
 @endsection
 
 @section('userStatus')
@@ -28,40 +31,20 @@ active
         <form class="form-horizontal input-margin-additional" method="POST" action="{{route('user.store')}}">
         @csrf
         <div class="modal-body">
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="nama" class="bmd-label-floating">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" required>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="nip" class="bmd-label-floating">NIP</label>
-                        <input type="text" class="form-control" id="nip" name="nip" required>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="nama" class="bmd-label-floating">Nama</label>
+                <input type="text" class="form-control" id="nama" name="nama" required>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <select id="selectrole" name="role[]" class="selectpicker" data-style="select-with-transition" multiple title="Role" data-size="7">
-                            <option>Pusat</option>
-                            <option>Spesial</option>
-                            <option>Supervisor</option>
-                            <option>Reguler-USP</option>
-                            <option>Reguler-FC</option>
-                            <option>Reguler-TK</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="username" class="bmd-label-floating">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="username" class="bmd-label-floating">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
             </div>
+            <label class="bmd-label force-top mt-1">Role User <small class="text-danger align-text-top">*wajib</small></label>
+            <select id="role" name="role" class="selectpicker form-control" data-size="7" data-style="btn btn-primary btn-round" title="Pilih Role">
+                <option disabled selected>Pilih Role</option>
+                <option>SDMK</option>
+                <option>Promkes</option>
+            </select>
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-link text-primary">Simpan</button>
@@ -78,7 +61,7 @@ active
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Edit User </h4>
+            <h4 class="modal-title">Sunting Data User </h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
             <i class="material-icons">clear</i>
             </button>
@@ -87,40 +70,21 @@ active
         @csrf
         @method('PUT')
         <div class="modal-body">
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="nama" class="bmd-label-floating">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" required>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="nip" class="bmd-label-floating">NIP</label>
-                        <input type="text" class="form-control" id="nip" name="nip" required>
-                    </div>
-                </div>
+            <input type="hidden" name="id">
+            <div class="form-group">
+                <label for="nama" class="bmd-label-floating">Nama</label>
+                <input type="text" class="form-control" id="nama" name="nama" required>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <select id="selectroles" name="role[]" class="selectpicker" data-style="select-with-transition" multiple="multiple" title="Role" data-size="7" required>
-                            <option>Pusat</option>
-                            <option>Spesial</option>
-                            <option>Supervisor</option>
-                            <option>Reguler-USP</option>
-                            <option>Reguler-FC</option>
-                            <option>Reguler-TK</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="username" class="bmd-label-floating">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="username" class="bmd-label-floating">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
             </div>
+            <label class="bmd-label force-top mt-1">Role User <small class="text-danger align-text-top">*wajib</small></label>
+            <select id="role" name="role" class="selectpicker form-control" data-size="7" data-style="btn btn-primary btn-round" title="Pilih Role">
+                <option disabled selected>Pilih Role</option>
+                <option>SDMK</option>
+                <option>Promkes</option>
+            </select>
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-link text-primary">Simpan</button>
@@ -184,11 +148,10 @@ active
     <div class="row">
     <div class="col-md-12">
         <div class="card">
-        <div class="card-header card-header-primary card-header-icon">
-            <div class="card-icon">
-                <i class="material-icons">people</i>
-            </div>
-            <h4 class="card-title">User</h4>
+        <div class="card-header card-header-tabs card-header-primary">
+          <div class="subtitle-wrapper">
+            <h4 class="card-title">Data User</h4>
+          </div>
         </div>
         <div class="card-body">
             <div class="toolbar text-right">
@@ -199,18 +162,17 @@ active
             <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                 <thead>
                 <tr>
-                    <th data-priority="1">Username</th>
-                    <th data-priority="2">NIP</th>
-                    <th data-priority="3">Nama</th>
+                    <th hidden>id</th>
+                    <th data-priority="1">Nama</th>
+                    <th data-priority="2">Username</th>
                     <th data-priority="1">Role</th>
-                    <th data-priority="3" class="disabled-sorting text-right">Actions</th>
+                    <th data-priority="2" class="disabled-sorting text-right">Actions</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
-                    <th>Username</th>
-                    <th>NIP</th>
                     <th>Nama</th>
+                    <th>Username</th>
                     <th>Role</th>
                     <th class="disabled-sorting text-right">Actions</th>
                 </tr>
@@ -218,17 +180,12 @@ active
                 <tbody>
                 @foreach($user as $key=>$unit)
                 <tr>
-                    <td>{{$unit->username}}</td>
-                    <td>{{$unit->nip }}</td>
+                    <td hidden>{{$unit->id}}</td>
                     <td>{{$unit->nama}}</td>
-                    <td>@foreach($unit->role as $unitrole)
-                        <div class="bootstrap-tagsinput info-badge" style="padding:0 0;">
-                            <span class="tag badge">{{$unitrole}}</span>
-                        </div>
-                        @endforeach
-                    </td>
+                    <td>{{$unit->username}}</td>
+                    <td>{{$unit->role}}</td>
                     <td class="text-right">
-                        @if($unit->role[0]=="Admin")
+                        @if($unit->username=="admin")
                         <a href="#" class="btn btn-link btn-sm text-dark btn-just-icon disabled"><i class="material-icons">lock</i></a>
                         @else
                         <a href="#" class="btn btn-link btn-warning btn-just-icon edit btn-sm" key="{{$key}}" onclick="onEdit(this)"><i class="material-icons">edit</i></a>
@@ -266,10 +223,10 @@ function onEdit(self) {
     
     $modal=$('#modalEdit');
     
+    $modal.find('[name=id]').val(j['id']).change();
     $modal.find('[name=username]').val(j['username']).change();
-    $modal.find('[name=nip]').val(j['nip']).change();
     $modal.find('[name=nama]').val(j['nama']).change();
-    $modal.find('[name=\'role[]\']').val(j['role']).change().blur();
+    $modal.find('[name=role]').val(j['role']).change().blur();
     
     $modal.find('form').attr('action', "{{route('user.update', ['id'=>''])}}/"+j['id']);
     $modal.modal('show');

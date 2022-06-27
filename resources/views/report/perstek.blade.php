@@ -177,7 +177,7 @@
                               <tbody>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr>
-                                  <td class=" fontCenter paragraf" style="font-size:13px">Surabaya, {{Carbon\Carbon::parse($sip->tglverif)->isoformat('D MMMM Y')}}</td>
+                                  <td class=" fontCenter paragraf" style="font-size:13px">Surabaya, {{Carbon\Carbon::parse($sip->tglverif)->isoformat('MMMM Y')}}</td>
                                 </tr>
                                 <tr>
                                   <td class=" fontCenter paragraf" style="font-size:13px">{{strtoupper($kadinkes->jabatan)}},</td>
