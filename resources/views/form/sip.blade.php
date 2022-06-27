@@ -97,7 +97,15 @@
                         </div>
                         <div id="sip-form-2-{{$index}}" class="collapse" role="tabpanel" data-parent="#sip-form-accordion{{$index}}">
                             <div class="card-body">
-                                <div class="form-group">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" id="ismandiri" name="ismandiri" onchange="gantiMandiri(this)"> Praktik Mandiri
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                    </label>
+                                </div>
+                                <div class="form-group" id="faskesnonmandiri">
                                     <label class="bmd-label force-top">Faskes <small class="text-danger align-text-top">*wajib</small></label>
                                     <div class="input-group mb-3">
                                         <input type="text" name="idfaskes" required hidden>
@@ -109,18 +117,24 @@
                                         </div>
                                     </div>  
                                 </div>
+                                <div class="form-group" id="faskesmandiri" hidden>
+                                    <label class="bmd-label force-top">Alamat Faskes Mandiri <small class="text-danger align-text-top">*wajib</small></label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" name="alamatfaskes">
+                                    </div>  
+                                </div>
                                 <div class="form-group">
                                     <label class="bmd-label force-top">Jadwal Praktik </label>
                                     <textarea type="text" class="form-control" name="jadwalpraktik" maxlength="100" ></textarea>
                                 </div>
-                                <div class="row mt-5">
+                                <!-- <div class="row mt-5">
                                     <div class="col-md-6">
                                         <div class="centered-image-wrapper">
                                             <img class="" src="{{asset('public/img/product3.jpg')}}" alt="" >
                                         </div>
                                         <input type="text" class="form-control" name="jabatan" maxlength="30" placeholder="caption" >
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -397,6 +411,29 @@
 
 @push('script2')
 <script>
+function gantiMandiri(self){
+    var $modal=$('#faskesnonmandiri');
+    var $modal2=$('#faskesmandiri');
+    if(self.checked == true){
+        // Faskes Mandiri
+        $modal.find('input[name=idfaskes]').attr('required', false).attr('value','0');
+        $modal.find('input[name=faskes]').attr('required', false);
+        $modal.attr('hidden', true);
+
+        $modal2.find('input[name=faskes]').attr('required', true);
+        $modal2.attr('hidden', false);
+    }
+    else{
+        // Faskes Non Mandiri
+        $modal.find('input[name=idfaskes]').attr('required', true);
+        $modal.find('input[name=faskes]').attr('required', true);
+        $modal.attr('hidden', false);
+
+        $modal2.find('input[name=faskes]').attr('required', false);
+        $modal2.attr('hidden', true);
+    }
+}
+
 $(function(){
 
     $('#modal-sip{{$index}} form').submit(function(e){
