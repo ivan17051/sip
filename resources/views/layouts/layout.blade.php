@@ -25,6 +25,9 @@ $role = explode(', ', $role);
     <!-- DateTimePicker Tempus Dominus -->
     <!-- <link rel="stylesheet" href="{{asset('public/vendor/datetimepicker-tempus-dominus/css/tempus-dominus.min.css')}}"> -->    
 
+    <!-- jquery photo viewer -->
+    <link href="{{asset('public/vendor/viewerjs/viewer.min.css')}}" rel="stylesheet" />
+
     <link href="{{asset('public/css/custom.css')}}" rel="stylesheet" />
 </head>
 
@@ -200,6 +203,9 @@ $role = explode(', ', $role);
   <!-- Moment JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/id.min.js" integrity="sha512-he8U4ic6kf3kustvJfiERUpojM8barHoz0WYpAUDWQVn61efpm3aVAD8RWL8OloaDDzMZ1gZiubF9OSdYBqHfQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- jquery photo viewer -->
+  <script src="{{asset('public/vendor/viewerjs/viewer.min.js')}}" type="text/javascript"></script>
+  <script src="{{asset('public/vendor/viewerjs/jquery-viewer.min.js')}}" type="text/javascript"></script>
   <!-- TypeHead JS -->
   <script src="{{asset('public/vendor/jquery-typeahead-2.11.0/jquery.typeahead.min.js')}}"></script>
   <!-- Popper Js -->

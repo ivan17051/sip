@@ -1,6 +1,6 @@
 @push('modal2')
 <div class="modal modal-custom-1 fade" id="modal-sip{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <form action="{{route('sip.store')}}" method="POST">
         @csrf
@@ -112,6 +112,14 @@
                                 <div class="form-group">
                                     <label class="bmd-label force-top">Jadwal Praktik </label>
                                     <textarea type="text" class="form-control" name="jadwalpraktik" maxlength="100" ></textarea>
+                                </div>
+                                <div class="row mt-5">
+                                    <div class="col-md-6">
+                                        <div class="centered-image-wrapper">
+                                            <img class="" src="{{asset('public/img/product3.jpg')}}" alt="" >
+                                        </div>
+                                        <input type="text" class="form-control" name="jabatan" maxlength="30" placeholder="caption" >
+                                    </div>
                                 </div>
                             </div>
                         </div>
