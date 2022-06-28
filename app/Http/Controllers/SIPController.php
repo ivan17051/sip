@@ -34,21 +34,22 @@ class SIPController extends Controller
     public function store(SIPRequest $request){
         $userId = Auth::id();
         $input = $request->validated();
-        
         try{
             DB::beginTransaction();
             
             $str = STR::select('id','nomor','expiry','idpegawai','nomorregis','idprofesi','idspesialisasi',)->find($input['idstr']);
             
             // Jika Faskes Mandiri
-            if($request->ismandiri=='on'){
-                $faskes = new Faskes();
-                $faskes->fill([
-                    'alamat' => $request->alamatfaskes,
-                    'nama' => 'PRAKTIK MANDIRI',
-                    'idkategori' => 8,
-                ]);
-                $faskes->save();
+            if(isset($input['ismandiri']) AND $input['ismandiri']=='on'){
+                $input['idfaskes'] =NULL;
+                $input['saranapraktik'] = 'PRAKTIK MANDIRI';
+                // $faskes = new Faskes();
+                // $faskes->fill([
+                //     'alamat' => $request->alamatfaskes,
+                //     'nama' => 'PRAKTIK MANDIRI',
+                //     'idkategori' => 8,
+                // ]);
+                // $faskes->save();
             }
             // Jika Faskes sudah ada
             else{
@@ -81,14 +82,18 @@ class SIPController extends Controller
                 'idspesialisasi' => $str['idspesialisasi'],
                 'nomorstr' => $str['nomor'],
                 'expirystr' => $str['expiry'],
-
-                'saranapraktik' => $faskes->kategori['nama'],
-                'namafaskes' => $faskes['nama'],
-                'alamatfaskes' => $faskes['alamat'],
                 
                 'idc'=> $userId,
                 'idm'=> $userId,
             ]);
+
+            if(!isset($input['ismandiri']) OR $input['ismandiri']<>"on" ){
+                $sip->fill([
+                    'saranapraktik' => $faskes->kategori['nama'],
+                    'namafaskes' => $faskes['nama'],
+                    'alamatfaskes' => $faskes['alamat'],
+                ]);
+            }
             $sip->save();
             DB::commit();
             $this->flashSuccess('Data Berhasil Ditambahkan');

@@ -120,7 +120,7 @@
                                 <div class="form-group" id="faskesmandiri" hidden>
                                     <label class="bmd-label force-top">Alamat Faskes Mandiri <small class="text-danger align-text-top">*wajib</small></label>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" name="alamatfaskes">
+                                        <input type="text" class="form-control" name="alamatfaskes" required>
                                     </div>  
                                 </div>
                                 <div class="form-group">
@@ -360,6 +360,10 @@
                     <tr>
                         <td><label>Cetak SIP</label></td>
                         <td><a target="_blank" href="{{route('cetak.sip', ['idsip'=>$sips[$index]['id']])}}" class="btn btn-outline-primary btn-round btn-sm" >Cetak SIP <i class="material-icons">open_in_new</i></a></td>
+                    </tr>
+                    <tr>
+                        <td><label>Cetak Kitir</label></td>
+                        <td><button type="button" onclick="cetakKitir({{$sips[$index]['id']}},{{$sips[$index]['idjenispermohonan']}})" class="btn btn-outline-primary btn-round btn-sm" >Cetak Kitir <i class="material-icons">open_in_new</i></button></td>
                     </tr>
                     @else
                     <tr>
