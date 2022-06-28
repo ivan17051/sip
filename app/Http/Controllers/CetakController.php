@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\SIP;
 use App\Pejabat;
+use App\Pegawai;
 use App\JenisPermohonan;
 
 class CetakController extends Controller
@@ -30,7 +31,9 @@ class CetakController extends Controller
     }
 
     public function sip(Request $request, $idsip){
-        return view('report.sip');
+        $d['sip'] = SIP::where('id',$idsip)->with('pegawai')->first();
+        $d['kadinkes'] = Pejabat::where('jabatan','Kepala Dinas')->first();
+        return view('report.sip', $d);
     }
 
     private function dasarPeraturanPerstek($idprofesi){

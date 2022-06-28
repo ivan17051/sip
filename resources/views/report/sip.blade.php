@@ -37,7 +37,7 @@
                               <td class="headerFont fontCenter paddingfont fontUnderline" style="font-size:16px">SURAT IZIN PRAKTIK (SIP) DOKTER</td>
                             </tr>
                             <tr>
-                              <td class="headerFont fontCenter paddingfont" >NOMOR : 503.446 / 4282 / I / IP.DU / 436.7.2 / 2020</td>
+                              <td class="headerFont fontCenter paddingfont" >NOMOR : {{$sip->nomor}}</td>
                             </tr>
                             <tr>
                               <td>&nbsp;</td>
@@ -58,50 +58,50 @@
                           <td colspan="2">&nbsp;</td>
                         </tr>
                         <tr>
-                          <td colspan="2" class="paddingfont fontCenter fontBold fontUnderline" style="font-size:13px">dr. INNEKE</td>
+                          <td colspan="2" class="paddingfont fontCenter fontBold fontUnderline" style="font-size:13px">{{$sip->pegawai->nama}}</td>
                         </tr>
                         <tr>
                           <td colspan="2">&nbsp;</td>
                         </tr>
                         <tr>
                           <td class="paddingfont" style="font-size:13px">Tempat Tanggal Lahir</td>
-                          <td class="paddingfont" style="font-size:13px">: Surabaya, 03 November 1969</td>
+                          <td class="paddingfont" style="font-size:13px">: {{ucfirst(strtolower($sip->pegawai->tempatlahir))}}, {{Carbon\Carbon::parse($sip->pegawai->tanggallahir)->isoformat('DD MMMM Y')}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont" style="font-size:13px">Alamat KTP</td>
-                          <td class="paddingfont" style="font-size:13px">: Karah Tama Asri II / 50 Surabaya</td>
+                          <td class="paddingfont" style="font-size:13px">: {{$sip->pegawai->alamatktp}}</td>
                         </tr>
                         <tr>
-                          <td rowspan="2" class="paddingfont" style="font-size:13px">Alamat Tempat Praktik I</td>
-                          <td class="paddingfont" style="font-size:13px">: KLINIK PRATAMA RAWAT JALAN DLV RUNGKUT</td>
+                          <td rowspan="2" class="paddingfont" style="font-size:13px">Alamat Tempat Praktik {{$sip->instance}}</td>
+                          <td class="paddingfont" style="font-size:13px">: {{$sip->namafaskes}}</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont" style="font-size:13px">&nbsp;&nbsp;Jl. Rungkut No. 202 (lama:Jl. Kalirungkut No. 70 B) Surabaya</td>
+                          <td class="paddingfont" style="font-size:13px">&nbsp;&nbsp;{{$sip->alamatfaskes}}</td>
                         </tr> 	
                         <tr>
                           <td class="paddingfont" style="font-size:13px">Waktu Praktik</td>
-                          <td class="paddingfont" style="font-size:13px">: Senin - Sabtu : 08.00 - 14.30 WIB & 13.00 - 19.30 WIB</td>
+                          <td class="paddingfont" style="font-size:13px">: {{$sip->jadwalpraktik}}</td>
                         </tr>
                         <tr>
                           <td rowspan="2" class="paddingfont" style="font-size:13px">Nomor STR</td>
-                          <td class="paddingfont" style="font-size:13px">: 35 2 1 100 1 18 179324</td>
+                          <td class="paddingfont" style="font-size:13px">: {{$sip->nomorstr}}</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont" style="font-size:13px">&nbsp;&nbsp;berlaku 19 Maret 2018 - 9 Mei 2023</td>
+                          <td class="paddingfont" style="font-size:13px">&nbsp;&nbsp;berlaku {{Carbon\Carbon::parse($sip->tglverif)->isoformat('DD MMMM Y')}} - {{Carbon\Carbon::parse($sip->expirystr)->isoformat('DD MMMM Y')}}</td>
                         </tr> 	
                         <tr>
                           <td class="paddingfont" style="font-size:13px">Nomor Rekomendasi OP</td>
-                          <td class="paddingfont" style="font-size:13px">: 074 / IDI-Sby / REK-SIP / IV / 2020</td>
+                          <td class="paddingfont" style="font-size:13px">: {{$sip->nomorrekom}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont" style="font-size:13px">Untuk Praktik sebagai</td>
-                          <td class="paddingfont" style="font-size:13px">: Dokter Umum</td>
+                          <td class="paddingfont" style="font-size:13px">: {{$sip->pegawai->profesi}}</td>
                         </tr>
                         <tr>
                           <td class="paddingfont fontCenter" colspan="2">dengan kewenangan klinis sesuai dengan kompetensinya</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont fontCenter" colspan="2">Dokter Umum</td>
+                          <td class="paddingfont fontCenter" colspan="2">{{$sip->pegawai->profesi}}</td>
                         </tr>
                         <tr>
                           <td colspan="2">&nbsp;</td>
@@ -119,7 +119,7 @@
                         </tr>
                         <tr>
                           <td class="paddingfont fontJustify paragraf" style="font-size:13px">2. </td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">Surat Izin Praktik ( SIP ) ini berlaku sejak tanggal ditetapkan s/d : <strong>9 Mei 2023</strong></td>
+                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">Surat Izin Praktik ( SIP ) ini berlaku sejak tanggal ditetapkan s/d : <strong>{{Carbon\Carbon::parse($sip->expirystr)->isoformat('DD MMMM Y')}}</strong></td>
                         </tr>
                         <tr>
                           <td class="paddingfont fontJustify paragraf" style="font-size:13px">3. </td>
@@ -144,7 +144,7 @@
                       <tbody>
                         <tr>
                           <td></td>
-                          <td width="35%">
+                          <td width="40%">
                             <table>
                               <tbody>
                                 <tr><td>&nbsp;</td></tr>
@@ -153,12 +153,12 @@
                                     <table style="border-bottom:1px solid black">
                                       <tbody>
                                         <tr>
-                                          <td class="paddingfont fontCenter paragraf" style="font-size:13px">Ditetapkan di</td>
-                                          <td class="paddingfont fontCenter paragraf" style="font-size:13px">: Surabaya</td>
+                                          <td class="paragraf" style="font-size:13px">Ditetapkan di</td>
+                                          <td class="paragraf" style="font-size:13px">: Surabaya</td>
                                         </tr>
                                         <tr>
-                                          <td class="paddingfont fontCenter paragraf" style="font-size:13px">Pada tanggal</td>
-                                          <td class="paddingfont fontCenter paragraf" style="font-size:13px">: 9 Juli 2020</td>
+                                          <td class="paragraf" style="font-size:13px">Pada tanggal</td>
+                                          <td class="paragraf" style="font-size:13px">: {{Carbon\Carbon::parse($sip->tglverif)->isoformat('DD MMMM Y')}}</td>
                                         </tr>
                                       </tbody>
                                     </table>
@@ -172,13 +172,13 @@
                                 <tr><td>&nbsp;</td></tr>
                                 <tr><td>&nbsp;</td></tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Ibu Nanik</td>
+                                  <td class="fontCenter paragraf" style="font-size:13px">{{$kadinkes->nama}}</td>
                                 </tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">Pembina Utama Muda</td>
+                                  <td class="fontCenter paragraf" style="font-size:13px">{{$kadinkes->pangkat}}</td>
                                 </tr>
                                 <tr>
-                                  <td class="paddingfont fontCenter paragraf" style="font-size:13px">NIP 196502281992032008</td>
+                                  <td class="fontCenter paragraf" style="font-size:13px">NIP {{$kadinkes->nip}}</td>
                                 </tr>
                               </tbody>
                             </table>
@@ -193,20 +193,20 @@
                           <td colspan="2" class="paddingfont fontJustify paragraf" style="font-size:13px">Tembusan :</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px" width="1%">1. </td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">Menteri Kesehatan</td>
+                          <td class="fontJustify paragraf" style="font-size:13px" width="1%">1. </td>
+                          <td class="fontJustify paragraf" style="font-size:13px">Menteri Kesehatan</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">2. </td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">Ketua Konsil Kedokteran Indonesia</td>
+                          <td class="fontJustify paragraf" style="font-size:13px">2. </td>
+                          <td class="fontJustify paragraf" style="font-size:13px">Ketua Konsil Kedokteran Indonesia</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">3. </td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">Kepala Dinas Kesehatan Provinsi Jawa Timur</td>
+                          <td class="fontJustify paragraf" style="font-size:13px">3. </td>
+                          <td class="fontJustify paragraf" style="font-size:13px">Kepala Dinas Kesehatan Provinsi Jawa Timur</td>
                         </tr>
                         <tr>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">4. </td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">Organisasi Profesi</td>
+                          <td class="fontJustify paragraf" style="font-size:13px">4. </td>
+                          <td class="fontJustify paragraf" style="font-size:13px">Organisasi Profesi</td>
                         </tr>
                       </tbody>
                     </table>
