@@ -58,4 +58,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profil/delete/{idpegawai}', 'PegawaiController@deleteFoto')->name('profil.hapus');
 
     Route::apiResource('user', UserController::class)->except('show');
+
+    Route::post('/sip/uploadFotoPendukung', 'PegawaiConSIPControllertroller@uploadFotoPendukung')->name('sip.uploadFotoPendukung');
 });

@@ -9,8 +9,10 @@ use Validator;
 use App\SIP;
 use App\STR;
 use App\Faskes;
+use App\BerkasSIP;
 use App\Http\Requests\SIPRequest;
 use \Illuminate\Database\QueryException;
+use Illuminate\Support\Str as FuncStr;
 use Exception;
 
 class SIPController extends Controller
@@ -151,5 +153,32 @@ class SIPController extends Controller
             $this->flashError($exception->getMessage());
             return back();
         }
+    }
+
+    public function uploadFotoPendukung(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file'  =>  'required|file|mimetypes:image/jpeg,image/png|max:512'
+        ]);
+        
+        if ($validator->fails()) {
+            throw new HttpResponseException(response()->json($validator->errors(), 422));
+        }
+
+        $mime = $request->file('file')->getMimeType();
+        $pattern = '/[a-zA-Z]+$/' ;
+        preg_match($pattern, $mime, $matches);
+        $mime = $matches[0];
+
+        $filename = 'temp_'.FuncStr::random(5).'.'.$mime;
+        $path = Storage::putFileAs(
+            "fotopendukung/{$request->idpegawai}/",
+            $request->file('file'),
+            $filename
+        );
+        
+        $url = url("/storage/app/fotopendukung/{$request->idpegawai}/".$filename);
+
+        return response()->json(['message'=>'Berhasil menambah'], 200);
     }
 }

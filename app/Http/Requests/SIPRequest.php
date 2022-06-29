@@ -55,6 +55,8 @@ class SIPRequest extends FormRequest
             "idfaskes" => "required_without:id|integer",
             "jadwalpraktik" => "nullable|string",
             "jabatan" => "nullable|string",
+            "urlfoto" => "nullable|array",
+            "captionfoto" => "nullable|array",
         ];
     }
 }

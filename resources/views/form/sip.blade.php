@@ -140,10 +140,15 @@
                                                 <img class="mb-2" src="{{asset('public/img/logo.png')}}" alt="" >
                                             </div>
                                             <button type="submit" class="btn btn-sm btn-round btn-fab btn-danger btn-absolute-r-corner" ><i class="material-icons">close</i><div class="ripple-container"></div></button>
+                                            <input type="hidden" name="urlfoto[]">
                                             <input type="text" class="form-control" name="captionfoto[]" maxlength="30">
                                         </div>
                                     </div>
                                     <div class="position-relative" id="tambah-foto-fakes">
+                                        <form action="{{route('profil.upload')}}" method="post" enctype="multipart/form-data" id="photo-form" style="display: none;">
+                                            @csrf
+                                            <input type="file" id="photo" name="file" hidden>
+                                        </form>
                                         <button type="submit" class="btn btn-round btn-outline" ><i class="material-icons">add_circle_outline</i><div class="ripple-container"></div></button>
                                     </div>
                                 </div>
