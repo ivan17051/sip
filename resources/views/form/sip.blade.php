@@ -99,13 +99,13 @@
                             <div class="card-body">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" id="ismandiri" name="ismandiri" onchange="gantiMandiri(this)"> Praktik Mandiri
+                                    <input class="form-check-input" type="checkbox" id="ismandiri" name="ismandiri" onchange="gantiMandiri(this, {{$index}})"> Praktik Mandiri
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
                                     </label>
                                 </div>
-                                <div class="form-group" id="faskesnonmandiri">
+                                <div class="form-group" id="faskesnonmandiri{{$index}}">
                                     <label class="bmd-label force-top">Faskes <small class="text-danger align-text-top">*wajib</small></label>
                                     <div class="input-group mb-3">
                                         <input type="text" name="idfaskes" required hidden>
@@ -117,10 +117,10 @@
                                         </div>
                                     </div>  
                                 </div>
-                                <div class="form-group" id="faskesmandiri" hidden>
+                                <div class="form-group" id="faskesmandiri{{$index}}" hidden>
                                     <label class="bmd-label force-top">Alamat Faskes Mandiri <small class="text-danger align-text-top">*wajib</small></label>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" name="alamatfaskes" required>
+                                        <input type="text" class="form-control" name="alamatfaskes">
                                     </div>  
                                 </div>
                                 <div class="all-foto-faskes-wrapper">
@@ -439,16 +439,16 @@
 
 @push('script2')
 <script>
-function gantiMandiri(self){
-    var $modal=$('#faskesnonmandiri');
-    var $modal2=$('#faskesmandiri');
+function gantiMandiri(self, index){
+    var $modal=$('#faskesnonmandiri'+index);
+    var $modal2=$('#faskesmandiri'+index);
     if(self.checked == true){
         // Faskes Mandiri
         $modal.find('input[name=idfaskes]').attr('required', false).attr('value','0');
         $modal.find('input[name=faskes]').attr('required', false);
         $modal.attr('hidden', true);
 
-        $modal2.find('input[name=faskes]').attr('required', true);
+        $modal2.find('input[name=alamatfaskes]').attr('required', true);
         $modal2.attr('hidden', false);
     }
     else{
@@ -457,7 +457,7 @@ function gantiMandiri(self){
         $modal.find('input[name=faskes]').attr('required', true);
         $modal.attr('hidden', false);
 
-        $modal2.find('input[name=faskes]').attr('required', false);
+        $modal2.find('input[name=alamatfaskes]').attr('required', false);
         $modal2.attr('hidden', true);
     }
 }
