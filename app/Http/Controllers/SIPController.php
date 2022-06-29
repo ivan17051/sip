@@ -43,6 +43,7 @@ class SIPController extends Controller
             if(isset($input['ismandiri']) AND $input['ismandiri']=='on'){
                 $input['idfaskes'] =NULL;
                 $input['saranapraktik'] = 'PRAKTIK MANDIRI';
+                $input['namafaskes'] = 'PRAKTIK MANDIRI';
                 // $faskes = new Faskes();
                 // $faskes->fill([
                 //     'alamat' => $request->alamatfaskes,

@@ -14,6 +14,8 @@ class CetakController extends Controller
         $d['sip'] = SIP::where('id',$idsip)->with('pegawai')->first();
         $d['aturan'] = $this->dasarPeraturanPerstek($d['sip']->idprofesi);
         $d['kadinkes'] = Pejabat::where('jabatan','Kepala Dinas')->first();
+        $d['jenispermohonan'] = JenisPermohonan::where('id',$d['sip']['idjenispermohonan'])->first();
+
         return view('report.perstek', $d);
     }
 
@@ -208,7 +210,7 @@ class CetakController extends Controller
                 break;
         }
 
-        array_push($text, "Peraturan Menteri Kesehatan Republik Indonesia Nomor 2025/MENKES/PER/X TAHUN 2011");
+        array_push($text, "Peraturan Walikota Surabaya Nomor 41 Tahun 2021 tentang Perizinan Berusaha, Perizinan Non Berusaha dan Pelayanan Non Perizinan");
         
         return $text;
     }

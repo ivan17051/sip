@@ -392,7 +392,11 @@
                     @else
                     <tr>
                         <td><label>Cetak Perstek</label></td>
+                        @if($sips[$index]['idjenispermohonan'])
                         <td><a target="_blank" href="{{route('cetak.perstek', ['idsip'=>$sips[$index]['id']])}}" class="btn btn-outline-primary btn-round btn-sm" >Cetak Perstek <i class="material-icons">open_in_new</i></a></td>
+                        @else
+                        <td>Harap Cetak Kitir Terlebih Dahulu</td>
+                        @endif
                     </tr>
                     <tr>
                         <td><label>Cetak Kitir</label></td>
