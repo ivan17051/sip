@@ -334,7 +334,7 @@
                         <td>
                             <span data-text="true"></span>
                             <span>
-                                <input data-editable=true type="text" name="idfaskes" value="{{$sips[$index]['idfaskes']}}" required hidden>
+                                <input data-editable=true type="text" id="idfaskes{{$index}}" name="idfaskes" value="{{$sips[$index]['idfaskes']}}" required hidden>
                             </span>
                         </td>
                     </tr>
@@ -467,11 +467,19 @@ function gantiMandiri(self, index){
     }
 }
 function hideJadwal(index){
+    // Untuk menampilkan value di textarea
     var text = $('#jadwal'+index);
     if(text.is(':hidden')){
         text.attr('hidden', false);
     }else{
         text.attr('hidden', true);
+    }
+
+    // Supaya praktik mandiri gk perlu idfaskes
+    var idfaskes = $('#idfaskes'+index);
+    var idfaskescontent = '{{$sips[$index]["idfaskes"]}}'
+    if(!idfaskescontent){
+        idfaskes.attr('required', false);
     }
 }
 

@@ -115,16 +115,18 @@ class SIPController extends Controller
         
         try{
             DB::beginTransaction();
-
-            $faskes = Faskes::where('id',$input['idfaskes'])->with('kategori')->first();
             $sip = SIP::find($input['id']);
+            if(isset($input['idfaskes'])){
+                $faskes = Faskes::where('id',$input['idfaskes'])->with('kategori')->first();
+                $sip->fill([
+                    'saranapraktik' => $faskes->kategori['nama'],
+                    'namafaskes' => $faskes['nama'],
+                    'alamatfaskes' => $faskes['alamat'],
+                    'idm'=> $userId,
+                ]);
+            }
             $sip->fill($input);
-            $sip->fill([
-                'saranapraktik' => $faskes->kategori['nama'],
-                'namafaskes' => $faskes['nama'],
-                'alamatfaskes' => $faskes['alamat'],
-                'idm'=> $userId,
-            ]);
+            
             $sip->save();
             
             DB::commit();

@@ -50,9 +50,9 @@ class SIPRequest extends FormRequest
             "tglmasukdinas" => "required_without:id|date",
             "tglverif" => "required_without:id|date",
             "idfaskes" => "required_without:ismandiri|integer",
-            "ismandiri" => "required_without:idfaskes",
+            "ismandiri" => "nullable",
             "alamatfaskes" => "required_without:idfaskes",
-            "idfaskes" => "required_without:id|integer",
+            "idfaskes" => "nullable|integer",
             "jadwalpraktik" => "nullable|string",
             "jabatan" => "nullable|string",
         ];
