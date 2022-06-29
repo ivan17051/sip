@@ -93,37 +93,39 @@ class NakesController extends Controller
 
         DB::beginTransaction();
         try{
-            $profesi = Profesi::find($input['idprofesi']);
-            if(!$profesi->isparent){
-                $profesiinfo = [
-                    'kodeprofesi' => $profesi->kode,
-                    'profesi' => $profesi->nama,
-                    'idspesialisasi' => NULL,
-                    'spesialisasi' => NULL,
-                ];
-            }else{
-                $spesialisasi = Spesialisasi::find($input['idspesialisasi']);
-                $profesiinfo = [
-                    'kodeprofesi' => $profesi->kode,
-                    'profesi' => $profesi->nama,
-                    'idspesialisasi' => $spesialisasi->id,
-                    'spesialisasi' => $spesialisasi->nama,
-                ];
-            }            
+            if(isset($input['idprofesi'])){
+                $profesi = Profesi::find($input['idprofesi']);
+                if(!$profesi->isparent){
+                    $profesiinfo = [
+                        'kodeprofesi' => $profesi->kode,
+                        'profesi' => $profesi->nama,
+                        'idspesialisasi' => NULL,
+                        'spesialisasi' => NULL,
+                    ];
+                }else{
+                    $spesialisasi = Spesialisasi::find($input['idspesialisasi']);
+                    $profesiinfo = [
+                        'kodeprofesi' => $profesi->kode,
+                        'profesi' => $profesi->nama,
+                        'idspesialisasi' => $spesialisasi->id,
+                        'spesialisasi' => $spesialisasi->nama,
+                    ];
+                }
+            }
 
             $model = Pegawai::findOrFail($input['id']);
-            
+            if(isset($input['idprofesi'])){
             // jika ganti profesi, mengganti nomorregis juga ke MAX
-            if( $model->idprofesi <> $input['idprofesi']){
-                $idmax = Pegawai::select( DB::raw("coalesce(MAX(nomorregis)+1 , 1) idmax"))->where('idprofesi',$input['idprofesi'])->pluck('idmax')->first();
+                if( $model->idprofesi <> $input['idprofesi']){
+                    $idmax = Pegawai::select( DB::raw("coalesce(MAX(nomorregis)+1 , 1) idmax"))->where('idprofesi',$input['idprofesi'])->pluck('idmax')->first();
 
-                $input['nomorregis'] = $idmax;
+                    $input['nomorregis'] = $idmax;
+                }
             }
-        
+
             $model->fill($input);
-            $model->fill($profesiinfo);
+            if(isset($profesiinfo)) $model->fill($profesiinfo);
             $model->idm = $userId;    
-            
             $model->save();
             DB::commit();
             $this->flashSuccess('Data Berhasil Disimpan');

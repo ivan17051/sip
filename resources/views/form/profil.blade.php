@@ -57,7 +57,7 @@
                         <td>
                             <span data-text="true"></span>
                             <span>
-                                <input data-editable=true type="text" class="form-control" name="alamatktp" maxlength="250" value="{{$nakes->alamat}}"/>
+                                <input data-editable=true type="text" class="form-control" name="alamatktp" maxlength="250" value="{{$nakes->alamatktp}}"/>
                             </span>
                         </td>
                     </tr>
