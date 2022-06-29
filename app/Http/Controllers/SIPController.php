@@ -37,7 +37,7 @@ class SIPController extends Controller
         try{
             DB::beginTransaction();
             
-            $str = STR::select('id','nomor','expiry','idpegawai','nomorregis','idprofesi','idspesialisasi',)->find($input['idstr']);
+            $str = STR::select('id','nomor','expiry','idpegawai','nomorregis','idprofesi','idspesialisasi')->find($input['idstr']);
             
             // Jika Faskes Mandiri
             if(isset($input['ismandiri']) AND $input['ismandiri']=='on'){
