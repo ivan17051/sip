@@ -413,3 +413,35 @@ tr.is-expired-soon{
 tr.is-no-data{
     background-color: #d3f7ff!important;
 }
+
+.btn-absolute-r-corner{
+    position: absolute!important;
+    top: 0;
+    right: 0;
+}
+
+.all-foto-faskes-wrapper > div{
+    margin: 0 16px 18px 16px;
+    display: inline-block!important;
+}
+
+#tambah-foto-fakes{
+    border: 6px dashed #b7b7b7;
+    width: 163px;
+    height: 163px;
+}
+
+#tambah-foto-fakes button{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border: 0;
+    box-shadow: unset;
+    border-radius: 0;
+    color: #b7b7b7;
+}
+
+#tambah-foto-fakes button>i{
+    font-size: 56px;
+}
