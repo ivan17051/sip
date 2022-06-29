@@ -39,12 +39,13 @@ class SIPController extends Controller
         try{
             DB::beginTransaction();
             
-            $str = STR::select('id','nomor','expiry','idpegawai','nomorregis','idprofesi','idspesialisasi',)->find($input['idstr']);
+            $str = STR::select('id','nomor','expiry','idpegawai','nomorregis','idprofesi','idspesialisasi')->find($input['idstr']);
             
             // Jika Faskes Mandiri
             if(isset($input['ismandiri']) AND $input['ismandiri']=='on'){
                 $input['idfaskes'] =NULL;
                 $input['saranapraktik'] = 'PRAKTIK MANDIRI';
+                $input['namafaskes'] = 'PRAKTIK MANDIRI';
                 // $faskes = new Faskes();
                 // $faskes->fill([
                 //     'alamat' => $request->alamatfaskes,
@@ -116,16 +117,18 @@ class SIPController extends Controller
         
         try{
             DB::beginTransaction();
-
-            $faskes = Faskes::where('id',$input['idfaskes'])->with('kategori')->first();
             $sip = SIP::find($input['id']);
+            if(isset($input['idfaskes'])){
+                $faskes = Faskes::where('id',$input['idfaskes'])->with('kategori')->first();
+                $sip->fill([
+                    'saranapraktik' => $faskes->kategori['nama'],
+                    'namafaskes' => $faskes['nama'],
+                    'alamatfaskes' => $faskes['alamat'],
+                    'idm'=> $userId,
+                ]);
+            }
             $sip->fill($input);
-            $sip->fill([
-                'saranapraktik' => $faskes->kategori['nama'],
-                'namafaskes' => $faskes['nama'],
-                'alamatfaskes' => $faskes['alamat'],
-                'idm'=> $userId,
-            ]);
+            
             $sip->save();
             
             DB::commit();

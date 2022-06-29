@@ -85,7 +85,7 @@
                     <table class="w-85">
                       <tbody>
                         <tr>
-                          <td colspan="2" class=" fontJustify paragraf" style="font-size:13px">Sehubungan dengan surat permohonan perizinan Sarana Perpanjangan - Izin Dokter Umum yang diajukan oleh :</td>
+                          <td colspan="2" class=" fontJustify paragraf" style="font-size:13px">Sehubungan dengan surat permohonan perizinan {{$jenispermohonan->nama}} yang diajukan oleh :</td>
                         </tr>
                         <tr>
                           <td colspan="2">&nbsp;</td>
@@ -138,7 +138,7 @@
                     <table class="w-85">
                       <tbody>
                         <tr>
-                          <td colspan="2" class=" fontJustify paragraf" style="font-size:13px">dengan ini memutuskan memberikan persetujuan untuk diterbitkan Sarana Perpanjangan - Izin Dokter Umum Kepada :</td>
+                          <td colspan="2" class=" fontJustify paragraf" style="font-size:13px">dengan ini memutuskan memberikan persetujuan untuk diterbitkan {{$jenispermohonan->nama}} Kepada :</td>
                         </tr>
                         <tr>
                           <td colspan="2">&nbsp;</td>

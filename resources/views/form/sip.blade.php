@@ -99,13 +99,13 @@
                             <div class="card-body">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" id="ismandiri" name="ismandiri" onchange="gantiMandiri(this)"> Praktik Mandiri
+                                    <input class="form-check-input" type="checkbox" id="ismandiri" name="ismandiri" onchange="gantiMandiri(this, {{$index}})"> Praktik Mandiri
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
                                     </label>
                                 </div>
-                                <div class="form-group" id="faskesnonmandiri">
+                                <div class="form-group" id="faskesnonmandiri{{$index}}">
                                     <label class="bmd-label force-top">Faskes <small class="text-danger align-text-top">*wajib</small></label>
                                     <div class="input-group mb-3">
                                         <input type="text" name="idfaskes" required hidden>
@@ -117,10 +117,10 @@
                                         </div>
                                     </div>  
                                 </div>
-                                <div class="form-group" id="faskesmandiri" hidden>
+                                <div class="form-group" id="faskesmandiri{{$index}}" hidden>
                                     <label class="bmd-label force-top">Alamat Faskes Mandiri <small class="text-danger align-text-top">*wajib</small></label>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" name="alamatfaskes" required>
+                                        <input type="text" class="form-control" name="alamatfaskes">
                                     </div>  
                                 </div>
                                 <div class="all-foto-faskes-wrapper">
@@ -339,7 +339,7 @@
                         <td>
                             <span data-text="true"></span>
                             <span>
-                                <input data-editable=true type="text" name="idfaskes" value="{{$sips[$index]['idfaskes']}}" required hidden>
+                                <input data-editable=true type="text" id="idfaskes{{$index}}" name="idfaskes" value="{{$sips[$index]['idfaskes']}}" required hidden>
                             </span>
                         </td>
                     </tr>
@@ -370,8 +370,9 @@
                         <td><label>Jadwal Praktik</label></td>
                         <td>
                             <span data-text="true"></span>
+                            <span id="jadwal{{$index}}">{{$sips[$index]['jadwalpraktik']}}</span>
                             <span>
-                                <textarea data-editable=true type="text" class="form-control" name="jadwalpraktik" value="{{$sips[$index]['jadwalpraktik']}}" maxlength="100" ></textarea>
+                                <textarea data-editable=true type="text" class="form-control" name="jadwalpraktik" maxlength="100" >{{$sips[$index]['jadwalpraktik']}}</textarea>
                             </span>
                         </td>
                     </tr>
@@ -397,7 +398,11 @@
                     @else
                     <tr>
                         <td><label>Cetak Perstek</label></td>
+                        @if($sips[$index]['idjenispermohonan'])
                         <td><a target="_blank" href="{{route('cetak.perstek', ['idsip'=>$sips[$index]['id']])}}" class="btn btn-outline-primary btn-round btn-sm" >Cetak Perstek <i class="material-icons">open_in_new</i></a></td>
+                        @else
+                        <td>Harap Cetak Kitir Terlebih Dahulu</td>
+                        @endif
                     </tr>
                     <tr>
                         <td><label>Cetak Kitir</label></td>
@@ -410,7 +415,7 @@
         <div class="col" style="flex-grow:0;">
             <div class="float-right absolute myform-actions">
                 <div data-state="0" class="anim slide">
-                    <button type="button" class="btn btn-primary btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(1)">
+                    <button type="button" class="btn btn-primary btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(1); hideJadwal({{$index}})">
                         <i class="material-icons">edit_note</i>
                     </button>
                     <button  type="button" class="btn btn-primary btn-round btn-fab" onclick="openHistoriSIP({{$sips[$index]['instance']}}, {{$sips[$index]['idstr']}})">
@@ -418,7 +423,7 @@
                     </button>
                 </div>
                 <div data-state="1" class="anim slide">
-                    <button type="button" class="btn btn-danger btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(0)">
+                    <button type="button" class="btn btn-danger btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(0); hideJadwal({{$index}})">
                         <i class="material-icons">close</i>
                     </button>
                     <button type="submit" class="btn btn-success btn-round btn-fab">
@@ -444,16 +449,16 @@
 
 @push('script2')
 <script>
-function gantiMandiri(self){
-    var $modal=$('#faskesnonmandiri');
-    var $modal2=$('#faskesmandiri');
+function gantiMandiri(self, index){
+    var $modal=$('#faskesnonmandiri'+index);
+    var $modal2=$('#faskesmandiri'+index);
     if(self.checked == true){
         // Faskes Mandiri
         $modal.find('input[name=idfaskes]').attr('required', false).attr('value','0');
         $modal.find('input[name=faskes]').attr('required', false);
         $modal.attr('hidden', true);
 
-        $modal2.find('input[name=faskes]').attr('required', true);
+        $modal2.find('input[name=alamatfaskes]').attr('required', true);
         $modal2.attr('hidden', false);
     }
     else{
@@ -462,8 +467,24 @@ function gantiMandiri(self){
         $modal.find('input[name=faskes]').attr('required', true);
         $modal.attr('hidden', false);
 
-        $modal2.find('input[name=faskes]').attr('required', false);
+        $modal2.find('input[name=alamatfaskes]').attr('required', false);
         $modal2.attr('hidden', true);
+    }
+}
+function hideJadwal(index){
+    // Untuk menampilkan value di textarea
+    var text = $('#jadwal'+index);
+    if(text.is(':hidden')){
+        text.attr('hidden', false);
+    }else{
+        text.attr('hidden', true);
+    }
+
+    // Supaya praktik mandiri gk perlu idfaskes
+    var idfaskes = $('#idfaskes'+index);
+    var idfaskescontent = '{{$sips[$index]["idfaskes"]}}'
+    if(!idfaskescontent){
+        idfaskes.attr('required', false);
     }
 }
 

@@ -50,6 +50,7 @@ class NakesProfileRequest extends FormRequest
             'tempatlahir' => 'nullable|string',
             'tanggallahir' => 'nullable|date',
             'jeniskelamin' => 'required|string',
+            'alamatktp' => 'nullable|string',
             'alamat' => 'nullable|string',
             'nohp' => 'nullable|string',
             "provinsi" => 'nullable|string',
@@ -59,7 +60,10 @@ class NakesProfileRequest extends FormRequest
             "perguruantinggi" => 'nullable|string',
             "tahunlulus" => 'nullable|integer',
             "idprofesi" => 'required_without:id|integer',
+            "profesi" => 'string',
             "idspesialisasi" => 'nullable|integer',
+            "spesialisasi" => 'string',
+            'kodeprofesi' => 'string',
             "foto" => 'file|mimetypes:image/jpeg,image/png|max:512',
         ];
     }
