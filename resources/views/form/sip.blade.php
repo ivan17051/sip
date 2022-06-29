@@ -365,8 +365,9 @@
                         <td><label>Jadwal Praktik</label></td>
                         <td>
                             <span data-text="true"></span>
+                            <span id="jadwal{{$index}}">{{$sips[$index]['jadwalpraktik']}}</span>
                             <span>
-                                <textarea data-editable=true type="text" class="form-control" name="jadwalpraktik" value="{{$sips[$index]['jadwalpraktik']}}" maxlength="100" ></textarea>
+                                <textarea data-editable=true type="text" class="form-control" name="jadwalpraktik" maxlength="100" >{{$sips[$index]['jadwalpraktik']}}</textarea>
                             </span>
                         </td>
                     </tr>
@@ -409,7 +410,7 @@
         <div class="col" style="flex-grow:0;">
             <div class="float-right absolute myform-actions">
                 <div data-state="0" class="anim slide">
-                    <button type="button" class="btn btn-primary btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(1)">
+                    <button type="button" class="btn btn-primary btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(1); hideJadwal({{$index}})">
                         <i class="material-icons">edit_note</i>
                     </button>
                     <button  type="button" class="btn btn-primary btn-round btn-fab" onclick="openHistoriSIP({{$sips[$index]['instance']}}, {{$sips[$index]['idstr']}})">
@@ -417,7 +418,7 @@
                     </button>
                 </div>
                 <div data-state="1" class="anim slide">
-                    <button type="button" class="btn btn-danger btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(0)">
+                    <button type="button" class="btn btn-danger btn-round btn-fab" onclick="$(this).myFormAndToggle().toggle(0); hideJadwal({{$index}})">
                         <i class="material-icons">close</i>
                     </button>
                     <button type="submit" class="btn btn-success btn-round btn-fab">
@@ -463,6 +464,14 @@ function gantiMandiri(self, index){
 
         $modal2.find('input[name=alamatfaskes]').attr('required', false);
         $modal2.attr('hidden', true);
+    }
+}
+function hideJadwal(index){
+    var text = $('#jadwal'+index);
+    if(text.is(':hidden')){
+        text.attr('hidden', false);
+    }else{
+        text.attr('hidden', true);
     }
 }
 
