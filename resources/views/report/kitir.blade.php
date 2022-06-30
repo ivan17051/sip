@@ -93,72 +93,22 @@
                       <thead class="tb-header">
                         <tr>
                           <th class="headerFont fontCenter fontBold" style="font-size:13px">NO</th>
-                          <th class="headerFont fontCenter fontBold" style="font-size:13px">PERSYARATAN</th>
-                          <th class="headerFont fontCenter fontBold" style="font-size:13px">SESUAI</th>
-                          <th class="headerFont fontCenter fontBold" style="font-size:13px">TIDAK SESUAI</th>
+                          <th class="headerFont fontCenter fontBold" style="font-size:13px; width:55%;">PERSYARATAN</th>
+                          <th class="headerFont fontCenter fontBold" style="font-size:13px; width:10%;">SESUAI</th>
+                          <th class="headerFont fontCenter fontBold" style="font-size:13px; width:10%;">TIDAK SESUAI</th>
+                          <th class="headerFont fontCenter fontBold" style="font-size:13px; ">KETERANGAN</th>
                         </tr>
                       </thead>
                       <tbody class="tb-body font-13">
+                        @foreach($syarat as $key=>$unit)
                         <tr>
-                          <td class=" fontJustify">1. </td>
-                          <td class=" fontJustify">STR Legalisir</td>
+                          <td class=" fontJustify">{{$key+1}}. </td>
+                          <td class=" fontJustify">{{$unit}}</td>
                           <td class=" fontCenter">&#10003;</td>
                           <td class=" fontCenter"></td>
+                          <td class=" fontCenter">@if(strncasecmp($unit,'STR',3)==0) {{$sip->nomorstr}} @elseif(strncasecmp($unit,'Rekomendasi',11)==0) {{$sip->nomorrekom}} @endif</td>
                         </tr>
-                        <tr>
-                          <td class=" fontJustify">2. </td>
-                          <td class=" fontJustify">KTP</td>
-                          <td class=" fontCenter">&#10003;</td>
-                          <td class=" fontCenter"></td>
-                        </tr>
-                        <tr>
-                          <td class=" fontJustify">3. </td>
-                          <td class=" fontJustify">Surat Keterangan domisili tinggal di Surabaya (Bagi Penduduk Non Surabaya)</td>
-                          <td class=" fontCenter">&#10003;</td>
-                          <td class=" fontCenter"></td>
-                        </tr>
-                        <tr>
-                          <td class=" fontJustify">4. </td>
-                          <td class=" fontJustify">Pas Photo Digital Terbaru Ukuran 4 X 6 cm</td>
-                          <td class=" fontCenter">&#10003;</td>
-                          <td class=" fontCenter"></td>
-                        </tr>
-                        <tr>
-                          <td class=" fontJustify">5. </td>
-                          <td class=" fontJustify">Rekomendasi Organisasi Profesi (IDI / PDGI)</td>
-                          <td class=" fontCenter">&#10003;</td>
-                          <td class=" fontCenter"></td>
-                        </tr>
-                        <tr>
-                          <td class=" fontJustify">6. </td>
-                          <td class=" fontJustify">Surat Pernyataan Memiliki Tempat Kerja di Sarana / fasilitas pelayanan kesehatan atau praktik mandiri bermaterai 10.000</td>
-                          <td class=" fontCenter">&#10003;</td>
-                          <td class=" fontCenter"></td>
-                        </tr>
-                        <tr>
-                          <td class=" fontJustify">7. </td>
-                          <td class=" fontJustify">Surat Keterangan Bekerja dari Pimpinan, beserta Foto Copy Izin Penyelenggaraan Fasilitas Pelayanan Kesehatan yang Berlaku</td>
-                          <td class=" fontCenter">&#10003;</td>
-                          <td class=" fontCenter"></td>
-                        </tr>
-                        <tr>
-                          <td class=" fontJustify">8. </td>
-                          <td class=" fontJustify">SIP Lama Asli</td>
-                          <td class=" fontCenter">&#10003;</td>
-                          <td class=" fontCenter"></td>
-                        </tr>
-                        <tr>
-                          <td class=" fontJustify">9. </td>
-                          <td class=" fontJustify">Surat Pengantar Puskesmas</td>
-                          <td class=" fontCenter">&#10003;</td>
-                          <td class=" fontCenter"></td>
-                        </tr>
-                        <tr>
-                          <td class=" fontJustify">10. </td>
-                          <td class=" fontJustify">Denah Tempat Praktik</td>
-                          <td class=" fontCenter">&#10003;</td>
-                          <td class=" fontCenter"></td>
-                        </tr>
+                        @endforeach
                       </tbody>
                     </table>
                     <table class="w-85">

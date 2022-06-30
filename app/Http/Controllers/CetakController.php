@@ -25,10 +25,12 @@ class CetakController extends Controller
         $d['sip']->save();
 
         $d['jenispermohonan'] = JenisPermohonan::where('id',$request->input('idjenispermohonan'))->first();
+        $d['syarat'] = $this->dataSyaratKitir($d['jenispermohonan']->syarat);
 
         $d['subkoor'] = Pejabat::where('jabatan','Sub Koordinator')->first();
         $d['kabid'] = Pejabat::where('jabatan','Kepala Bidang')->first();
         $d['staf'] = Pejabat::where('id',$request->input('idpejabat'))->first();
+        
         return view('report.kitir', $d);
     }
 
@@ -213,5 +215,127 @@ class CetakController extends Controller
         array_push($text, "Peraturan Walikota Surabaya Nomor 41 Tahun 2021 tentang Perizinan Berusaha, Perizinan Non Berusaha dan Pelayanan Non Perizinan");
         
         return $text;
+    }
+
+    private function dataSyaratKitir($idsyarat){
+        $syarat = [];
+        switch ($idsyarat) {
+            // Perorang Ijin Baru 
+            case "1" :
+                $syarat = [
+                    'KTP',
+                    'Domisili',
+                    'STR Legalisir',
+                    'Ijazah Legalisir',
+                    'Rekomendasi Organisasi Profesi',
+                    'Surat Sehat',
+                    'Pas Photo digital terbaru Ukuran 4 x 6 cm (tata letak harus tegak horisontal, tidak boleh miring)',
+                    'Surat Pernyataan Tempat Bekerja',
+                    'Surat Pengantar Puskesmas',
+                    'Denah Ruangan dan Peta Lokasi'
+                ];
+                break;
+            // Perorang Perpanjang
+            case "2" :
+                $syarat = [
+                    'KTP',
+                    'Surat Keterangan domisili tinggal di Surabaya (Bagi Penduduk Non Surabaya)',
+                    'STR Legalisir',
+                    'Ijazah Legalisir',
+                    'Rekomendasi Organisasi Profesi',
+                    'Surat Sehat',
+                    'Pas Photo digital terbaru Ukuran 4 x 6 cm (tata letak harus tegak horisontal, tidak boleh miring)',
+                    'Surat Pernyataan Tempat Bekerja',
+                    'Surat Pengantar Puskesmas',
+                    'Denah Ruangan dan Peta Lokasi',
+                    'SIP/SIK Lama asli'
+                ];
+                break;
+            // Perorang Cabut
+            case "3" :
+                $syarat = [
+                    'KTP',
+                    'Surat Keterangan domisili tinggal di Surabaya (Bagi Penduduk Non Surabaya)',
+                    'SIP/SIK yang asli sesuai dengan yang akan dicabut',
+                    'Surat Keterangan tidak bekerja dari Sarana yang sebelumnya (apabila bekerja di Sarana Kesehatan)',
+                    'Berita Acara Pencabutan'
+                ];
+                break;
+            // Perorang Cabut Pindah
+            case "4" :
+                $syarat = [
+                    'KTP',
+                    'Surat Keterangan domisili tinggal di Surabaya (Bagi Penduduk Non Surabaya)',
+                    'STR Legalisir',
+                    'Ijazah Legalisir',
+                    'Rekomendasi Organisasi Profesi',
+                    'Surat Sehat',
+                    'Pas Photo digital terbaru Ukuran 4 x 6 cm (tata letak harus tegak horisontal, tidak boleh miring)',
+                    'Surat Pernyataan Tempat Bekerja',
+                    'Surat Pengantar Puskesmas',
+                    'Denah Ruangan dan Peta Lokasi',
+                    'SIP/SIK yang asli sesuai dengan yang akan dicabut',
+                    'Surat Keterangan tidak bekerja dari Sarana yang sebelumnya (apabila bekerja di Sarana Kesehatan)',
+                    'Berita Acara Pencabutan'
+                ];
+                break;
+            // Sarana Ijin Baru
+            case "5" :
+                $syarat = [
+                    'KTP',
+                    'Surat Keterangan domisili tinggal di Surabaya (Bagi Penduduk Non Surabaya)',
+                    'STR Legalisir',
+                    'Ijazah Legalisir',
+                    'Rekomendasi Organisasi Profesi',
+                    'Surat Sehat',
+                    'Pas Photo digital terbaru Ukuran 4 x 6 cm (tata letak harus tegak horisontal, tidak boleh miring)',
+                    'Surat Pernyataan Tempat Bekerja',
+                    'Surat Keterangan Bekerja dari Pimpinan, beserta izin Operasional Sarana Kesehatan'
+                ];
+                break;
+            // Sarana Perpanjang
+            case "6" :
+                $syarat = [
+                    'KTP',
+                    'Surat Keterangan domisili tinggal di Surabaya (Bagi Penduduk Non Surabaya)',
+                    'STR Legalisir',
+                    'Ijazah Legalisir',
+                    'Rekomendasi Organisasi Profesi',
+                    'Surat Sehat',
+                    'Pas Photo digital terbaru Ukuran 4 x 6 cm (tata letak harus tegak horisontal, tidak boleh miring)',
+                    'Surat Pernyataan Tempat Bekerja',
+                    'Surat Keterangan Bekerja dari Pimpinan, beserta izin Operasional Sarana Kesehatan',
+                    'SIP/SIK Lama asli'
+                ];
+                break;
+            // Sarana Cabut
+            case "7" :
+                $syarat = [
+                    'KTP',
+                    'Surat Keterangan domisili tinggal di Surabaya (Bagi Penduduk Non Surabaya)',
+                    'SIP/SIK yang asli sesuai dengan yang akan dicabut',
+                    'Surat Keterangan tidak bekerja dari Sarana yang sebelumnya (apabila bekerja di Sarana Kesehatan)',
+                    'Berita Acara Pencabutan'
+                ];
+                break;
+            // Sarana Cabut Pindah
+            case "8" :
+                $syarat = [
+                    'KTP',
+                    'Surat Keterangan domisili tinggal di Surabaya (Bagi Penduduk Non Surabaya)',
+                    'STR Legalisir',
+                    'Ijazah Legalisir',
+                    'Rekomendasi Organisasi Profesi',
+                    'Surat Sehat',
+                    'Pas Photo digital terbaru Ukuran 4 x 6 cm (tata letak harus tegak horisontal, tidak boleh miring)',
+                    'Surat Pernyataan Tempat Bekerja',
+                    'Surat Keterangan Bekerja dari Pimpinan, beserta izin Operasional Sarana Kesehatan',
+                    'SIP/SIK yang asli sesuai dengan yang akan dicabut',
+                    'Surat Keterangan tidak bekerja dari Sarana yang sebelumnya (apabila bekerja di Sarana Kesehatan)',
+                    'Berita Acara Pencabutan'
+                ];
+                break;
+        }
+        return $syarat;
     }
 }

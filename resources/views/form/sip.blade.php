@@ -471,6 +471,7 @@ function gantiMandiri(self, index){
         $modal2.attr('hidden', true);
     }
 }
+
 function hideJadwal(index){
     // Untuk menampilkan value di textarea
     var text = $('#jadwal'+index);
@@ -482,7 +483,7 @@ function hideJadwal(index){
 
     // Supaya praktik mandiri gk perlu idfaskes
     var idfaskes = $('#idfaskes'+index);
-    var idfaskescontent = '{{$sips[$index]["idfaskes"]}}'
+    var idfaskescontent = '{{isset($sips[$index]["idfaskes"])}}'
     if(!idfaskescontent){
         idfaskes.attr('required', false);
     }
