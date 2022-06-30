@@ -125,31 +125,12 @@
                                 </div>
                                 <div class="all-foto-faskes-wrapper">
                                     <label class="bmd-label force-top">Foto Pendukung </label>
-                                    <div class="form-group">
-                                        <div style="width:fit-content;" class="position-relative">
-                                            <div class="centered-image-wrapper">
-                                                <img class="mb-2" src="{{asset('public/img/logo.png')}}" alt="" >
-                                            </div>
-                                            <button type="submit" class="btn btn-sm btn-round btn-fab btn-danger btn-absolute-r-corner" ><i class="material-icons">close</i><div class="ripple-container"></div></button>
-                                            <input type="text" class="form-control" name="captionfoto[]" maxlength="30">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div style="width:fit-content;" class="position-relative">
-                                            <div class="centered-image-wrapper">
-                                                <img class="mb-2" src="{{asset('public/img/logo.png')}}" alt="" >
-                                            </div>
-                                            <button type="submit" class="btn btn-sm btn-round btn-fab btn-danger btn-absolute-r-corner" ><i class="material-icons">close</i><div class="ripple-container"></div></button>
-                                            <input type="hidden" name="urlfoto[]">
-                                            <input type="text" class="form-control" name="captionfoto[]" maxlength="30">
-                                        </div>
-                                    </div>
-                                    <div class="position-relative" id="tambah-foto-fakes">
-                                        <form action="{{route('profil.upload')}}" method="post" enctype="multipart/form-data" id="photo-form" style="display: none;">
-                                            @csrf
-                                            <input type="file" id="photo" name="file" hidden>
+                                    <div class="position-relative" id="tambah-foto-fakes{{$index}}">
+                                        <form></form>
+                                        <form method="post" enctype="multipart/form-data" class="m-0">
+                                            <input type="file" class="fotopendukung" name="file" hidden>
                                         </form>
-                                        <button type="submit" class="btn btn-round btn-outline" ><i class="material-icons">add_circle_outline</i><div class="ripple-container"></div></button>
+                                        <button type="button" class="btn btn-round btn-outline" ><i class="material-icons">add_circle_outline</i><div class="ripple-container"></div></button>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -489,6 +470,24 @@ function hideJadwal(index){
     }
 }
 
+function onBeforeDeleteFotoPendukung(self){
+    //cabut
+    swal({
+        title: 'Yakin ingin menghapus foto?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonClass: 'btn btn-danger',
+        cancelButtonClass: 'btn btn-info',
+        confirmButtonText: 'Yakin',
+        cancelButtonText: 'Tidak',
+        buttonsStyling: false
+    }).then( function(isConfirm){
+        if(isConfirm.value) {
+            $(self).closest('.form-group').remove()
+        }
+    }).catch(swal.noop)
+}
+
 $(function(){
 
     $('#modal-sip{{$index}} form').submit(function(e){
@@ -615,6 +614,43 @@ $(function(){
     @if(!isset($sips[$index]) OR !$sips[$index]['isactive'])
     $('#modal-sip{{$index}} .modal-title').text('Tambahkan SIP');
     @endif
+
+    //onuploadfotopendukung
+    const $formUploadFotopendukung = $('#tambah-foto-fakes{{$index}} form');
+    const $inputFotopendukung = $formUploadFotopendukung.find('.fotopendukung');
+
+    $inputFotopendukung.change(async function(e){
+        try{
+            var formData = new FormData()
+            formData.append('_token', "{{ csrf_token() }}")
+            formData.append('idpegawai', "{{$nakes->id}}")
+            var newfile = await my.noMoreBigFile(e.target.files[0])
+            formData.append('file', newfile)
+            console.log(formData)
+            let res = await my.request.upload("{{route('sip.uploadFotoPendukung')}}", formData)
+
+            if(res.url){
+                let htmlstr = '<div class="form-group">'+
+                        '<div style="width:fit-content;" class="position-relative">' +
+                            '<div class="centered-image-wrapper">' +
+                                '<img class="mb-2" src="'+res.url+'" alt="" >' +
+                            '</div>' +
+                            '<button onclick="onBeforeDeleteFotoPendukung(this)" type="button" class="btn btn-sm btn-round btn-fab btn-danger btn-absolute-r-corner" ><i class="material-icons">close</i><div class="ripple-container"></div></button>' +
+                            '<input type="hidden" name="urlfoto[]" value="'+res.url+'">' +
+                            '<input type="text" class="form-control" name="captionfoto[]" maxlength="30">' +
+                        '</div>' +
+                    '</div>';
+                    $(htmlstr).insertBefore($('#tambah-foto-fakes{{$index}}'));
+            }
+        }catch(e){
+            console.log(e)
+
+        }
+    })
+
+    $('#tambah-foto-fakes{{$index}} button').click(function(){
+        $inputFotopendukung.click();
+    });
 })
 </script>
 @endpush

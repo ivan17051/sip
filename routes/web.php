@@ -59,5 +59,5 @@ Route::middleware(['auth'])->group(function () {
 
     Route::apiResource('user', UserController::class)->except('show');
 
-    Route::post('/sip/uploadFotoPendukung', 'PegawaiConSIPControllertroller@uploadFotoPendukung')->name('sip.uploadFotoPendukung');
+    Route::post('/sip/uploadFotoPendukung', 'SIPController@uploadFotoPendukung')->name('sip.uploadFotoPendukung');
 });

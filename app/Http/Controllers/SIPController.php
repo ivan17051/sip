@@ -14,6 +14,7 @@ use App\Http\Requests\SIPRequest;
 use \Illuminate\Database\QueryException;
 use Illuminate\Support\Str as FuncStr;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class SIPController extends Controller
 {
@@ -182,6 +183,6 @@ class SIPController extends Controller
         
         $url = url("/storage/app/fotopendukung/{$request->idpegawai}/".$filename);
 
-        return response()->json(['message'=>'Berhasil menambah'], 200);
+        return response()->json(['message'=>'Berhasil menambah', 'url'=>$url], 200);
     }
 }
