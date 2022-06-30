@@ -95,6 +95,7 @@ class ImportSIP extends Command
                         [
                             "idstr" => $str->id,
                             "idpegawai" => $str->idpegawai,
+                            "instance" => $data['instance'],
                         ],
                         array_merge(
                             [
