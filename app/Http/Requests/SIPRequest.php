@@ -53,6 +53,7 @@ class SIPRequest extends FormRequest
             "ismandiri" => "nullable",
             "alamatfaskes" => "required_without:idfaskes",
             "idfaskes" => "nullable|integer",
+            "idwilayahpkm" => "nullable|integer",
             "jadwalpraktik" => "nullable|string",
             "jabatan" => "nullable|string",
             "urlfoto" => "nullable|array",

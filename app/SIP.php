@@ -22,7 +22,7 @@ class SIP extends Model
         "saranapraktik",
         "namafaskes",
         "alamatfaskes",
-
+        "idwilayahpkm",
         "instance",
         "iterator",
         "nomor",

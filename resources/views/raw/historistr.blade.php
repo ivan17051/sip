@@ -14,7 +14,7 @@
                         <a class="dropdown-item" href="{{route('bio').$urlparam.'&idstrlawas='.$unit->id}}">Tampilkan</a>
                     </div>
                 </div>
-                <h5><strong>{{$unit->since}} - {{$unit->expiry}}</strong></h5>
+                <h5><strong>{{Carbon\Carbon::parse($unit->since)->isoFormat('D MMMM Y')}} - {{Carbon\Carbon::parse($unit->expiry)->isoFormat('D MMMM Y')}}</strong></h5>
                 <p>
                     <span><strong>No:</strong> {{$unit->nomor}}</span><br> 
                     <span>{{$unit->profesi->nama}}</span>

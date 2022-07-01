@@ -9,6 +9,7 @@ use App\STR;
 use App\SIP;
 use App\Pejabat;
 use App\JenisPermohonan;
+use App\Faskes;
 
 class BioNakesController extends Controller
 {
@@ -19,6 +20,7 @@ class BioNakesController extends Controller
         $d['nakes']= isset($idnakes) ? Pegawai::where('id',$idnakes)->with('profesirelation')->first() : null;
         $d['urlparam']=null;
         $d['makssip']=0;
+        $d['puskesmas']=Faskes::where('nama','LIKE','Puskesmas%')->get();
 
         if(isset($d['nakes'])){
             $d['makssip']=$d['nakes']->profesirelation->makssip;

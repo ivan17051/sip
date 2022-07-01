@@ -14,12 +14,13 @@
                         <a class="dropdown-item" href="#">Tampilkan</a>
                     </div>
                 </div> -->
-                <h5><strong>{{$unit->tglmasukdinas}}</strong></h5>
+                <h5><strong>{{Carbon\Carbon::parse($unit->tglmasukdinas)->isoFormat('D MMMM Y')}}</strong></h5>
                 <p>
                     <span><strong>SIP {{strtoupper($unit->jenispermohonan)}}</strong><br> 
-                    <span><strong>No:</strong> {{$unit->nomor}}</span><br> 
-                    <span>{{$unit->namafaskes}}</span>
-                    
+                    <span><strong>No SIP:</strong> {{$unit->nomor}}</span><br>
+                    <span><strong>No Rekom:</strong> {{$unit->nomorrek}}</span><br>
+                    <span>{{$unit->namafaskes}}</span><br>
+                    <span>{{$unit->alamatfaskes}}</span>
                 </p>
             </div>
         </div>

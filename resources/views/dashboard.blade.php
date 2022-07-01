@@ -12,7 +12,7 @@ active
 @section('content')
 <div class="container-fluid">
     <div class="row">
-      <div class="col-md-4 col-sm-6">
+      <div class="col-md-6 col-sm-6">
         <div class="card card-stats bg-warning">
           <div class="card-header card-header-warning card-header-icon pt-3 pb-3">
             <span class="float-left"><i class="material-icons">group</i></span>
@@ -21,7 +21,7 @@ active
           </div>
         </div>
       </div>
-      <div class="col-md-4 col-sm-6">
+      <div class="col-md-6 col-sm-6">
         <div class="card card-stats bg-danger">
           <div class="card-header card-header-warning card-header-icon pt-3 pb-3">
             <span class="float-left"><i class="material-icons">group_off</i></span>
@@ -30,7 +30,7 @@ active
           </div>
         </div>
       </div>
-      <div class="col-md-4 col-sm-6">
+      <!-- <div class="col-md-4 col-sm-6">
         <div class="card card-stats bg-info">
           <div class="card-header card-header-warning card-header-icon pt-3 pb-3">
             <span class="float-left"><i class="material-icons">supervisor_account</i></span>
@@ -38,7 +38,7 @@ active
             <h3 class="card-title text-white font-weight-bold"><strong>{{$stats['-2']->total}}</strong></h3>
           </div>
         </div>
-      </div>
+      </div> -->
     <!-- end col-md-12 -->
     </div>
     <!-- end row -->
