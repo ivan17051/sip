@@ -16,14 +16,15 @@
           <div id="sip-form-accordion{{$index}}" role="tablist">
             @if(isset($sips[$index]) AND $sips[$index]['isactive'] )
             <div class="form-check-group mb-3" id="aksisip-wrapper-{{$index}}">
-            <!-- <div class="form-check">
-                    <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="jenispermohonan" value="perpanjangan" data-target="#" > Perpanjangan
-                    <span class="circle">
-                        <span class="check"></span>
-                    </span>
-                    </label>
-                </div> -->
+              <div class="form-check">
+                <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="jenispermohonan" value="perpanjangan" 
+                  data-target="#form-sip-baru-{{$index}}" > Perpanjangan
+                  <span class="circle">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
               <div class="form-check">
                 <label class="form-check-label">
                   <input class="form-check-input" type="radio" name="jenispermohonan" value="cabut"> Cabut
@@ -418,7 +419,11 @@
                     <!-- KHUSUS Tenaga Kesehata Tradisional Interkontinental -->
                     <tr>
                         <td><label>Cetak SIP</label></td>
+                        @if($sips[$index]['idjenispermohonan'])
                         <td><a target="_blank" href="{{route('cetak.sip', ['idsip'=>$sips[$index]['id']])}}" class="btn btn-outline-primary btn-round btn-sm" >Cetak SIP <i class="material-icons">open_in_new</i></a></td>
+                        @else
+                        <td>Harap Cetak Kitir Terlebih Dahulu</td>
+                        @endif
                     </tr>
                     <tr>
                         <td><label>Cetak Kitir</label></td>
@@ -539,7 +544,6 @@ function onBeforeDeleteFotoPendukung(self){
 $(function(){
 
     $('#modal-sip{{$index}} form').submit(function(e){
-        console.log('MASOK');
         e.preventDefault();
         let formDOM = this
         let jenispermohonan = $(this).find('[name=jenispermohonan]:checked').val()

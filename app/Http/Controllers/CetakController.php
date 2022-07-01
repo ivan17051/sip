@@ -37,7 +37,9 @@ class CetakController extends Controller
     public function sip(Request $request, $idsip){
         $d['sip'] = SIP::where('id',$idsip)->with('pegawai')->first();
         $d['kadinkes'] = Pejabat::where('jabatan','Kepala Dinas')->first();
-        return view('report.sip', $d);
+        $d['jenispermohonan'] = JenisPermohonan::where('id',$d['sip']->idjenispermohonan)->first();
+        
+        return view('report.sipinterkon', $d);
     }
 
     private function dasarPeraturanPerstek($idprofesi){
