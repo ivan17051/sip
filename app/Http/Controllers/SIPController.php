@@ -63,7 +63,8 @@ class SIPController extends Controller
                 ->with('profesirelation')->orderBy('iterator', 'DESC')->first();            
             $totalsip = SIP::where('idstr', $input['idstr'])->where('isactive', 1)->count();
             
-            if($totalsip>0){
+            // Cegatan jika input SIP lbh dari makssip
+            if(isset($latestsip->profesirelation)){
                 if($totalsip > $latestsip->profesirelation->makssip){
                     throw new Exception("SIP lebih dari {$latestsip->profesirelation->makssip}");
                 }
@@ -76,7 +77,7 @@ class SIPController extends Controller
                 $latestsip->idm = $userId;
                 $latestsip->save();
             }
-
+            
             $sip = new SIP($input);
             $sip->fill([
                 'iterator' => isset($latestsip) ? $latestsip->iterator+1 : 1,

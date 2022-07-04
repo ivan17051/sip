@@ -19,7 +19,7 @@
               <div class="form-check">
                 <label class="form-check-label">
                 <input class="form-check-input" type="radio" name="jenispermohonan" value="perpanjangan" 
-                  data-target="#form-sip-baru-{{$index}}" > Perpanjangan
+                  data-target="#form-sip-panjang-{{$index}}" > Perpanjangan
                   <span class="circle">
                     <span class="check"></span>
                   </span>
@@ -188,6 +188,149 @@
                   </h5>
                 </div>
                 <div id="sip-form-3-{{$index}}" class="collapse" role="tabpanel"
+                  data-parent="#sip-form-accordion{{$index}}">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label class="bmd-label force-top">Tanggal Online <small
+                          class="text-danger align-text-top">*wajib</small></label>
+                      <input type="date" class="form-control" name="tglonline" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="bmd-label force-top">Tanggal Masuk Dinas <small
+                          class="text-danger align-text-top">*wajib</small></label>
+                      <input type="date" class="form-control" name="tglmasukdinas" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="bmd-label force-top">Tanggal Verif & Cetak <small
+                          class="text-danger align-text-top">*wajib</small></label>
+                      <input type="date" class="form-control" name="tglverif" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="form-sip-panjang-{{$index}}">
+              <div class="card-collapse">
+                <div class="card-header" role="tab">
+                  <h5 class="mb-0">
+                    <a data-toggle="collapse" href="#sip-form-21-{{$index}}" aria-expanded="true" class="collapsed">
+                      NOMOR
+                      <i class="material-icons">keyboard_arrow_down</i>
+                    </a>
+                  </h5>
+                </div>
+                <div id="sip-form-21-{{$index}}" class="collapse show" role="tabpanel"
+                  data-parent="#sip-form-accordion{{$index}}">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label class="bmd-label force-top">Praktik ke- <small
+                          class="text-danger align-text-top">*wajib</small></label>
+                      <input type="number" class="form-control bg-color-unset" name="instance" value="{{$index+1}}"
+                        readonly required>
+                    </div>
+                    <div class="form-group">
+                      <label class="bmd-label force-top">Nomor SIP <small
+                          class="text-danger align-text-top">*wajib</small></label>
+                      <div>
+                        <input type="text" class="form-control" name="nomor" maxlength="70"
+                          value="503.446 /       / {{sprintf('%04d', $nakes->nomorregis)}} / {{integerToRoman($index+1)}} / IP.DU / 436.7.2 / {{date('Y')}}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="bmd-label force-top">Nomor Online</label>
+                      <div>
+                        <input type="text" class="form-control" name="nomoronline" maxlength="28">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="bmd-label force-top">Nomor Rekom</label>
+                      <div>
+                        <input type="text" class="form-control" name="nomorrekom" maxlength="22">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="bmd-label force-top">Jabatan</label>
+                      <div>
+                        <input type="text" class="form-control" name="jabatan" maxlength="30">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-collapse">
+                <div class="card-header" role="tab">
+                  <h5 class="mb-0">
+                    <a data-toggle="collapse" href="#sip-form-22-{{$index}}" aria-expanded="false" class="">
+                      FASKES
+                      <i class="material-icons">keyboard_arrow_down</i>
+                    </a>
+                  </h5>
+                </div>
+                <div id="sip-form-22-{{$index}}" class="collapse" role="tabpanel"
+                  data-parent="#sip-form-accordion{{$index}}">
+                  <div class="card-body">
+                    @if(isset($sips[$index]['idfaskes']))
+                    <div class="form-group" id="faskesnonmandiri{{$index}}">
+                      <label class="bmd-label force-top">Faskes <small
+                          class="text-danger align-text-top">*wajib</small></label>
+                      <div class="input-group mb-3">
+                        <input type="hidden" name="idfaskes" value="{{isset($sips[$index]['idfaskes']) ? $sips[$index]['idfaskes'] : null}}" required>
+                        <input type="text" class="form-control" name="faskes" value="{{isset($sips[$index]['namafaskes']) ? $sips[$index]['namafaskes'] : null}}" required readonly>
+                        <div class="input-group-append">
+                          <button class="btn btn-info m-0" type="button" style="padding: 0 12px;" data-toggle="modal"
+                            data-target="#searchfaskes{{$index}}">
+                            <i class="material-icons">search</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    @else
+                    <div id="faskesmandiri{{$index}}">
+                      <div class="form-group">
+                        <label class="bmd-label force-top">Alamat Faskes Mandiri <small
+                            class="text-danger align-text-top">*wajib</small></label>
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" name="alamatfaskes" value="{{isset($sips[$index]['alamatfaskes']) ? $sips[$index]['alamatfaskes'] : null}}">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="bmd-label force-top">Wilayah Puskesmas <small
+                            class="text-danger align-text-top">*wajib</small></label>
+                        <select name="idwilayahpkm" id="idwilayahpkm" class="selectpicker form-control mb-2" data-size="7"
+                          data-style="btn btn-primary btn-round">
+                          <option value="" selected disabled>Pilih Puskesmas</option>
+                          @foreach($puskesmas as $key=>$unit)
+                          <option value="{{$unit->id}}" @if($unit->id === isset($sips[$index]['idwilayahpkm']) ? $sips[$index]['idwilayahpkm'] : 0) selected @else @endif>{{$unit->nama}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+                    @endif
+                    <div class="form-group">
+                      <label class="bmd-label force-top">Jadwal Praktik </label>
+                      <textarea type="text" class="form-control" name="jadwalpraktik" maxlength="100">{{isset($sips[$index]['jadwalpraktik']) ? $sips[$index]['jadwalpraktik'] : ''}}</textarea>
+                    </div>
+                    <!-- <div class="row mt-5">
+                        <div class="col-md-6">
+                            <div class="centered-image-wrapper">
+                                <img class="" src="{{asset('public/img/product3.jpg')}}" alt="" >
+                            </div>
+                            <input type="text" class="form-control" name="jabatan" maxlength="30" placeholder="caption" >
+                        </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+              <div class="card-collapse">
+                <div class="card-header" role="tab">
+                  <h5 class="mb-0">
+                    <a data-toggle="collapse" href="#sip-form-23-{{$index}}" aria-expanded="false" class="">
+                      TANGGAL
+                      <i class="material-icons">keyboard_arrow_down</i>
+                    </a>
+                  </h5>
+                </div>
+                <div id="sip-form-23-{{$index}}" class="collapse" role="tabpanel"
                   data-parent="#sip-form-accordion{{$index}}">
                   <div class="card-body">
                     <div class="form-group">
@@ -625,17 +768,43 @@ $(function(){
 
     // TOGGLE RADIO BUTTON JENISPERMOHONAN
     $('#modal-sip{{$index}} [name=jenispermohonan]').change(function(e){
-        $('#modal-sip{{$index}} [name=jenispermohonan]').each(function(k,elem){
-            let section =  $(elem.dataset.target)
-            if(!section.length) return;
-            if(elem.checked){
-                section.find('input,select,textarea').prop("disabled", false)
-                section.attr('hidden', false)
-            }else{
-                section.find('input,select,textarea').prop("disabled", true)
-                section.attr('hidden', true)
-            }
-        })
+        // console.log(this.value, this.dataset.target);
+        var baru =  $('#form-sip-baru-{{$index}}');
+        var panjang =  $('#form-sip-panjang-{{$index}}');
+        
+        if(this.value=='perpanjangan'){
+          baru.find('input,select,textarea').prop("disabled", true)
+          baru.attr('hidden', true)
+          panjang.find('input,select,textarea').prop("disabled", false)
+          panjang.attr('hidden', false)
+        }else if(this.value=='cabutpindah'){
+          panjang.find('input,select,textarea').prop("disabled", true)
+          panjang.attr('hidden', true)
+          baru.find('input,select,textarea').prop("disabled", false)
+          baru.attr('hidden', false)
+        }else if(this.value=='baru'){
+          panjang.find('input,select,textarea').prop("disabled", true)
+          panjang.attr('hidden', true)
+          baru.find('input,select,textarea').prop("disabled", false)
+          baru.attr('hidden', false)
+        }else{
+          baru.find('input,select,textarea').prop("disabled", true)
+          baru.attr('hidden', true)
+          panjang.find('input,select,textarea').prop("disabled", true)
+          panjang.attr('hidden', true)
+        }
+        // $('#modal-sip{{$index}} [name=jenispermohonan]').each(function(k,elem){
+        //     let section =  $(elem.dataset.target)
+        //     if(!section.length) return;
+        //     if(elem.checked){
+        //       console.log(section)
+        //       section.find('input,select,textarea').prop("disabled", false)
+        //       section.attr('hidden', false)
+        //     }else{
+        //       section.find('input,select,textarea').prop("disabled", true)
+        //       section.attr('hidden', true)
+        //     }
+        // })
     })
     // END OF TOGGLE RADIO BUTTON JENISPERMOHONAN
 
