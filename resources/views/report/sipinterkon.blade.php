@@ -159,7 +159,7 @@
                         </tr>
                         <tr>
                           <td class="paddingfont fontJustify paragraf" style="font-size:13px">3. </td>
-                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">Surat Izin Praktik Tenaga Kesehatan Tradisional Interkontinental (SIPTKT Interkontinental) berlaku @if($jenispermohonan) apabila Izin Sarana Kesehatan yang tercantum diatas masih berlaku. @else sesuai dengan alamat tempat praktik yang tercantum di atas. @endif</td>
+                          <td class="paddingfont fontJustify paragraf" style="font-size:13px">Surat Izin Praktik Tenaga Kesehatan Tradisional Interkontinental (SIPTKT Interkontinental) berlaku @if($jenispermohonan->syarat>4) apabila Izin Sarana Kesehatan yang tercantum diatas masih berlaku. @else sesuai dengan alamat tempat praktik yang tercantum di atas. @endif</td>
                         </tr>
                         <tr>
                           <td class="paddingfont fontJustify paragraf" style="font-size:13px">4. </td>
