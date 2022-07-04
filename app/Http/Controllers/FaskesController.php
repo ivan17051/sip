@@ -23,7 +23,7 @@ class FaskesController extends Controller
 
     public function getpegawai($idfaskes){
         
-        $datapegawai = SIP::where('idfaskes', $idfaskes)->with('pegawai');
+        $datapegawai = SIP::where('idfaskes', $idfaskes)->where('isactive', 1)->with('pegawai');
         $datatable = Datatables::of($datapegawai);
         $datatable->addColumn('action', function ($t) { 
             return '<a href="'.route('bio').'?nakes='.$t->id.'" class="btn btn-info btn-link" style="padding:5px;"><i class="material-icons">launch</i></a>&nbsp';
