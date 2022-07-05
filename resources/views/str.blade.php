@@ -85,10 +85,6 @@ active
                 { data:'nama', title:'Nama'},
                 { data:'nomorsip', title:'Nomor SIP'},
                 { data:'profesi', title:'Profesi'},
-                { data:'expirystr', title:'Tanggal Exp.',  render: function(e,d,row){
-                    if(!e) return '';
-                    return moment(e).format('L');} 
-                },
                 { data:'validstatus', title:'Status', render: function(e,d,row){
                     switch (parseInt(e)) {
                         case -2:
@@ -101,6 +97,10 @@ active
                             return '<strong>Valid</strong>';
                     }
                 }},
+                { data:'expirystr', title:'Tanggal Exp.',  render: function(e,d,row){
+                    if(!e) return '';
+                    return moment(e).format('L');} 
+                },
                 { data:'id', title:'Aksi', class:"text-right", render: function(e,d,row){
                     return '<a href="{{route("bio")}}?nakes='+e+'" class="btn btn-info btn-link" style="padding:5px;"><i class="material-icons">launch</i> Cek</a>'
                 }},
