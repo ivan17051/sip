@@ -60,7 +60,7 @@
                         </tr>
                         <tr>
                           <td class="" style="font-size:13px">Tempat Tanggal Lahir</td>
-                          <td class="" style="font-size:13px">: {{$sip->pegawai->tempatlahir}}, {{Carbon\Carbon::parse($sip->tgllahir)->isoformat('D MMMM Y')}}</td>
+                          <td class="" style="font-size:13px">: {{$sip->pegawai->tempatlahir}}, {{Carbon\Carbon::parse($sip->pegawai->tanggallahir)->isoformat('D MMMM Y')}}</td>
                         </tr>
                         <tr>
                           <td class="" style="font-size:13px">Alamat KTP</td>
