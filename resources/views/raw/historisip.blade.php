@@ -14,7 +14,7 @@
                         <a class="dropdown-item" href="#">Tampilkan</a>
                     </div>
                 </div> -->
-                <h5><strong>{{Carbon\Carbon::parse($unit->tglmasukdinas)->isoFormat('D MMMM Y')}}</strong></h5>
+                <h5><strong>{{Carbon\Carbon::parse($unit->tglverif)->isoFormat('D MMMM Y')}}</strong></h5>
                 <p>
                     <span><strong>SIP {{strtoupper($unit->jenispermohonan)}} @if(isset($unit->tgldeactive)) <span style="color:red;"> (DICABUT Tgl {{Carbon\Carbon::parse($unit->tgldeactive)->isoFormat('D MMMM Y')}}) </span> @endif</strong><br> 
                     <span><strong>No SIP:</strong> {{$unit->nomor}}</span><br>

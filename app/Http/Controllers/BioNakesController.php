@@ -67,7 +67,7 @@ class BioNakesController extends Controller
         $idnakes = $request->get('nakes');
         $idstr = $request->get('idstr');
         $sip = SIP::where('idpegawai', $idnakes)->where('instance', $index)
-            ->where('idstr',$idstr)
+            // ->where('idstr',$idstr)
             ->orderBy('id', 'desc')->get();
 
         return view('raw.historisip', ['sip'=>$sip]);
