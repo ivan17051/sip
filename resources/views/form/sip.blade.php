@@ -461,7 +461,7 @@
                         <td>
                             <span data-text="true"></span>
                             <span>
-                                <input data-editable=true type="text" class="form-control" name="nomorrekom" value="{{$sips[$index]['nomorrekom']}}" maxlength="22" >
+                                <input data-editable=true type="text" class="form-control" name="nomorrekom" value="{{$sips[$index]['nomorrekom']}}" maxlength="40" >
                             </span>
                         </td>
                     </tr>
