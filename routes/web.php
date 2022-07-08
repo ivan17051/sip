@@ -48,6 +48,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data/getspesialisasi/{idprofesi}', 'DataController@getSpesialisasi')->name('data.getspesialisasi');
     Route::get('/data/searchfaskes', 'DataController@searchFaskes')->name('data.searchfaskes');
     Route::get('/data/searchpegawai', 'DataController@searchPegawai')->name('data.searchpegawai');
+    Route::get('/data/laporan', 'DataController@laporan');
+    Route::post('/data/laporan', 'DataController@downloadLaporan')->name('data.download');
 
     Route::get('/cetak/perstek/{idsip}', 'CetakController@perstek')->name('cetak.perstek');
     Route::get('/cetak/kitir/{idsip}', 'CetakController@kitir')->name('cetak.kitir');
