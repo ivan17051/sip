@@ -88,7 +88,7 @@
                     <div class="form-group">
                       <label class="bmd-label force-top">Jabatan</label>
                       <div>
-                        <input type="text" class="form-control" name="jabatan" maxlength="30">
+                        <input type="text" class="form-control" name="jabatan" maxlength="50">
                       </div>
                     </div>
                   </div>
