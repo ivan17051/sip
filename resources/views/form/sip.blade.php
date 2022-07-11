@@ -432,7 +432,11 @@
                                     echo 'Perpanjangan';
                                     break;
                             }
-                            @endphp</td>
+                            @endphp
+                            @if($sips[$index]['tgldeactive']) 
+                             <span style="color:red;">(Dicabut tanggal {{Carbon\Carbon::parse($sips[$index]['tgldeactive'])->isoFormat('D MMMM Y')}})</span>
+                            @endif
+                          </td>
                     </tr>
                     <tr>
                         <td><label>Praktik Ke-</label></td>

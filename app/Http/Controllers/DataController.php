@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Spesialisasi;
 use App\Pegawai;
 use App\Faskes;
+use App\Profesi;
+use App\SIP;
 use Datatables;
 use Validator;
 
@@ -20,7 +22,7 @@ class DataController extends Controller
     public function searchFaskes(Request $request){
         $data=$request->input('query');
         $data = Faskes::where('nama', 'like', '%' . strtolower($request->input('query')) . '%')
-            ->limit(5)
+            ->limit(10)
             ->get();
         return response()->json($data, 200);
     }
@@ -35,32 +37,46 @@ class DataController extends Controller
     }
 
     public function laporan(){
-        $d['fasyankes']=Faskes::all();
-        
+        $d['fasyankes']=Faskes::select('id','nama')->get();
+        $d['profesi']=Profesi::select('id','nama')->get();
         return view('laporan', ['d'=>$d]);
     }
 
     public function downloadLaporan(Request $request){
-        dd($request->all());
-        $validator = Validator::make($request->all(), [
-            'data' => 'required',
-            'formulir' => 'required|string',
-            'pertanyaan' => 'required',
-            'sekolah' => 'required|string'
-        ]);
-
-        $data = json_decode( $request->input('data'));
-        $pertanyaan = json_decode( $request->input('pertanyaan'));
-        
-        if ($validator->fails()) {
-            throw new HttpResponseException(response()->json($validator->errors(), 422));
-        }
+        // dd($request->all());
 
         $ex = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
-        $ex->getProperties()->setCreator("IT Dinkes 2021");
+        $ex->getProperties()->setCreator("IT Dinkes 2022");
         $ac = $ex->getActiveSheet();
 
-        $ac->getCell('A1')->setValue(explode('_',json_decode($request->input('formulir')))[0]);
+        // Data Nakes Teregistrasi/Tersertifikasi
+        if($request->jenislaporan == 1){
+            $data = Profesi::join('vw_agregatnakesbyprofesi', 'mprofesi.id', '=', 'vw_agregatnakesbyprofesi.idprofesi')->get();
+            dd($data);
+            $ac->mergeCell('A1:D1');
+            $ac->getCell('A1')->setValue('DATA NAKES YANG TEREGISTRASI/TERSERTIFIKASI');
+
+        }
+        // Data Cetak Persetujuan Teknis
+        elseif($request->jenislaporan == 2) {
+            // dd($request->all());
+            $tglawal = '01/'.$request->tglawal;
+            $coba = \Carbon\Carbon::make($request->tglawal)->format('Y-m-d');
+            dd($coba);
+            $tglakhir = '30/'.$request->tglakhir;
+            $data = SIP::whereBetween('tglverif', ['2022-01-01', '2022-07-01'])->get();
+            dd($data, $tglawal, $tglakhir);
+        }
+        // Data Tenaga Kesehatan di Fasyankes
+        elseif($request->jenislaporan == 3){
+
+        }
+        // Data Nakes per Profesi
+        elseif($request->jenislaporan == 4){
+
+        }
+        
+        
 
         $ac->getCell('A2')->setValue("Nama");
         // $ac->mergeCells('A1:A2');

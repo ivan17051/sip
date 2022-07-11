@@ -18,7 +18,7 @@
                 <p>
                     <span><strong>SIP {{strtoupper($unit->jenispermohonan)}} @if(isset($unit->tgldeactive)) <span style="color:red;"> (DICABUT Tgl {{Carbon\Carbon::parse($unit->tgldeactive)->isoFormat('D MMMM Y')}}) </span> @endif</strong><br> 
                     <span><strong>No SIP:</strong> {{$unit->nomor}}</span><br>
-                    <span><strong>No Rekom:</strong> {{$unit->nomorrek}}</span><br>
+                    <span><strong>No Rekom:</strong> {{$unit->nomorrekom}}</span><br>
                     <span><strong>No Online:</strong> {{$unit->nomoronline}}</span><br>
                     <span>{{$unit->namafaskes}}</span><br>
                     <span>{{$unit->alamatfaskes}}</span>
