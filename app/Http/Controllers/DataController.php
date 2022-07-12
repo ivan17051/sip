@@ -22,9 +22,10 @@ class DataController extends Controller
     public function searchFaskes(Request $request){
         $data=$request->input('query');
         $data = Faskes::where('nama', 'like', '%' . strtolower($request->input('query')) . '%')
+            ->orWhere('alamat', 'like', '%' . strtolower($request->input('query')) . '%')
             ->limit(10)
             ->get();
-        return response()->json($data, 200);
+        return response()->json($data);
     }
 
     public function searchPegawai(Request $request){
@@ -59,17 +60,19 @@ class DataController extends Controller
         }
         // Data Cetak Persetujuan Teknis
         elseif($request->jenislaporan == 2) {
-            // dd($request->all());
+            
             $tglawal = '01/'.$request->tglawal;
-            $coba = \Carbon\Carbon::make($request->tglawal)->format('Y-m-d');
-            dd($coba);
-            $tglakhir = '30/'.$request->tglakhir;
-            $data = SIP::whereBetween('tglverif', ['2022-01-01', '2022-07-01'])->get();
-            dd($data, $tglawal, $tglakhir);
+            $tglawal = \Carbon\Carbon::createFromFormat('d/m/Y',$tglawal)->format('Y-m-d');
+            $tglakhir = explode('/', $request->tglakhir);
+            $tglakhir = \Carbon\Carbon::create($tglakhir[1],$tglakhir[0])->lastOfMonth()->format('Y-m-d');
+            
+            $data = SIP::whereBetween('tglverif', [$tglawal, $tglakhir])->get();
+            dd($data);
         }
         // Data Tenaga Kesehatan di Fasyankes
         elseif($request->jenislaporan == 3){
 
+            
         }
         // Data Nakes per Profesi
         elseif($request->jenislaporan == 4){

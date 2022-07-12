@@ -251,7 +251,7 @@
                     <div class="form-group">
                       <label class="bmd-label force-top">Jabatan</label>
                       <div>
-                        <input type="text" class="form-control" name="jabatan" maxlength="30">
+                        <input type="text" class="form-control" name="jabatan" maxlength="50">
                       </div>
                     </div>
                   </div>
@@ -365,8 +365,7 @@
 
 <div class="modal fade text-left bg-overlay-gray" id="searchfaskes{{$index}}" tabindex="-1" role="dialog"
     aria-labelledby="myModalLabel160" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-        role="document">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content" style="overflow: visible!important;">
             <div class="modal-header bg-primary">
                 <h5 class="modal-title text-white" >Cari Faskes
@@ -558,7 +557,7 @@
                         <td>
                             <span data-text="true"></span>
                             <span>
-                                <input data-editable=true type="text" class="form-control" value="{{$sips[$index]['jabatan']}}" name="jabatan" maxlength="30" >
+                                <input data-editable=true type="text" class="form-control" value="{{$sips[$index]['jabatan']}}" name="jabatan" maxlength="50" >
                             </span>
                         </td>
                     </tr>
@@ -759,7 +758,7 @@ $(function(){
                     let $form = $('#form-update-sip-{{$index}}')
                     $form.find('[name=namafaskes]').val(item.nama)
                     $form.find('[name=alamatfaskes]').val(item.alamat)
-                    console.log($form.find('[name=idfaskes]'))
+                    // console.log($form.find('[name=idfaskes]'))
                     $form.find('[name=idfaskes]').val(item.id)
                 }
             }
