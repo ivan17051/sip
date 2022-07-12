@@ -55,7 +55,7 @@
                           <td colspan="2">&nbsp;</td>
                         </tr>
                         <tr>
-                          <td class=" " style="font-size:13px">Nama</td>
+                          <td class="" style="font-size:13px; width:40%;">Nama</td>
                           <td class="" style="font-size:13px">: {{$sip->pegawai->nama}}</td>
                         </tr>
                         <tr>

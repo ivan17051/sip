@@ -37,7 +37,10 @@ class BioNakesController extends Controller
         }
         
         if (isset($d['str'])) {
-            $d['sips']=SIP::where('idstr', $d['str']->id)->orderBy('instance')->get()->toArray();
+            for($i=0;$i<$d['makssip'];$i++){
+                $d['sips'][$i]=SIP::where('idstr', $d['str']->id)->where('instance',$i+1)->orderBy('iterator', 'desc')->first();
+            }
+            // $d['sips']=SIP::where('idstr', $d['str']->id)->where('isactive',1)->orderBy('instance')->get()->toArray();
         }else{
             $d['sips'] = [];
         }
