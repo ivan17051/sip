@@ -73,7 +73,7 @@ class BioNakesController extends Controller
             // ->where('idstr',$idstr)
             ->orderBy('id', 'desc')->get();
 
-        return view('raw.historisip', ['sip'=>$sip]);
+        return view('raw.historisip', ['sip'=>$sip, 'strnow'=>$idstr]);
     }
     
 }

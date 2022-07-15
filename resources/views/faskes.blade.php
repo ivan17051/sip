@@ -43,8 +43,8 @@ active
             </div>
             <div class="col-md-12">
               <label class="bmd-label force-top">Kategori Faskes <small class="text-danger align-text-top">*wajib</small></label>
-              <select name="idkategori" class="selectpicker form-control" data-size="5" data-style="btn btn-primary btn-round" title="Kategori">
-                <option disabled selected>Pilih Kategori Faskes</option>
+              <select name="idkategori" class="selectpicker form-control" data-size="5" data-style="btn btn-primary btn-round" title="Kategori" required>
+                <option value="" disabled selected>Pilih Kategori Faskes</option>
                 @foreach($kategori as $unit)
                 <option value="{{$unit->id}}">{{$unit->nama}}</option>
                 @endforeach
@@ -248,6 +248,7 @@ active
               { data: 'nomor', title: 'No. SIP' },
               { data: 'tglverif', title: 'Tgl. Verif' },
               { data: 'expirystr', title: 'Masa Berlaku' },
+              { data: 'pegawai.profesi', title: 'Profesi' },
               { data: 'action', title: 'Aksi', orderable: false, width: '5%'
                 
               },
