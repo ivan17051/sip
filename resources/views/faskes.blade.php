@@ -302,7 +302,7 @@ active
                     '_token': @json(csrf_token())
                 }
             },
-            columns: [{
+            columns: [{ data: 'id', title: 'ID'},{
                     data: 'nama',
                     title: 'Faskes'
                 },

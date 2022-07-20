@@ -86,7 +86,7 @@
                         <td>
                             <span data-text="true"></span>
                             <span>
-                                <input data-editable=true type="text" class="form-control" name="perguruantinggi" maxlength="50" value="{{$nakes->perguruantinggi}}"/>
+                                <input data-editable=true type="text" class="form-control" name="perguruantinggi" maxlength="100" value="{{$nakes->perguruantinggi}}"/>
                             </span>
                         </td>
                     </tr>

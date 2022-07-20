@@ -79,7 +79,9 @@ class NakesController extends Controller
             return back();
         }catch (Exception $e) {
             DB::rollback();
-            return response()->json($e->getMessage(), 400);
+            $this->flashError('Error: '.$e->getMessage());
+            return back();
+            // return response()->json($e->getMessage(), 400);
         }
     }
 

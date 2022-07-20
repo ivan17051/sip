@@ -82,9 +82,17 @@
                     <div class="form-group">
                       <label class="bmd-label force-top">Nomor Rekom</label>
                       <div>
-                        <input type="text" class="form-control" name="nomorrekom" maxlength="22">
+                        <input type="text" class="form-control" name="nomorrekom" maxlength="60">
                       </div>
                     </div>
+                    @if($sips[$index]['idprofesi']==6)
+                    <div class="form-group">
+                      <label class="bmd-label force-top">Nomor Rekom KPS</label>
+                      <div>
+                        <input type="text" class="form-control" name="nomorrekomkps" maxlength="60">
+                      </div>
+                    </div>
+                    @endif
                     <div class="form-group">
                       <label class="bmd-label force-top">Jabatan</label>
                       <div>
@@ -245,9 +253,17 @@
                     <div class="form-group">
                       <label class="bmd-label force-top">Nomor Rekom</label>
                       <div>
-                        <input type="text" class="form-control" name="nomorrekom" maxlength="22">
+                        <input type="text" class="form-control" name="nomorrekom" maxlength="60">
                       </div>
                     </div>
+                    @if($sips[$index]['idprofesi']==6)
+                    <div class="form-group">
+                      <label class="bmd-label force-top">Nomor Rekom KPS</label>
+                      <div>
+                        <input type="text" class="form-control" name="nomorrekomkps" maxlength="60">
+                      </div>
+                    </div>
+                    @endif
                     <div class="form-group">
                       <label class="bmd-label force-top">Jabatan</label>
                       <div>
@@ -464,10 +480,21 @@
                         <td>
                             <span data-text="true"></span>
                             <span>
-                                <input data-editable=true type="text" class="form-control" name="nomorrekom" value="{{$sips[$index]['nomorrekom']}}" maxlength="40" >
+                                <input data-editable=true type="text" class="form-control" name="nomorrekom" value="{{$sips[$index]['nomorrekom']}}" maxlength="60" >
                             </span>
                         </td>
                     </tr>
+                    @if($sips[$index]['idprofesi']==6)
+                    <tr>
+                        <td><label>Nomor Rekom KPS</label></td>
+                        <td>
+                            <span data-text="true"></span>
+                            <span>
+                                <input data-editable=true type="text" class="form-control" name="nomorrekom" value="{{$sips[$index]['nomorrekomkps']}}" maxlength="60" >
+                            </span>
+                        </td>
+                    </tr>
+                    @endif
                     <tr>
                         <td><label>Tanggal Online</label></td>
                         <td>
@@ -561,6 +588,17 @@
                             </span>
                         </td>
                     </tr>
+                    @if($sips[$index]['idprofesi']==6)
+                    <tr>
+                        <td><label>Kompetensi</label></td>
+                        <td>
+                            <span data-text="true"></span>
+                            <span>
+                                <input data-editable=true type="text" class="form-control" value="{{$sips[$index]['kompetensi']}}" name="kompetensi" maxlength="100" >
+                            </span>
+                        </td>
+                    </tr>
+                    @endif
                     @if( in_array($sips[$index]['idprofesi'], [31]) )
                     <!-- KHUSUS Tenaga Kesehata Tradisional Interkontinental -->
                     <tr>

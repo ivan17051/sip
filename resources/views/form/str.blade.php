@@ -111,12 +111,24 @@
                     </tr>
                     <tr>
                         <td><label>Tanggal Berakhir</label></td>
+                        @if($str->expiry == '1901-01-01')
+                        <td>Selama Mengikuti PPDGS Konservasi Gigi di Fakultas Kedokteran Gigi Universitas Airlangga</td>
+                        @elseif($str->expiry == '1901-01-02')
+                        <td>Selama Mengikuti PPDGS Konservasi Gigi Anak di Fakultas Kedokteran Gigi Universitas Airlangga</td>
+                        @elseif($str->expiry == '1901-02-01')
+                        <td>Selama Mengikuti PPDGS Kedokteran Gigi Anak di Fakultas Kedokteran Gigi Universitas Airlangga</td>
+                        @elseif($str->expiry == '1901-03-01')
+                        <td>Selama Mengikuti PPDGS Penyakit Mulut di Fakultas Kedokteran Gigi Universitas Airlangga</td>
+                        @elseif($str->expiry == '1901-04-01')
+                        <td>Selama Mengikuti PPDGS Periodonsia di Fakultas Kedokteran Gigi Universitas Airlangga</td>
+                        @else
                         <td>
                             <span data-text="true"></span>
                             <span>
                                 <input data-editable=true type="date" name="expiry" class="form-control" required value="{{$str->expiry}}" />
                             </span>
                         </td>
+                        @endif
                     </tr>
                     <!-- <tr>
                         <td><label>Tanggal Penetapan</label></td>
