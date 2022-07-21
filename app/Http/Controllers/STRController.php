@@ -97,6 +97,9 @@ class STRController extends Controller
                         'idm'=> $userId,
                     ]);
                     $newSIPs[] = $newSIP->toArray();
+                    $sip->isactive=0;
+                    $sip->tgldeactive=date('Y-m-d');
+                    $sip->save();
                 }
                 SIP::insert($newSIPs);
             }
@@ -135,11 +138,18 @@ class STRController extends Controller
     public function destroy($id){
         DB::beginTransaction();
         try {
-            $akun = STR::findOrFail($id);
-            if(!$akun->isactive) throw new Exception("Unauthorized");
-
-            $akun->isactive = 0;
-            $akun->save();
+            $str = STR::findOrFail($id);
+            if(!$str->isactive) throw new Exception("Unauthorized");
+            $sips = SIP::where('idstr', $id)->get();
+            
+            foreach ($sips as $sip) {
+                $sip->isactive=0;
+                $sip->tgldeactive=date('Y-m-d');
+                $sip->save();
+            }
+            
+            $str->isactive = 0;
+            $str->save();
             DB::commit();
             $this->flashSuccess('STR Berhasil Dinonaktifkan');
             return back();

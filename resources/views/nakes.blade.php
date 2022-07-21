@@ -381,6 +381,7 @@ active
       // end toggle onchange isauto nomor regis
 
       oTable = $("#datatables").DataTable({
+          bAutoWidth: false, 
           select:{
               className: 'dataTable-selector form-select'
           },

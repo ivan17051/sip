@@ -111,15 +111,15 @@
                     </tr>
                     <tr>
                         <td><label>Tanggal Berakhir</label></td>
-                        @if($str->expiry == '1901-01-01')
+                        @if($str->expiry == '3001-01-01')
                         <td>Selama Mengikuti PPDGS Konservasi Gigi di Fakultas Kedokteran Gigi Universitas Airlangga</td>
-                        @elseif($str->expiry == '1901-01-02')
+                        @elseif($str->expiry == '3001-01-02')
                         <td>Selama Mengikuti PPDGS Konservasi Gigi Anak di Fakultas Kedokteran Gigi Universitas Airlangga</td>
-                        @elseif($str->expiry == '1901-02-01')
+                        @elseif($str->expiry == '3001-02-01')
                         <td>Selama Mengikuti PPDGS Kedokteran Gigi Anak di Fakultas Kedokteran Gigi Universitas Airlangga</td>
-                        @elseif($str->expiry == '1901-03-01')
+                        @elseif($str->expiry == '3001-03-01')
                         <td>Selama Mengikuti PPDGS Penyakit Mulut di Fakultas Kedokteran Gigi Universitas Airlangga</td>
-                        @elseif($str->expiry == '1901-04-01')
+                        @elseif($str->expiry == '3001-04-01')
                         <td>Selama Mengikuti PPDGS Periodonsia di Fakultas Kedokteran Gigi Universitas Airlangga</td>
                         @else
                         <td>

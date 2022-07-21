@@ -17,9 +17,9 @@
                 <h5><strong>{{isset($unit->tglverif) ? Carbon\Carbon::parse($unit->tglverif)->isoFormat('D MMMM Y') : 'Tanggal Verif Belum Diisi' }}</strong></h5>
                 <p>
                     <span><strong>SIP {{strtoupper($unit->jenispermohonan)}} 
-                        @if(isset($unit->tgldeactive)) <span style="color:red;"> (DICABUT Tgl {{Carbon\Carbon::parse($unit->tgldeactive)->isoFormat('D MMMM Y')}}) </span> 
-                        @elseif($unit->idstr != $strnow) <span style="color:red;"> (STR Lama) </span> 
-                        @endif</strong><br> 
+                        @if(isset($unit->tgldeactive)) <span style="color:red;"> (DICABUT Tgl {{Carbon\Carbon::parse($unit->tgldeactive)->isoFormat('D MMMM Y')}}) </span> @endif
+                        @if($unit->idstr != $strnow) <span style="color:red;"> (STR Lama) </span> @endif
+                        </strong><br> 
                     <span><strong>No SIP:</strong> {{$unit->nomor}}</span><br>
                     <span><strong>No Rekom:</strong> {{$unit->nomorrekom}}</span><br>
                     <span><strong>No Online:</strong> {{$unit->nomoronline}}</span><br>

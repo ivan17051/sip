@@ -14,7 +14,7 @@
         </div>
         <div class="modal-body">
           <div id="sip-form-accordion{{$index}}" role="tablist">
-            @if(isset($sips[$index]) AND $sips[$index]['isactive'] )
+            @if(isset($sips[$index]) AND isset($sips[$index]['isactive']) )
             <div class="form-check-group mb-3" id="aksisip-wrapper-{{$index}}">
               <div class="form-check">
                 <label class="form-check-label">
@@ -85,7 +85,7 @@
                         <input type="text" class="form-control" name="nomorrekom" maxlength="60">
                       </div>
                     </div>
-                    @if($sips[$index]['idprofesi']==6)
+                    @if(isset($sips[$index]['idprofesi']) and $sips[$index]['idprofesi']==6)
                     <div class="form-group">
                       <label class="bmd-label force-top">Nomor Rekom KPS</label>
                       <div>
@@ -256,7 +256,7 @@
                         <input type="text" class="form-control" name="nomorrekom" maxlength="60">
                       </div>
                     </div>
-                    @if($sips[$index]['idprofesi']==6)
+                    @if(isset($sips[$index]['idprofesi']) and $sips[$index]['idprofesi']==6)
                     <div class="form-group">
                       <label class="bmd-label force-top">Nomor Rekom KPS</label>
                       <div>
