@@ -73,7 +73,7 @@ active
         <!-- expired -->
         <div class="alert alert-rose alert-with-icon" data-notify="container">
             <i class="material-icons" data-notify="icon">notifications</i>
-            <span data-notify="message">STR TELAH EXPIRED PADA TANGGAL <strong>{{$str->expiry}}</strong> !!!</span>
+            <span data-notify="message">STR TELAH EXPIRED PADA TANGGAL <strong>{{Carbon\Carbon::parse($str->expiry)->isoFormat('D MMMM Y')}}</strong> !!!</span>
         </div>
         @elseif( $daydiff->days < 60 )
         <!-- 2 bulan maka sudah masuk expired -->

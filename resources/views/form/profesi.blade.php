@@ -13,7 +13,23 @@
                 </tr>
                 <tr>
                     <td><label>Tanggal Expired</label></td>
-                    <td><strong class="text-danger">{{$str->expiry}}</strong></td>
+                    <td><strong class="text-danger">
+                        @if($str->expiry == '3001-01-01')
+                        Selama Mengikuti PPDGS Konservasi Gigi di Fakultas Kedokteran Gigi Universitas Airlangga
+                        @elseif($str->expiry == '3001-01-02')
+                        Selama Mengikuti PPDGS Konservasi Gigi Anak di Fakultas Kedokteran Gigi Universitas Airlangga
+                        @elseif($str->expiry == '3001-02-01')
+                        Selama Mengikuti PPDGS Kedokteran Gigi Anak di Fakultas Kedokteran Gigi Universitas Airlangga
+                        @elseif($str->expiry == '3001-03-01')
+                        Selama Mengikuti PPDGS Penyakit Mulut di Fakultas Kedokteran Gigi Universitas Airlangga
+                        @elseif($str->expiry == '3001-04-01')
+                        Selama Mengikuti PPDGS Periodonsia di Fakultas Kedokteran Gigi Universitas Airlangga
+                        @elseif($str->expiry == '3002-01-01')
+                        Selama Masa Internship
+                        @else
+                        {{$str->expiry}}
+                        @endif
+                    </strong></td>
                 </tr>
                 @else
                 <tr>

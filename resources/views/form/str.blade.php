@@ -50,7 +50,7 @@
                     <input type="date" class="form-control" name="since" required>
                 </div>
                 <div class="form-group">
-                    <label class="bmd-label force-top">Tanggal Berkahir <small class="text-danger align-text-top">*wajib</small></label>
+                    <label class="bmd-label force-top">Tanggal Berakhir <small class="text-danger align-text-top">*wajib</small></label>
                     <input type="date" class="form-control" name="expiry" required>
                 </div>
                 <!-- <div class="form-group">
@@ -121,6 +121,8 @@
                         <td>Selama Mengikuti PPDGS Penyakit Mulut di Fakultas Kedokteran Gigi Universitas Airlangga</td>
                         @elseif($str->expiry == '3001-04-01')
                         <td>Selama Mengikuti PPDGS Periodonsia di Fakultas Kedokteran Gigi Universitas Airlangga</td>
+                        @elseif($str->expiry == '3002-01-01')
+                        <td>Selama Masa Internship</td>
                         @else
                         <td>
                             <span data-text="true"></span>
@@ -172,10 +174,15 @@
         </div>
     </div>
 </form>
-@if($str->isactive)
+@if($str->isactive==1)
 <div class="btn-selengkapnya-wrapper d-absolute w-100 text-center">
     <button type="button" class="btn btn-primary btn-selengkapnya" data-toggle="modal" data-target="#modal-str" ><i
             class="material-icons">priority_high</i> TINDAKAN PADA STR</button>
+</div>
+@else
+<div class="w-100 text-center">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-str"><i
+            class="material-icons">add</i> TAMBAH STR</button>
 </div>
 @endif
 @else
